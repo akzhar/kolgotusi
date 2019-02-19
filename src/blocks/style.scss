@@ -1,0 +1,46 @@
+@font-face { //локальное подключение шрифтов
+  font-weight: normal;
+  font-family: "Georgia";
+  font-style: normal;
+  font-display: optional;
+  src: url("../fonts/Georgia.woff2") format("woff2"),
+  url("../fonts/Georgia.woff") format("woff");
+}
+
+img {
+  max-width: 100%;
+}
+
+@import "variables/variables.scss";
+
+@import "normalize/normalize.min.scss";
+
+@import "srvc/srvc.scss";
+
+@import "body/body.scss";
+
+@import "header/header.scss";
+
+@import "site-menu-list/site-menu-list.scss";
+
+@import "user-menu-list/user-menu-list.scss";
+
+@import "logo/logo.scss";
+
+@import "nav-list/nav-list.scss";
+
+@import "search/search.scss";
+
+@import "slider/slider.scss";
+
+@import "slide/slide.scss";
+
+@import "stock/stock.scss";
+
+@import "goods/goods.scss";
+
+@import "delivery/delivery.scss";
+
+@import "footer/footer.scss";
+
+@import "social/social.scss";

@@ -1,0 +1,33 @@
+.slider {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: $orange;
+
+  margin: 100px 0 0 0;
+}
+
+.slider__btn-prev,
+.slider__btn-next {
+  width: 78px;
+  height: 78px;
+  color: $black;
+
+  border: 0;
+
+  background-color: $yellow; //#eefdf0
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
+
+.slider__btn-prev svg {
+  transform: rotate(-180deg);
+}

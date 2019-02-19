@@ -1,0 +1,25 @@
+.logo {
+  margin: 0 0 20px 0;
+}
+
+.logo__icon {
+  display: block;
+
+  margin: 0 0 20px 0;
+
+  text-decoration: none;
+  color: $black;
+  font-weight: 600;
+
+  font-size: 36px;
+  line-height: 30px;
+  text-align: center;
+
+   &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}

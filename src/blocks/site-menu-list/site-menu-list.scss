@@ -1,0 +1,73 @@
+.site-menu-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  max-width: 800px;
+
+  font-size: $s_2;
+  line-height: $l_2;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  z-index: 2; // для arrow на select
+}
+
+.site-menu-list__item {
+  display: flex;
+  align-items: center;
+
+  position: relative;
+
+  margin-right: 60px;
+
+  &:hover {
+    opacity: 0.8;
+
+    & .site-menu-list__icon {
+      fill: $lime;
+    }
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+
+}
+
+.site-menu-list__item:last-child {
+  margin-right: 0;
+}
+
+.site-menu-list__icon {
+  position: absolute;
+  content: "";
+
+  top: 50%;
+
+  fill: $white;
+}
+
+.site-menu-list__icon {
+  left: 0;
+
+  transform: translate(0, -50%);
+}
+.site-menu-list__link {
+  display: block;
+
+  color: $white;
+  text-decoration: none;
+
+  padding: 36px 0 36px 40px;
+
+  &:hover {
+    color: $lime;
+  }
+}
+
+.site-menu-list__item--index .site-menu-list__link {
+  padding: 36px 0;
+}

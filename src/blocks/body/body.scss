@@ -1,0 +1,40 @@
+.body {
+  font-family: Georgia, Times, serif;
+  font-size: $s_1;
+  line-height: $l_1;
+  text-transform: uppercase;
+  color: $black;
+  background-color: #f2f2f2;
+}
+
+.body--index .logo__icon,
+.body--cart .user-menu-list__item--cart,
+.body--order .user-menu-list__item--order,
+.body--index .site-menu-list__item--index,
+.body--stock .site-menu-list__item--stock,
+.body--delivery .site-menu-list__item--delivery,
+.body--contacts .site-menu-list__item--contacts,
+.body--catalog .site-menu-list__item--catalog { // для активного пункта меню
+  pointer-events: none !important; //отключаем событие клика
+  cursor: default !important; //курсор обычный при наведении
+}
+
+.body--cart .user-menu-list__item--cart .user-menu-list__link,
+.body--order .user-menu-list__item--order .user-menu-list__link,
+.body--index .site-menu-list__item--index .site-menu-list__link,
+.body--stock .site-menu-list__item--stock .site-menu-list__link,
+.body--delivery .site-menu-list__item--delivery .site-menu-list__link,
+.body--contacts .site-menu-list__item--contacts .site-menu-list__link,
+.body--catalog .site-menu-list__item--catalog .site-menu-list__link { // для активного пункта меню
+  color: $lime;
+}
+
+.body--cart .user-menu-list__item--cart .user-menu-list__icon,
+.body--order .user-menu-list__item--order .user-menu-list__icon,
+.body--index .site-menu-list__item--index .site-menu-list__icon,
+.body--stock .site-menu-list__item--stock .site-menu-list__icon,
+.body--delivery .site-menu-list__item--delivery .site-menu-list__icon,
+.body--contacts .site-menu-list__item--contacts .site-menu-list__icon,
+.body--catalog .site-menu-list__item--catalog .site-menu-list__icon { // для активного пункта меню
+  fill: $lime;
+}

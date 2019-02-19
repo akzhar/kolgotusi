@@ -1,0 +1,30 @@
+.search {
+  display: flex;
+
+  width: 100px;
+}
+
+.search__btn {
+ border: none;
+
+ padding: 0 6px;
+
+ background: url("../img/search.svg") no-repeat transparent center center;
+
+ &:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+&:active {
+  opacity: 0.6;
+}
+}
+
+.search__input {
+  padding: 0 15px;
+
+  border: none;
+
+  background-color: transparent;
+}

@@ -1,0 +1,104 @@
+.delivery {
+  width: 1140px;
+
+  margin: 100px auto;
+}
+
+.delivery__wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 100px;
+}
+
+.delivery__header {
+  margin: 0 0 20px 0;
+}
+
+.delivery__list {
+  position: relative;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.delivery__list:after {
+  position: absolute;
+  content: "";
+  top: -40px;
+  left: 230px;
+
+  width: 10px;
+  height: 272px;
+
+  background-image: url("../img/mask.png");
+}
+
+.delivery input[type="radio"] {
+  display: none;
+}
+
+.delivery__list label {
+  display: block;
+
+  background-color: $orange;
+  padding: 15px 0 15px 22px;
+
+  width: 218px;
+
+  // text-align: center;
+  cursor: pointer;
+}
+
+.delivery__item:hover label {
+  background-color: $yellow;
+}
+
+.delivery input#slide1:checked~.delivery__list label[for=slide1],
+.delivery input#slide2:checked~.delivery__list label[for=slide2],
+.delivery input#slide3:checked~.delivery__list label[for=slide3] {
+  cursor: context-menu;
+  background-color: $yellow;
+}
+
+.delivery__promo {
+  display: none;
+
+  width: 740px;
+
+  padding: 0 80px;
+
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+
+.delivery__promo h3 {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.delivery__promo p {
+  margin: 0;
+
+  width: 400px;
+}
+
+.delivery__promo--1 {
+  background-image: url("../img/truck.png");
+}
+
+.delivery__promo--2 {
+  background-image: url("../img/medal.png");
+}
+
+.delivery__promo--3 {
+  background-image: url("../img/credit.png");
+}
+
+.delivery input#slide1:checked~.delivery__promo--1,
+.delivery input#slide2:checked~.delivery__promo--2,
+.delivery input#slide3:checked~.delivery__promo--3 {
+  display: block;
+}
