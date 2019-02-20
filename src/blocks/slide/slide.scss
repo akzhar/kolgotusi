@@ -5,21 +5,26 @@
   justify-content: space-between;
   align-items: center;
 
-  width: 1170px;
+  width: 320px;
+
+  padding: 0 10px;
 }
 
 .slide__list {
   margin: 0;
-  padding: 0 0 0 110px;
+  padding: 0;
 
-  width: 460px;
-  min-height: 520px;
+  width: 260px;
+  height: 400px;
 
   list-style: none;
 }
 
 .slide__item {
   display: none;
+
+  height: 300px;
+  padding: 50px 0;
 
   &:after {
     position: absolute;
@@ -31,37 +36,10 @@
 }
 
 .slide__item--show {
-  display: block;
-}
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-.slide__item--1 {
-
-  &:after {
-    width: 230px;
-    height: 606px;
-
-    background-image: url("../img/female_3.png");
-  }
-}
-
-.slide__item--2 {
-
-  &:after {
-    width: 246px;
-    height: 605px;
-
-    background-image: url("../img/female_1.png");
-  }
-}
-
-.slide__item--3 {
-
-  &:after {
-    width: 215px;
-    height: 606px;
-
-    background-image: url("../img/female_2.png");
-  }
 }
 
 .slide__period {
@@ -70,26 +48,26 @@
   font-size: 24px;
   line-height: 30px;
   color: $darkgrey;
-
-  padding-top: 100px;
-  margin-bottom: 30px;
 }
 
 .slide__header {
-  margin: 0 0 30px 0;
+  margin: 0;
 
   font-size: 38px;
   line-height: 43px;
 }
 
 .slide__text {
-  margin: 0 0 40px 0;
+  margin: 0;
+}
+
+.slide__text b {
+  color: $darkgrey;
+  font-weight: 600;
 }
 
 .slide__btn {
   position: relative;
-
-  margin-bottom: 50px;
 
   &:after {
     position: absolute;
@@ -105,6 +83,9 @@
 .slide__selector {
   display: flex;
   flex-direction: column;
+
+  align-self: flex-start;
+  padding-top: 50px;
 }
 
 .slide__radio {
@@ -124,5 +105,60 @@
 
   &:hover {
     cursor: pointer;
+  }
+}
+
+@media (min-width: $width-desktop) {
+  .slide {
+    width: 1170px;
+
+    padding: 0;
+  }
+
+  .slide__selector {
+    align-self: center;
+    padding: 0;
+  }
+
+  .slide__list {
+    height: 500px;
+    padding: 0 0 0 110px;
+  }
+
+  .slide__item {
+    width: 460px;
+    height: 300px;
+
+    padding: 100px 0;
+  }
+
+  .slide__item--1 {
+
+    &:after {
+      width: 230px;
+      height: 606px;
+
+      background-image: url("../img/female_3.png");
+    }
+  }
+
+  .slide__item--2 {
+
+    &:after {
+      width: 246px;
+      height: 605px;
+
+      background-image: url("../img/female_1.png");
+    }
+  }
+
+  .slide__item--3 {
+
+    &:after {
+      width: 215px;
+      height: 606px;
+
+      background-image: url("../img/female_2.png");
+    }
   }
 }

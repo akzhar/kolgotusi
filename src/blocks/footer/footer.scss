@@ -1,16 +1,30 @@
 .footer {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 
-  width: 1125px;
+  width: 280px;
 
   margin: 0 auto;
-  padding: 100px 0;
+  padding: 50px 0;
 
   border-top: 1px solid $grey;
 }
 
-.footer .logo {
-  margin: 0 50px 0 0;
+.footer .logo__icon {
+  margin: 0 0 50px 0;
+}
+
+@media (min-width: $width-desktop) {
+  .footer {
+    flex-direction: row;
+    width: 1125px;
+
+    padding: 100px 0;
+  }
+
+  .footer .logo__icon {
+    margin: 0 50px 0 0;
+  }
 }

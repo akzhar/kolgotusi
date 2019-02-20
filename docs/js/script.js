@@ -1,3 +1,31 @@
+const anchors = document.querySelectorAll('a[href*="#"]')
+
+for (let anchor of anchors) {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault()
+
+    const blockID = anchor.getAttribute('href')
+
+    document.querySelector('' + blockID).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
+  })
+}
+
+
+var menubutton = document.querySelector(".menu-button");
+var menu = document.querySelector(".site-menu-list");
+
+menu.classList.remove("site-menu-list--nojs");
+
+menubutton.addEventListener("click", function(evt) {
+  evt.preventDefault();
+  menu.classList.toggle("site-menu-list--open");
+  menubutton.classList.toggle("menu-button--menu-open");
+});
+
+
 var slides = document.querySelectorAll(".slide__item"); //все слайды
 var label = document.querySelectorAll(".slide__radiolabel"); //все лейблы радикнопок
 var currentSlide = 0; //счетчик слайдов

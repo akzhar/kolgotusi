@@ -26,7 +26,7 @@
 .body--delivery .site-menu-list__item--delivery .site-menu-list__link,
 .body--contacts .site-menu-list__item--contacts .site-menu-list__link,
 .body--catalog .site-menu-list__item--catalog .site-menu-list__link { // для активного пункта меню
-  color: $lime;
+  color: $yellow;
 }
 
 .body--cart .user-menu-list__item--cart .user-menu-list__icon,
@@ -36,5 +36,5 @@
 .body--delivery .site-menu-list__item--delivery .site-menu-list__icon,
 .body--contacts .site-menu-list__item--contacts .site-menu-list__icon,
 .body--catalog .site-menu-list__item--catalog .site-menu-list__icon { // для активного пункта меню
-  fill: $lime;
+  fill: $yellow;
 }

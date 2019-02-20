@@ -1,0 +1,80 @@
+.menu-button { //кнопка открытия меню
+  position: relative;
+
+  width: 24px; //размеры кнопки открытия меню
+  height: 24px;
+
+  border: none;
+
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+
+    &::before,
+    &::after  {
+      background-color: $yellow;
+  }
+
+  &::before {
+    box-shadow: 0px 11px 0px 0px $yellow;
+  }
+}
+
+&:active {
+  opacity: 0.6;
+}
+
+  &::before, //иконка бургера
+  &::after {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0); //центруется
+
+    width: 24px; //размеры полосок бургера
+    height: 3px;
+
+    background-color: $white;
+
+    content: "";
+  }
+
+  &::before { //верхняя полоска бургера
+    top: 0; //отступ сверху
+    box-shadow: 0px 11px 0px 0px $white; //3ая средняя полоска бургера
+  }
+
+  &::after { //нижняя полоска бургера
+    bottom: 0; //отступ снизу
+  }
+}
+
+.menu-button--menu-open { //кнопка открытия меню когда меню открыто
+
+  &:hover::before {
+    box-shadow: none; //3ая средняя полоска исчезает
+  }
+
+  &::before { //верхняя полоска бургера
+    top: 10px; //смещается вниз
+    transform: translate(-50%, 0) rotate(-45deg); //центруется и поворачивается
+
+    transition: 0.5s; //плавно
+
+    box-shadow: none; //3ая средняя полоска исчезает
+  }
+
+  &::after { //нижняя полоска бургера
+    bottom: 10px; //смещается вверх
+    transform: translate(-50%, 0) rotate(45deg); //центруется и поворачивается
+
+    transition: 0.5s; //плавно
+  }
+}
+
+
+@media (min-width: $width-desktop) {
+  .menu-button {
+    display: none;
+  }
+}

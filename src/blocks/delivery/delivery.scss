@@ -1,14 +1,15 @@
 .delivery {
-  width: 1140px;
+  width: 280px;
 
-  margin: 100px auto;
+  margin: 50px auto;
 }
 
 .delivery__wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .delivery__header {
@@ -18,7 +19,7 @@
 .delivery__list {
   position: relative;
 
-  margin: 0;
+  margin: 0 0 50px 0;
   padding: 0;
 
   list-style: none;
@@ -27,8 +28,9 @@
 .delivery__list:after {
   position: absolute;
   content: "";
+
   top: -40px;
-  left: 230px;
+  right: 0;
 
   width: 10px;
   height: 272px;
@@ -43,35 +45,33 @@
 .delivery__list label {
   display: block;
 
-  background-color: $orange;
   padding: 15px 0 15px 22px;
 
-  width: 218px;
+  background-color: $yellow;
 
-  // text-align: center;
   cursor: pointer;
 }
 
 .delivery__item:hover label {
-  background-color: $yellow;
+  background-color: $orange;
 }
 
 .delivery input#slide1:checked~.delivery__list label[for=slide1],
 .delivery input#slide2:checked~.delivery__list label[for=slide2],
 .delivery input#slide3:checked~.delivery__list label[for=slide3] {
   cursor: context-menu;
-  background-color: $yellow;
+  background-color: $orange;
 }
 
 .delivery__promo {
   display: none;
 
-  width: 740px;
+  width: 280px;
 
-  padding: 0 80px;
+  padding: 0;
 
   background-repeat: no-repeat;
-  background-position: top right;
+  background-position: right 50px;
 }
 
 .delivery__promo h3 {
@@ -81,8 +81,7 @@
 
 .delivery__promo p {
   margin: 0;
-
-  width: 400px;
+  padding-top: 200px;
 }
 
 .delivery__promo--1 {
@@ -101,4 +100,35 @@
 .delivery input#slide2:checked~.delivery__promo--2,
 .delivery input#slide3:checked~.delivery__promo--3 {
   display: block;
+}
+
+@media (min-width: $width-desktop) {
+  .delivery {
+    width: 1140px;
+
+    margin: 100px auto;
+  }
+
+  .delivery__wrapper {
+    flex-direction: row;
+
+    margin-top: 50px;
+  }
+
+  .delivery__list {
+    width: 218px;
+
+    margin: 0;
+  }
+
+  .delivery__promo {
+    width: 740px;
+
+    padding: 0 80px;
+  }
+
+  .delivery__promo p {
+    width: 400px;
+    padding: 0;
+  }
 }

@@ -1,15 +1,43 @@
 .header {
+  position: fixed;
+
+  width: 300px;
   background-color: $black;
 
-  margin: 0 0 100px 0;
+  margin: 0 0 50px 0;
+
+  z-index: 2;
 }
 
 .header__wrapper {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
 
-  width: 1170px;
+  width: 280px;
 
   margin: 0 auto;
-  padding: 0 60px;
+}
+
+@media (min-width: $width-tablet) {
+  .header__wrapper {
+
+  }
+}
+
+@media (min-width: $width-desktop) {
+  .header {
+    width: 1920px;
+    margin-bottom: 100px;
+  }
+
+  .header__wrapper {
+    width: 1170px;
+    padding: 0 60px;
+  }
+
+  .header__wrapper .user-menu-list {
+    order: 2;
+  }
 }
