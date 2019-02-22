@@ -6,6 +6,8 @@
 
   border: none;
 
+  outline: none;
+
   background-color: transparent;
 
   &:hover {
@@ -73,7 +75,7 @@
 }
 
 
-@media (min-width: $width-desktop) {
+@media (min-width: $width-tablet) {
   .menu-button {
     display: none;
   }

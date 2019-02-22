@@ -1,7 +1,7 @@
 .user-menu-list {
   display: flex;
 
-  width: 200px;
+  // width: 200px;
 
   font-size: $s_2;
   line-height: $l_2;
@@ -13,7 +13,7 @@
 }
 
 .user-menu-list__item {
-  margin-right: 25px;
+  margin: 0 20px 0 0;
 
   &:hover {
     opacity: 0.8;
@@ -74,4 +74,10 @@
 
 .user-menu-list__icon {
   fill: $white;
+}
+
+@media (min-width: $width-desktop) {
+  .user-menu-list__item {
+    margin: 0 50px 0 0;
+  }
 }

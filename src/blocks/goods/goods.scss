@@ -16,6 +16,7 @@
 .goods__list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 
   padding: 0;
   margin: 50px auto 0 auto;
@@ -33,6 +34,8 @@
 
   background-color: $yellow;
   background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: 50% 20%;
 
   &:hover {
     box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, 0.1);
@@ -50,10 +53,6 @@
   &:hover .goods__info-block {
     background-color: $white;
   }
-}
-
-.goods__item:nth-child(3n) {
-  margin-right: 0;
 }
 
 .goods__popup {
@@ -80,33 +79,35 @@
 }
 
 .goods__item--1 {
-  background-image: url("../img/model_5.png");
-  background-position: 40% -20px;
+  background-image: url("../img/model1.jpg");
 }
 
 .goods__item--2 {
-  background-image: url("../img/model_6.png");
-  background-position: 40% top;
+  background-image: url("../img/model2.jpg");
 }
 
 .goods__item--3 {
-  background-image: url("../img/model_7.png");
-  background-position: 40% top;
+  background-image: url("../img/model3.jpg");
 }
 
 .goods__item--4 {
-  background-image: url("../img/model_8.png");
-  background-position: 40% top;
+  background-image: url("../img/model4.jpg");
 }
 
 .goods__item--5 {
-  background-image: url("../img/model_9.png");
-  background-position: 40% top;
+  background-image: url("../img/model5.jpg");
 }
 
 .goods__item--6 {
-  background-image: url("../img/model_10.png");
-  background-position: 40% top;
+  background-image: url("../imgmodel1.jpgng");
+}
+
+.goods__item--7 {
+  background-image: url("../imgmodel2.jpgg");
+}
+
+.goods__item--8 {
+  background-image: url("../img/model3.jpg");
 }
 
 .goods__info-block {
@@ -204,20 +205,30 @@
   text-align: center;
 }
 
+@media (min-width: 680px) {
+ .goods {
+  width: 90%;
+}
+}
+
 @media (min-width: $width-desktop) {
   .goods {
-    width: 1170px;
+    width: 1540px;
 
     margin: 100px auto;
   }
 
-  .goods-list {
+  .goods__list {
     margin: 100px auto 0 auto;
   }
 
   .goods__item {
     width: 360px;
-    margin: 0 35px 50px 0;
+  }
+
+
+  .goods__item:nth-child(3n) {
+    margin-right: 0;
   }
 
   .goods__info-block {

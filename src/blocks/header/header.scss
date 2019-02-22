@@ -1,7 +1,7 @@
 .header {
   position: fixed;
 
-  width: 300px;
+  width: 100%;//300
   background-color: $black;
 
   margin: 0 0 50px 0;
@@ -15,15 +15,9 @@
   justify-content: space-between;
   align-items: center;
 
-  width: 280px;
+  width: 90%; //280
 
   margin: 0 auto;
-}
-
-@media (min-width: $width-tablet) {
-  .header__wrapper {
-
-  }
 }
 
 @media (min-width: $width-desktop) {

@@ -12,11 +12,22 @@
 .body--order .user-menu-list__item--order,
 .body--index .site-menu-list__item--index,
 .body--stock .site-menu-list__item--stock,
+.body--stock .nav-list__item--stock,
 .body--delivery .site-menu-list__item--delivery,
+.body--delivery .nav-list__item--delivery,
 .body--contacts .site-menu-list__item--contacts,
-.body--catalog .site-menu-list__item--catalog { // для активного пункта меню
+.body--contacts .nav-list__item--contacts,
+.body--catalog .site-menu-list__item--catalog,
+.body--catalog .nav-list__item--catalog { // для активного пункта меню
   pointer-events: none !important; //отключаем событие клика
   cursor: default !important; //курсор обычный при наведении
+}
+
+.body--stock .nav-list__item--stock .nav-list__link,
+.body--delivery .nav-list__item--delivery .nav-list__link,
+.body--contacts .nav-list__item--contacts .nav-list__link,
+.body--catalog .nav-list__item--catalog .nav-list__link { // для активного пункта меню
+  color: $red;
 }
 
 .body--cart .user-menu-list__item--cart .user-menu-list__link,

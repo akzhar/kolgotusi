@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
 
-  width: 280px;
+  width: 90%;
 
   margin: 0 auto;
   padding: 50px 0;
@@ -12,19 +12,27 @@
   border-top: 1px solid $grey;
 }
 
-.footer .logo__icon {
+.footer .logo__icon,
+.footer .nav-list {
   margin: 0 0 50px 0;
+}
+
+
+@media (min-width: $width-tablet) {
+  .footer {
+    flex-direction: row;
+  }
+
+  .footer .logo__icon,
+  .footer .nav-list {
+    margin: 0 20px 0 0;
+  }
 }
 
 @media (min-width: $width-desktop) {
   .footer {
-    flex-direction: row;
     width: 1125px;
 
     padding: 100px 0;
-  }
-
-  .footer .logo__icon {
-    margin: 0 50px 0 0;
   }
 }
