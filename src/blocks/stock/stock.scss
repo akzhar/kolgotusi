@@ -1,5 +1,5 @@
 .stock {
-  width: 270px;
+  width: 90%;
 
   margin: 50px auto;
   padding: 0 15px;
@@ -16,6 +16,7 @@
 .stock__list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 
   margin: 50px 0 0 0;
   padding: 0;
@@ -23,15 +24,19 @@
   list-style: none;
 }
 
+.stock__wrapper {
+  width: 48%;
+}
+
 .stock__item {
   margin-bottom: 20px;
 }
 
 .stock__wrapper:last-child {
-  margin-right: 0;
+  // margin-right: 0;
 
   & .stock__item:last-child {
-    margin-bottom: 0;
+    // margin-bottom: 0;
   }
 }
 
@@ -68,7 +73,7 @@
 }
 
 .stock__content {
-  width: 235px;
+  width: 250px; //250
 }
 
 .stock__head {
@@ -107,20 +112,15 @@
   }
 }
 
-
 @media (min-width: $width-desktop) {
   .stock {
-    width: 1170px;
+    width: 1125px;
 
     margin: 100px auto;
   }
 
   .stock__list {
     margin: 100px 0 0 0;
-  }
-
-  .stock__wrapper {
-    margin: 0 30px 0 0;
   }
 
   .stock__item {
@@ -144,10 +144,10 @@
   }
 
   .stock__item--4 .stock__content {
-      padding: 40px 0 160px 35px;
+    padding: 40px 0 160px 35px;
   }
 
   .stock__content {
-    width: 530px;
+    width: 510px;
   }
 }

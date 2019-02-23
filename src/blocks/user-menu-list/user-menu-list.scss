@@ -1,8 +1,6 @@
 .user-menu-list {
   display: flex;
 
-  // width: 200px;
-
   font-size: $s_2;
   line-height: $l_2;
 
@@ -14,18 +12,6 @@
 
 .user-menu-list__item {
   margin: 0 20px 0 0;
-
-  &:hover {
-    opacity: 0.8;
-
-    & .user-menu-list__icon {
-      fill: $yellow;
-    }
-  }
-
-  &:active {
-    opacity: 0.6;
-  }
 }
 
 .user-menu-list__item:last-child {
@@ -69,6 +55,15 @@
 
   &:hover {
     color: $yellow;
+    opacity: 0.8;
+
+    & .user-menu-list__icon {
+      fill: $yellow;
+    }
+  }
+
+  &:active {
+    opacity: 0.6;
   }
 }
 
