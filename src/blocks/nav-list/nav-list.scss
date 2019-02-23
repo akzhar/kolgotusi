@@ -43,3 +43,9 @@
 .nav-list__item:first-child .nav-list__link .nav-list__arrow {
   fill: $white;
 }
+
+@media (min-width: $width-desktop) {
+  .nav-list__item {
+    margin: 0 25px;
+  }
+}

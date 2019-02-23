@@ -6,7 +6,7 @@
 
   margin: 0 0 50px 0;
 
-  z-index: 2;
+  z-index: 3;
 }
 
 .header__wrapper {
@@ -22,16 +22,11 @@
 
 @media (min-width: $width-desktop) {
   .header {
-    width: 1920px;
+    width: $width-desktop;
     margin-bottom: 100px;
   }
 
-  .header__wrapper {
-    width: 1170px;
-    padding: 0 60px;
-  }
-
-  .header__wrapper .user-menu-list {
-    order: 2;
-  }
+  // .header__wrapper .user-menu-list {
+  //   order: 2;
+  // }
 }

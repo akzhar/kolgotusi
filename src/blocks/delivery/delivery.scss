@@ -1,5 +1,5 @@
 .delivery {
-  width: 280px;
+  width: 90%;
 
   margin: 50px auto;
 }
@@ -66,8 +66,6 @@
 .delivery__promo {
   display: none;
 
-  width: 280px;
-
   padding: 0;
 
   background-repeat: no-repeat;
@@ -102,11 +100,9 @@
   display: block;
 }
 
-@media (min-width: $width-desktop) {
+@media (min-width: $width-tablet) {
   .delivery {
-    width: 1140px;
-
-    margin: 100px auto;
+    // margin: 100px auto;
   }
 
   .delivery__wrapper {
@@ -116,7 +112,7 @@
   }
 
   .delivery__list {
-    width: 218px;
+    width: 350px;
 
     margin: 0;
   }
@@ -128,7 +124,7 @@
   }
 
   .delivery__promo p {
-    width: 400px;
+    width: 60%;
     padding: 0;
   }
 }

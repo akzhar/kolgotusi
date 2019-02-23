@@ -31,20 +31,22 @@ img {
 
 @import "nav-list/nav-list.scss";
 
-@import "search/search.scss";
+// @import "search/search.scss";
 
 @import "slider/slider.scss";
 
 @import "slide/slide.scss";
 
-@import "stock/stock.scss";
-
 @import "goods/goods.scss";
-
-@import "delivery/delivery.scss";
 
 @import "footer/footer.scss";
 
 @import "nav-list/nav-list.scss";
 
 @import "social/social.scss";
+
+@import "delivery/delivery.scss";
+
+@import "stock/stock.scss";
+
+@import "contacts/contacts.scss";
