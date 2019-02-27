@@ -1,12 +1,12 @@
 .nav-list {
+  @include list0;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 
-  margin: 0;
-  padding: 0;
-
-  list-style: none;
+  font-size: $s_4;
+  line-height: $l_4;
 }
 
 .nav-list__item {

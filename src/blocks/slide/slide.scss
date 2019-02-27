@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
 
-  width: 100%; //320
+  width: 100%;
 
   padding: 0 10px;
 
@@ -13,13 +13,10 @@
 }
 
 .slide__list {
-  margin: 0;
-  padding: 0;
+  @include list0;
 
-  width: 80%; //260
+  width: 80%;
   height: 400px;
-
-  list-style: none;
 }
 
 .slide__item {
@@ -64,6 +61,16 @@
     height: 606px;
 
     background-image: url("../img/female_2.png");
+  }
+}
+
+.slide__item--4 {
+
+  &:after {
+    width: 230px;
+    height: 606px;
+
+    background-image: url("../img/female_3.png");
   }
 }
 
@@ -115,8 +122,8 @@
 .slide__selector {
   display: flex;
   flex-direction: column;
-
   align-self: flex-start;
+
   padding-top: 50px;
 }
 

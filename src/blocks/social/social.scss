@@ -9,12 +9,8 @@
 }
 
 .social__list {
+  @include list0;
   display: flex;
-
-  margin: 0;
-  padding: 0;
-
-  list-style: none;
 }
 
 .social__item {
@@ -42,5 +38,5 @@
 
   transform: translate(-50%, -50%);
 
-  fill: $red; //#6e6e6e
+  fill: $red;
 }

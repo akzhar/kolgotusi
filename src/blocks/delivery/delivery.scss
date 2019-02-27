@@ -12,17 +12,11 @@
   margin-top: 50px;
 }
 
-.delivery__header {
-  margin: 0 0 20px 0;
-}
-
 .delivery__list {
+  @include list0;
   position: relative;
 
-  margin: 0 0 50px 0;
-  padding: 0;
-
-  list-style: none;
+  margin-bottom: 50px;
 }
 
 .delivery__list:after {
@@ -101,10 +95,6 @@
 }
 
 @media (min-width: $width-tablet) {
-  .delivery {
-    // margin: 100px auto;
-  }
-
   .delivery__wrapper {
     flex-direction: row;
 

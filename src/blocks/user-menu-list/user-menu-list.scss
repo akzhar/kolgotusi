@@ -1,13 +1,9 @@
 .user-menu-list {
+  @include list0;
   display: flex;
 
   font-size: $s_2;
   line-height: $l_2;
-
-  margin: 0;
-  padding: 0;
-
-  list-style: none;
 }
 
 .user-menu-list__item {

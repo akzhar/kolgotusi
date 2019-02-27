@@ -4,26 +4,20 @@
   margin: 50px auto;
 }
 
-.contacts__header {
-  margin: 0 0 20px 0;
-}
-
 .contacts__text {
-  width: 500px;
+  max-width: 500px;
 
   margin: 50px 0;
 }
 
 .contacts__list {
-  margin: 0;
-  padding: 0;
-
-  list-style: none;
+  @include list0;
 }
 
 .contacts__item {
   position: relative;
 
+  margin: 0 0 20px 0;
   padding-left: 40px;
 
   & a {
@@ -57,10 +51,4 @@
   transform: translate(0, -50%);
 
   fill: $red;
-}
-
-@media (min-width: $width-tablet) {
-  .contacts {
-    // margin: 100px auto;
-  }
 }

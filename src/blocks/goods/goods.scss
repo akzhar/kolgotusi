@@ -5,23 +5,13 @@
   padding: 0 15px;
 }
 
-.goods__header {
-  margin: 0 0 20px 0;
-}
-
-.goods__tagline {
-
-}
-
 .goods__list {
+  @include list0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 
-  padding: 0;
   margin: 50px auto 0 auto;
-
-  list-style: none;
 }
 
 .goods__item {
@@ -98,6 +88,7 @@
 }
 
 .goods__info-block {
+  @include list0;
   position: absolute;
 
   left: 0;
@@ -105,12 +96,9 @@
 
   width: 210px;
 
-  margin: 0;
   padding: 15px 30px;
 
   background-color: $pink;
-
-  list-style: none;
 
   z-index: 2;
 }
@@ -138,8 +126,8 @@
   margin: 0 0 6px 0;
   color: $black;
 
-  font-size: 18px;
-  line-height: 24px;
+  font-size: $s_3;
+  line-height: $l_3;
 }
 
 .goods__price {
@@ -153,13 +141,10 @@
 }
 
 .goods__colors {
+  @include list0;
   display: flex;
   flex-wrap: wrap;
 
-  margin: 0;
-  padding: 0;
-
-  list-style: none;
   font-size: 0;
 }
 

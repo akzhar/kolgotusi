@@ -2,26 +2,15 @@
   width: 90%;
 
   margin: 50px auto;
-  padding: 0 15px;
-}
-
-.stock__header {
-  margin: 0 0 20px 0;
-}
-
-.stock__tagline {
-
 }
 
 .stock__list {
+  @include list0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 
-  margin: 50px 0 0 0;
-  padding: 0;
-
-  list-style: none;
+  margin-top: 50px;
 }
 
 .stock__wrapper {
@@ -30,14 +19,6 @@
 
 .stock__item {
   margin-bottom: 20px;
-}
-
-.stock__wrapper:last-child {
-  // margin-right: 0;
-
-  & .stock__item:last-child {
-    // margin-bottom: 0;
-  }
 }
 
 .stock__item--1 {
@@ -70,10 +51,6 @@
   & .stock__content {
     padding: 20px 0 180px 20px;
   }
-}
-
-.stock__content {
-  width: 250px; //250
 }
 
 .stock__head {
@@ -117,42 +94,3 @@
     margin-bottom: 50px;
   }
 }
-// @media (min-width: $width-desktop) {
-//   .stock {
-//     width: 1125px;
-
-//     margin: 100px auto;
-//   }
-
-//   .stock__list {
-//     margin: 100px 0 0 0;
-//   }
-
-//   .stock__item {
-//     margin-bottom: 50px;
-//   }
-
-//   .stock__item:last-child {
-//     margin-bottom: 0;
-//   }
-
-//   .stock__item--1 .stock__content {
-//     padding: 100px 0 100px 35px;
-//   }
-
-//   .stock__item--2 .stock__content {
-//     padding: 200px 0 170px 35px;
-//   }
-
-//   .stock__item--3 .stock__content {
-//     padding: 330px 0 40px 35px;
-//   }
-
-//   .stock__item--4 .stock__content {
-//     padding: 40px 0 160px 35px;
-//   }
-
-//   .stock__content {
-//     width: 510px;
-//   }
-// }

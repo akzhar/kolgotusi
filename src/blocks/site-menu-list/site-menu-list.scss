@@ -45,17 +45,13 @@
 }
 
 .site-menu-list {
+  @include list0;
   display: none;
 
   width: 100%; //320
 
   font-size: $s_3;
   line-height: $l_3;
-
-  margin: 0;
-  padding: 0;
-
-  list-style: none;
 }
 
 .site-menu-list--nojs {

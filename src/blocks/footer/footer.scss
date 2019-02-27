@@ -12,18 +12,26 @@
   border-top: 1px solid $grey;
 }
 
-.footer .logo__icon,
+.footer .logo,
 .footer .nav-list {
   margin: 0 0 50px 0;
+  padding: 0;
 }
 
+.footer .logo__icon {
+  margin: 0;
+}
+
+.footer .logo__tagline {
+  display: none;
+}
 
 @media (min-width: $width-tablet) {
   .footer {
     flex-direction: row;
   }
 
-  .footer .logo__icon,
+  .footer .logo,
   .footer .nav-list {
     margin: 0 20px 0 0;
   }

@@ -16,9 +16,21 @@ $width-tablet: 780px;
 $width-desktop: 1440px;
 
 // переменные шрифтов
-$s_1: 16px; //use
-$l_1: 30px;
 $s_2: 12px; //use
 $l_2: 24px;
+
+$s_4: 14px; //use
+$l_4: 28px;
+
+$s_1: 16px; //use
+$l_1: 30px;
+
 $s_3: 18px; //use
 $l_3: 24px;
+
+//миксины
+@mixin list0 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
