@@ -1,8 +1,3 @@
-.btn__up {
-  width: 150px;
-  margin: 50px auto 50px auto;
-}
-
 .section-header {
   margin: 0 0 10px 0;
 
@@ -24,6 +19,8 @@
 }
 
 .page-wrapper {
+  display: block;
+
   width: 100%;
 
   margin: 0 auto;
@@ -58,6 +55,11 @@
   &:active {
     opacity: 0.6;
   }
+}
+
+.btn--up {
+  width: 150px;
+  margin: 50px auto 50px auto;
 }
 
 @media (min-width: $width-desktop) {

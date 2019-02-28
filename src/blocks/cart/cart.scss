@@ -1,1 +1,31 @@
+.cart {
+  width: 90%;
 
+  margin: 50px auto;
+}
+
+.cart__empty {
+  max-width: 500px;
+
+  margin: 50px 0;
+}
+
+.cart__table {
+  border-collapse: collapse;
+}
+
+.cart__table caption {
+  text-align: left;
+  padding-bottom: 20px;
+}
+
+.cart__table td {
+  padding: 10px 20px;
+  border: 1px solid $black;
+}
+
+.btn--order {
+  width: 150px;
+
+  margin: 50px 0;
+}

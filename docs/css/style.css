@@ -131,10 +131,6 @@ template {
 [hidden] {
   display: none; }
 
-.btn__up {
-  width: 150px;
-  margin: 50px auto 50px auto; }
-
 .section-header {
   margin: 0 0 10px 0;
   font-weight: 600;
@@ -151,6 +147,7 @@ template {
   text-align: center; }
 
 .page-wrapper {
+  display: block;
   width: 100%;
   margin: 0 auto;
   background-color: #fbebde;
@@ -171,6 +168,10 @@ template {
     opacity: 0.8; }
   .btn:active {
     opacity: 0.6; }
+
+.btn--up {
+  width: 150px;
+  margin: 50px auto 50px auto; }
 
 @media (min-width: 1440px) {
   .page-wrapper {
@@ -1077,3 +1078,26 @@ template {
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
   fill: #c73601; }
+
+.cart {
+  width: 90%;
+  margin: 50px auto; }
+
+.cart__empty {
+  max-width: 500px;
+  margin: 50px 0; }
+
+.cart__table {
+  border-collapse: collapse; }
+
+.cart__table caption {
+  text-align: left;
+  padding-bottom: 20px; }
+
+.cart__table td {
+  padding: 10px 20px;
+  border: 1px solid #000000; }
+
+.btn--order {
+  width: 150px;
+  margin: 50px 0; }
