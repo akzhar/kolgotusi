@@ -49,3 +49,7 @@
 .body--catalog .site-menu-list__item--catalog .site-menu-list__icon { // для активного пункта меню
   fill: $yellow;
 }
+
+.body--cart .footer .user-menu-list__item--cart .user-menu-list__icon {
+  fill: $orange;
+}

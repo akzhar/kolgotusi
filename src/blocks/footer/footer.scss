@@ -12,10 +12,13 @@
   border-top: 1px solid $grey;
 }
 
-.footer .logo,
-.footer .nav-list {
+.footer .logo {
   margin: 0 0 50px 0;
-  padding: 0;
+}
+
+.footer .nav-list,
+.footer .user-menu-list {
+  margin: 0 0 10px 0;
 }
 
 .footer .logo__icon {
@@ -26,13 +29,22 @@
   display: none;
 }
 
+.footer .user-menu-list__icon {
+  fill: $red;
+}
+
+.footer .user-menu-list__link:hover .user-menu-list__icon {
+  fill: $orange;
+}
+
 @media (min-width: $width-tablet) {
   .footer {
     flex-direction: row;
   }
 
   .footer .logo,
-  .footer .nav-list {
+  .footer .nav-list,
+  .footer .user-menu-list {
     margin: 0 20px 0 0;
   }
 }

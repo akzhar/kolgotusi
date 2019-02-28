@@ -1,3 +1,15 @@
+var menubutton = document.querySelector(".menu-button");
+var menu = document.querySelector(".site-menu-list");
+
+menu.classList.remove("site-menu-list--nojs");
+
+menubutton.addEventListener("click", function(evt) {
+  evt.preventDefault();
+  menu.classList.toggle("site-menu-list--open");
+  menubutton.classList.toggle("menu-button--menu-open");
+});
+
+
 const anchor = document.querySelector('.btn--up');
 
 anchor.addEventListener('click', function (e) {
@@ -13,18 +25,6 @@ anchor.addEventListener('click', function (e) {
   );
 }
 );
-
-
-var menubutton = document.querySelector(".menu-button");
-var menu = document.querySelector(".site-menu-list");
-
-menu.classList.remove("site-menu-list--nojs");
-
-menubutton.addEventListener("click", function(evt) {
-  evt.preventDefault();
-  menu.classList.toggle("site-menu-list--open");
-  menubutton.classList.toggle("menu-button--menu-open");
-});
 
 
 var slides = document.querySelectorAll(".slide__item"); //все слайды
