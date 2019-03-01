@@ -51,6 +51,10 @@
   }
 }
 
+.menu-button--nojs {
+  display: none;
+}
+
 .menu-button--menu-open { //кнопка открытия меню когда меню открыто
 
   &:hover::before {

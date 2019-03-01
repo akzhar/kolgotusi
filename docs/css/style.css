@@ -150,8 +150,12 @@ template {
   display: block;
   width: 100%;
   margin: 0 auto;
+  padding-top: 100px;
   background-color: #fbebde;
   box-shadow: 0px 0px 300px 0px #a3a3a3; }
+
+.page-wrapper--nojs {
+  padding-top: 0; }
 
 .btn {
   display: block;
@@ -228,10 +232,15 @@ template {
   fill: #fb580d; }
 
 .header {
+  position: fixed;
+  top: 0;
   width: 100%;
   background-color: #000000;
   margin: 0 0 50px 0;
   z-index: 3; }
+
+.header--nojs {
+  position: static; }
 
 .header__wrapper {
   display: flex;
@@ -425,6 +434,9 @@ template {
   .menu-button::after {
     bottom: 0; }
 
+.menu-button--nojs {
+  display: none; }
+
 .menu-button--menu-open:hover::before {
   box-shadow: none; }
 
@@ -449,6 +461,7 @@ template {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 50px 0 0 0;
   margin: 0 0 20px 0; }
 
 .logo__icon {
@@ -467,6 +480,13 @@ template {
     opacity: 0.8; }
   .logo__icon:active {
     opacity: 0.6; }
+
+@media (min-width: 1440px) {
+  .logo {
+    padding: 80px 0 0 0; } }
+
+.logo--nojs {
+  padding: 0; }
 
 .nav-list {
   margin: 0;
@@ -623,6 +643,9 @@ template {
   flex-direction: column;
   align-self: flex-start;
   padding-top: 50px; }
+
+.slide__selector--nojs {
+  display: none; }
 
 .slide__radio {
   display: none; }

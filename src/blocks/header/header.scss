@@ -1,5 +1,6 @@
 .header {
-  // position: fixed;
+  position: fixed;
+  top: 0;
 
   width: 100%;
   background-color: $black;
@@ -7,6 +8,10 @@
   margin: 0 0 50px 0;
 
   z-index: 3;
+}
+
+.header--nojs {
+  position: static;
 }
 
 .header__wrapper {
