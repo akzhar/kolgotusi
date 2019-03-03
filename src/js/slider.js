@@ -7,6 +7,9 @@ var slideInterval = setInterval(nextSlide,10000); //интервал повто�
 const color = "#d1e44a";
 var troughLabel = false;
 
+const slideselector = document.querySelector(".slide__selector");
+slideselector.classList.remove("slide__selector--nojs");
+
 function pauseSlideshow() {
   clearInterval(slideInterval); //очистка интервала повторения
 };

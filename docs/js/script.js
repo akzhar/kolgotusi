@@ -1,14 +1,3 @@
-const header = document.querySelector(".header");
-const pagewrapper = document.querySelector(".page-wrapper");
-const logo = document.querySelector(".logo");
-const slideselector = document.querySelector(".slide__selector");
-
-header.classList.remove("header--nojs");
-pagewrapper.classList.remove("page-wrapper--nojs");
-logo.classList.remove("logo--nojs");
-slideselector.classList.remove("slide__selector--nojs");
-
-
 var menubutton = document.querySelector(".menu-button");
 var menu = document.querySelector(".site-menu-list");
 
@@ -20,6 +9,15 @@ menubutton.addEventListener("click", function(evt) {
   menu.classList.toggle("site-menu-list--open");
   menubutton.classList.toggle("menu-button--menu-open");
 });
+
+
+const header = document.querySelector(".header");
+const pagewrapper = document.querySelector(".page-wrapper");
+const logo = document.querySelector(".logo");
+
+header.classList.remove("header--nojs");
+pagewrapper.classList.remove("page-wrapper--nojs");
+logo.classList.remove("logo--nojs");
 
 
 const anchor = document.querySelector('.btn--up');
@@ -47,6 +45,9 @@ var previous = document.querySelector('.slider__btn-prev'); // кнопка на
 var slideInterval = setInterval(nextSlide,10000); //интервал повторения
 const color = "#d1e44a";
 var troughLabel = false;
+
+const slideselector = document.querySelector(".slide__selector");
+slideselector.classList.remove("slide__selector--nojs");
 
 function pauseSlideshow() {
   clearInterval(slideInterval); //очистка интервала повторения

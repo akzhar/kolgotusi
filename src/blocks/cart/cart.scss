@@ -4,28 +4,41 @@
   margin: 50px auto;
 }
 
-.cart__empty {
-  max-width: 500px;
+.cart__table {
+  width: 100%;
 
   margin: 50px 0;
-}
 
-.cart__table {
+  // margin: 0 auto;
+
   border-collapse: collapse;
 }
 
 .cart__table caption {
   text-align: left;
-  padding-bottom: 20px;
+  margin: 0 0 20px 0;
 }
 
 .cart__table td {
-  padding: 10px 20px;
+  padding: 0 10px;
+
+  text-align: center;
+
   border: 1px solid $black;
+}
+
+.cart__total {
+  width: 90%;
+
+  margin: 0 0 50px 0;
+
+  & output {
+    margin-left: 10px;
+  }
 }
 
 .btn--order {
   width: 150px;
 
-  margin: 50px 0;
+  margin: 0 0 50px 0;
 }
