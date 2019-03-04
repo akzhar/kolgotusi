@@ -1,7 +1,7 @@
 .delivery {
   width: 90%;
 
-  margin: 50px auto;
+  margin: 0 auto 50px auto;
 }
 
 .delivery__wrapper {
@@ -19,17 +19,27 @@
   margin-bottom: 50px;
 }
 
+.delivery__list:before,
 .delivery__list:after {
   position: absolute;
   content: "";
 
   top: -40px;
-  right: 0;
 
   width: 10px;
   height: 272px;
 
   background-image: url("../img/mask.png");
+}
+
+.delivery__list:before {
+  left: 0;
+
+  transform: rotate(180deg);
+}
+
+.delivery__list:after {
+  right: 0;
 }
 
 .delivery input[type="radio"] {
@@ -116,5 +126,9 @@
   .delivery__promo p {
     width: 60%;
     padding: 0;
+  }
+
+  .delivery__list:before {
+    content: none;
   }
 }

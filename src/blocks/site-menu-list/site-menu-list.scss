@@ -67,12 +67,8 @@
 .site-menu-list__item {
   position: relative;
 
-  &:hover {
-    opacity: 0.8;
-
-    & .site-menu-list__icon {
-      fill: $yellow;
-    }
+  &:hover .site-menu-list__icon {
+    fill: $yellow;
   }
 
   &:active {
@@ -131,11 +127,11 @@
   }
 
   .site-menu-list__link {
-    padding: 36px 0 36px 40px;
+    padding: 26px 0 26px 40px;
   }
 
   .site-menu-list__item:first-child .site-menu-list__link {
-    padding: 36px 0 36px 0;
+    padding: 26px 0;
   }
 }
 

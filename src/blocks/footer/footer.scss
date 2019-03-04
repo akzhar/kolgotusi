@@ -16,8 +16,7 @@
   margin: 0 0 50px 0;
 }
 
-.footer .nav-list,
-.footer .user-menu-list {
+.footer .nav-list {
   margin: 0 0 10px 0;
 }
 
@@ -46,11 +45,5 @@
   .footer .nav-list,
   .footer .user-menu-list {
     margin: 0 20px 0 0;
-  }
-}
-
-@media (min-width: $width-desktop) {
-  .footer {
-    padding: 100px 0;
   }
 }

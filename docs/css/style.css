@@ -150,7 +150,7 @@ template {
   display: block;
   width: 100%;
   margin: 0 auto;
-  padding-top: 100px;
+  padding-top: 150px;
   background-color: #fbebde;
   box-shadow: 0px 0px 300px 0px #a3a3a3; }
 
@@ -175,7 +175,7 @@ template {
 
 .btn--up {
   width: 150px;
-  margin: 50px auto 50px auto; }
+  margin: 0 auto 50px auto; }
 
 @media (min-width: 1440px) {
   .page-wrapper {
@@ -306,10 +306,8 @@ template {
 
 .site-menu-list__item {
   position: relative; }
-  .site-menu-list__item:hover {
-    opacity: 0.8; }
-    .site-menu-list__item:hover .site-menu-list__icon {
-      fill: #d1e44a; }
+  .site-menu-list__item:hover .site-menu-list__icon {
+    fill: #d1e44a; }
   .site-menu-list__item:active {
     opacity: 0.6; }
 
@@ -345,9 +343,9 @@ template {
   .site-menu-list__item:last-child {
     margin-right: 0; }
   .site-menu-list__link {
-    padding: 36px 0 36px 40px; }
+    padding: 26px 0 26px 40px; }
   .site-menu-list__item:first-child .site-menu-list__link {
-    padding: 36px 0 36px 0; } }
+    padding: 26px 0; } }
 
 @media (min-width: 1440px) {
   .site-menu-list__item {
@@ -367,31 +365,28 @@ template {
 .user-menu-list__item:last-child {
   margin-right: 0; }
 
-.user-menu-list__item--cart {
-  position: relative; }
-  .user-menu-list__item--cart:after {
+.user-menu-list__item--cart .user-menu-list__link {
+  position: relative;
+  padding: 30px 0 14px 0; }
+  .user-menu-list__item--cart .user-menu-list__link .user-menu-list__counter {
     position: absolute;
-    content: "5";
     color: #ffffff;
     text-align: center;
-    line-height: 16px;
-    top: 20px;
-    right: -10px;
-    width: 20px;
-    height: 20px;
+    line-height: 20px;
+    top: 14px;
+    right: -13px;
+    width: 22px;
+    height: 22px;
     background-color: #c73601;
     border-radius: 50%; }
-  .user-menu-list__item--cart .user-menu-list__link {
-    padding: 32px 0; }
 
 .user-menu-list__link {
   display: block;
   color: #ffffff;
   text-decoration: none;
-  padding: 36px 0; }
+  padding: 26px 0; }
   .user-menu-list__link:hover {
-    color: #d1e44a;
-    opacity: 0.8; }
+    color: #d1e44a; }
     .user-menu-list__link:hover .user-menu-list__icon {
       fill: #d1e44a; }
   .user-menu-list__link:active {
@@ -461,7 +456,7 @@ template {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px 0 0 0;
+  padding: 0;
   margin: 0 0 20px 0; }
 
 .logo__icon {
@@ -480,13 +475,6 @@ template {
     opacity: 0.8; }
   .logo__icon:active {
     opacity: 0.6; }
-
-@media (min-width: 1440px) {
-  .logo {
-    padding: 80px 0 0 0; } }
-
-.logo--nojs {
-  padding: 0; }
 
 .nav-list {
   margin: 0;
@@ -531,7 +519,7 @@ template {
   justify-content: space-between;
   align-items: center;
   background-color: #fb580d;
-  margin: 50px 0 0 0; }
+  margin: 50px 0; }
 
 .slider__btn-prev,
 .slider__btn-next {
@@ -682,7 +670,7 @@ template {
 
 .goods {
   width: 270px;
-  margin: 50px auto;
+  margin: 0 auto 50px auto;
   padding: 0 15px; }
 
 .goods__list {
@@ -825,8 +813,7 @@ template {
 .footer .logo {
   margin: 0 0 50px 0; }
 
-.footer .nav-list,
-.footer .user-menu-list {
+.footer .nav-list {
   margin: 0 0 10px 0; }
 
 .footer .logo__icon {
@@ -848,10 +835,6 @@ template {
   .footer .nav-list,
   .footer .user-menu-list {
     margin: 0 20px 0 0; } }
-
-@media (min-width: 1440px) {
-  .footer {
-    padding: 100px 0; } }
 
 .nav-list {
   margin: 0;
@@ -923,7 +906,7 @@ template {
 
 .delivery {
   width: 90%;
-  margin: 50px auto; }
+  margin: 0 auto 50px auto; }
 
 .delivery__wrapper {
   display: flex;
@@ -938,14 +921,22 @@ template {
   position: relative;
   margin-bottom: 50px; }
 
+.delivery__list:before,
 .delivery__list:after {
   position: absolute;
   content: "";
   top: -40px;
-  right: 0;
   width: 10px;
   height: 272px;
   background-image: url("../img/mask.png"); }
+
+.delivery__list:before {
+  left: 0;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg); }
+
+.delivery__list:after {
+  right: 0; }
 
 .delivery input[type="radio"] {
   display: none; }
@@ -1005,11 +996,13 @@ template {
     padding: 0 80px; }
   .delivery__promo p {
     width: 60%;
-    padding: 0; } }
+    padding: 0; }
+  .delivery__list:before {
+    content: none; } }
 
 .stock {
   width: 90%;
-  margin: 50px auto; }
+  margin: 0 auto 50px auto; }
 
 .stock__list {
   margin: 0;
@@ -1076,7 +1069,7 @@ template {
 
 .contacts {
   width: 90%;
-  margin: 50px auto; }
+  margin: 0 auto 50px auto; }
 
 .contacts__text {
   max-width: 500px;
@@ -1114,7 +1107,7 @@ template {
 
 .cart {
   width: 90%;
-  margin: 50px auto; }
+  margin: 0 auto 50px auto; }
 
 .cart__table {
   width: 100%;
