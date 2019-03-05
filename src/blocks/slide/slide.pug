@@ -1,0 +1,20 @@
+include ../stock/items
+
+- var first = ""
+
+div.slide
+
+  ul.slide__list
+    each item, index in stockItems
+      - (index == 0) ? first = "slide__item--show" : first = ""
+      li.slide__item(class=first)
+        b.slide__period=item.period
+        h3.slide__header=item.header
+        p.slide__text!=item.text
+        a.slide__btn.btn(href="catalog.html") К товарам
+        div.slide__img(style="background-image: url(" + item.imgSlide + ")")
+
+  form.slide__selector.slide__selector--nojs
+    each item, index in stockItems
+      input.slide__radio(type="radio", name="radio", id="radio"+index)
+      label.slide__radiolabel(for="radio"+index, id=index)

@@ -61,9 +61,3 @@
 .user-menu-list__icon {
   fill: $white;
 }
-
-@media (min-width: $width-desktop) {
-  .user-menu-list__item {
-    margin: 0 50px 0 0;
-  }
-}

@@ -1,0 +1,38 @@
+include items
+
+section.goods
+  h2.goods__header.section-header Популярные товары
+  b.goods__tagline.tagline Часто покупаемые
+
+  ul.goods__list
+
+    each item in popularItems
+
+      li.goods__item(onclick="")
+        div.goods__popup
+          a.goods__cart-btn.btn(href="#") В корзину
+          a.goods__show-btn.btn(href="#") Фото
+
+        picture
+          source(srcset="" + item.img + ".webp 1x", type="image/webp")
+          img.goods__img(src="" + item.img + ".jpg", alt="")
+
+        ul.goods__info-block
+          li.goods__info-row
+            div
+              h3.goods__head=item.name
+              span="Арт " + item.id
+            span.goods__price=item.price + " р."
+
+          li.goods__info-row
+            h3.goods__head Размеры
+            span=item.sizes
+
+          li.goods__info-row
+            h3.goods__head Расцветки
+            ul.goods__colors
+              each color in item.colors
+                li.goods__color(class="goods__color--"+color, title=color)=color
+
+  h2.goods__header.section-header О нас
+  p.goods__text Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Подзаголовок себя составитель, безопасную проектах сих раз, лучше там, маленький пустился имеет возвращайся меня что? Эта она океана продолжил повстречался. Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Рот решила но бросил речью страна скатился назад выйти продолжил ipsum встретил грустный, обеспечивает ему снова возвращайся, лучше даль подпоясал.

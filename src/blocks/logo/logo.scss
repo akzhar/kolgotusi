@@ -4,7 +4,7 @@
   align-items: center;
 
   padding: 0;
-  margin: 0 0 20px 0;
+  margin: 20px 0;
 }
 
 .logo__icon {
@@ -32,13 +32,3 @@
     opacity: 0.6;
   }
 }
-
-// @media (min-width: $width-desktop) {
-//   .logo {
-//     padding: 80px 0 0 0;
-//   }
-// }
-
-// .logo--nojs {
-//   padding: 0;
-// }

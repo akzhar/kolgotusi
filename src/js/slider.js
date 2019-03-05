@@ -3,7 +3,7 @@ var label = document.querySelectorAll(".slide__radiolabel"); //все лейбл
 var currentSlide = 0; //счетчик слайдов
 var next = document.querySelector('.slider__btn-next'); //кнопка вперед
 var previous = document.querySelector('.slider__btn-prev'); // кнопка назад
-var slideInterval = setInterval(nextSlide,10000); //интервал повторения
+var slideInterval = setInterval(nextSlide,4000); //интервал повторения
 const color = "#d1e44a";
 var troughLabel = false;
 

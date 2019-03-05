@@ -62,7 +62,10 @@
 
 .delivery input#slide1:checked~.delivery__list label[for=slide1],
 .delivery input#slide2:checked~.delivery__list label[for=slide2],
-.delivery input#slide3:checked~.delivery__list label[for=slide3] {
+.delivery input#slide3:checked~.delivery__list label[for=slide3],
+.delivery input#slide4:checked~.delivery__list label[for=slide4],
+.delivery input#slide5:checked~.delivery__list label[for=slide5],
+.delivery input#slide6:checked~.delivery__list label[for=slide6] {
   cursor: context-menu;
   background-color: $orange;
 }
@@ -86,21 +89,12 @@
   padding-top: 200px;
 }
 
-.delivery__promo--1 {
-  background-image: url("../img/truck.png");
-}
-
-.delivery__promo--2 {
-  background-image: url("../img/medal.png");
-}
-
-.delivery__promo--3 {
-  background-image: url("../img/credit.png");
-}
-
 .delivery input#slide1:checked~.delivery__promo--1,
 .delivery input#slide2:checked~.delivery__promo--2,
-.delivery input#slide3:checked~.delivery__promo--3 {
+.delivery input#slide3:checked~.delivery__promo--3,
+.delivery input#slide4:checked~.delivery__promo--4,
+.delivery input#slide5:checked~.delivery__promo--5,
+.delivery input#slide6:checked~.delivery__promo--6 {
   display: block;
 }
 

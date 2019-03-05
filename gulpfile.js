@@ -21,6 +21,7 @@ posthtml = require('gulp-posthtml'),
 include = require('posthtml-include'),
 htmlmin = require('gulp-htmlmin'),
 run = require('run-sequence'),
+pug = require('gulp-pug'),
 rename = require("gulp-rename");
 
 devip(); // [ "192.168.1.76", "192.168.1.80" ] or false if nothing found (ie, offline user)
@@ -136,26 +137,27 @@ gulp.task("html", function () { // задача - вызывается как с
   .pipe(gulp.dest("docs/")) // класть результат сюда
 });
 
+gulp.task("pug", function buildHTML() {
+  return gulp.src("src/blocks/**/*.pug")
+  .pipe(pug({pretty: true})) // Запретите минифицировать HTML
+  // .pipe(htmlmin({ collapseWhitespace: true })) // минификация
+  .pipe(gulp.dest(function(file){
+    return file.base;
+  }))
+});
+
 gulp.task("watch", function() { // задача - вызывается как скрипт из package.json
-  // gulp.watch("docs/**/*.*", server.reload); // отслеживание изменений файлов scss
-
-  setTimeout(function(){gulp.watch("src/blocks/**/*.{scss,sass}", ["style", "reload"])},500); // отслеживание изменений файлов scss
-
-  setTimeout(function(){gulp.watch("src/js/**/*.js", ["js" , "reload"])},500); // отслеживание изменений файлов js
-
-  setTimeout(function(){gulp.watch("src/blocks/**/*.html", ["html", "reload"])},500); // отслеживание изменений файлов html
-
-  setTimeout(function(){gulp.watch("src/img/*.*", ["image", "reload"])},500); // отслеживание изменений файлов img
-  setTimeout(function(){gulp.watch("src/img/sprite/inline-*.svg", ["sprite", "html", "reload"])},500); // отслеживание изменений файлов sprite svg
+  setTimeout(function(){gulp.watch("src/blocks/**/*.{scss,sass}", ["style", "reload"])},1000); // отслеживание изменений файлов scss
+  setTimeout(function(){gulp.watch("src/js/**/*.js", ["js" , "reload"])},1000); // отслеживание изменений файлов js
+  setTimeout(function(){gulp.watch("src/blocks/**/*.html", ["html", "reload"])},1000); // отслеживание изменений файлов html
+  setTimeout(function(){gulp.watch("src/img/*.*", ["image", "reload"])},1000); // отслеживание изменений файлов img
+  setTimeout(function(){gulp.watch("src/img/sprite/inline-*.svg", ["sprite", "html", "reload"])},1000); // отслеживание изменений файлов sprite svg
+  setTimeout(function(){gulp.watch("src/blocks/**/*.pug", ["pug", "html", "reload"])},1000); // отслеживание изменений файлов html
 });
 
 gulp.task("reload", function() { // задача - вызывается как скрипт из package.json
   server.reload(); //обновление браузера - скрол уедет наверх
 });
-
-// gulp.task("stream", function() { // задача - вызывается как скрипт из package.json
-//   server.stream(); //обновление браузера - скрол останется там где был
-// });
 
 gulp.task ("serve", function(done) { //задача - вызывается как скрипт из package.json
   server.init({ // перед запуском start запускается рад задач, затем запускается локальный сервер
@@ -178,6 +180,7 @@ gulp.task ("build", function(done) {
     "sprite",
     "style",
     "js",
+    "pug",
     done
     )
 });
