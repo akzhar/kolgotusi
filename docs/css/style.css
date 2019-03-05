@@ -697,7 +697,10 @@ template {
 
 .goods__cart-btn,
 .goods__show-btn {
-  margin: 0 auto; }
+  margin: 0 auto;
+  width: 150px;
+  border: none;
+  text-transform: uppercase; }
 
 .goods__cart-btn {
   margin-bottom: 10px;
@@ -743,18 +746,18 @@ template {
   color: #c73601;
   font-weight: 600; }
 
-.goods__colors {
+.goods__info-row ul {
   margin: 0;
   padding: 0;
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 0; }
+  display: flex; }
+  .goods__info-row ul li {
+    margin-right: 10px; }
 
-.goods__colors li {
+.goods__color {
+  display: block;
   width: 15px;
   height: 15px;
-  margin: 0 10px 10px 0;
   border-radius: 50%; }
 
 .goods__color--red {

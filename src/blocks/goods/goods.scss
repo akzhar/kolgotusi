@@ -75,6 +75,11 @@
 .goods__cart-btn,
 .goods__show-btn {
   margin: 0 auto;
+
+  width: 150px;
+
+  border: none;
+  text-transform: uppercase;
 }
 
 .goods__cart-btn {
@@ -140,19 +145,24 @@
   font-weight: 600;
 }
 
-.goods__colors {
+.goods__info-row ul {
   @include list0;
   display: flex;
-  flex-wrap: wrap;
 
-  font-size: 0;
+  & li {
+    margin-right: 10px;
+  }
 }
 
-.goods__colors li {
+.goods__size {
+
+}
+
+.goods__color {
+  display: block;
+
   width: 15px;
   height: 15px;
-
-  margin: 0 10px 10px 0;
 
   border-radius: 50%;
 }
