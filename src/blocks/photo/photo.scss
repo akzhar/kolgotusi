@@ -1,0 +1,138 @@
+.photo {
+  display: none;
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.6);
+
+  z-index: 3;
+}
+
+.photo--show {
+  display: block;
+}
+
+.photo__wrapper {
+  position: fixed;
+
+  background-color: $white;
+
+  top: 50%;
+  left: 50%;
+
+  width: 70%;
+
+  padding: 10px;
+
+  transform: translate(-50%, -50%);
+
+  & ul {
+    @include list0;
+
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.photo__header {
+  margin: 0 0 10px 0;
+
+  font-size: 18px;
+}
+
+.photo__img-large,
+.photo__img-small {
+  display: block;
+  outline: 1px solid $darkgrey;
+}
+
+.photo__img-large {
+  margin: 0 auto 10px auto;
+}
+
+.photo__img-small {
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
+
+.photo__img-small--active {
+  outline: 1px solid $orange;
+  filter: saturate(200%)
+}
+
+.photo__close {
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  width: 20px;
+  height: 20px;
+
+  border: none;
+  border-radius: 50%;
+  background-color: $orange;
+
+  &:after,
+  &:before {
+    position: absolute;
+    content: "";
+
+    top: 50%;
+    left: 50%;
+
+    width: 15px;
+    height: 2px;
+
+    background-color: $black;
+  }
+
+  &:after {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &:before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    &:after,
+    &:before {
+      background-color: $yellow;
+    }
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
+
+@media (min-width: $width-tablet) {
+  .photo__wrapper {
+    width: 500px;
+  }
+
+  .photo__close {
+    width: 30px;
+    height: 30px;
+
+    &:after,
+    &:before {
+      width: 20px;
+    }
+  }
+}

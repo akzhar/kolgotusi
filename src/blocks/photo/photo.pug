@@ -1,0 +1,14 @@
+mixin photo(allPhotoes, itemName, index)
+
+  - var first = ""
+
+  div.photo(id="photo" + index)
+    div.photo__wrapper
+      h4.photo__header="Фото - " + itemName
+      img.photo__img-large(src="", data-img=allPhotoes[0] + ".jpg", alt="")
+      ul
+        each photo, index in allPhotoes
+          li
+            - (index == 0) ? first = "photo__img-small--active" : first = ""
+            img.photo__img-small(class=first, src="", data-img=photo + ".jpg", alt="")
+      button.photo__close(title="Закрыть", data-index=index)

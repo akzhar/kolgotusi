@@ -1,4 +1,6 @@
 .body {
+  position: relative; //для фото у goods
+
   font-family: Georgia, Times, serif;
   font-size: $s_1;
   line-height: $l_1;
@@ -53,3 +55,13 @@
 .body--cart .footer .user-menu-list__item--cart .user-menu-list__icon {
   fill: $orange;
 }
+
+.body--scroll {
+  overflow: hidden;
+}
+
+// @media(min-width: $width-desktop) {
+//   .body {
+//     overflow: auto;
+//   }
+// }

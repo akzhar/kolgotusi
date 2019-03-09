@@ -1,4 +1,5 @@
 include items
+include ../photo/photo
 
 section.goods
   h2.goods__header.section-header Популярные товары
@@ -6,16 +7,16 @@ section.goods
 
   ul.goods__list
 
-    each item in popularItems
-
+    each item, index in popularItems
+      +photo(item.img, item.name, index)
       li.goods__item(onclick="")
         div.goods__popup
           button.goods__cart-btn.btn(data-id=item.id, data-name=item.name, data-price=item.price) В корзину
-          button.goods__show-btn.btn Фото
+          button.goods__show-btn.btn(data-index=index) Фото
 
         picture
-          source(srcset="" + item.img + ".webp 1x", type="image/webp")
-          img.goods__img(src="" + item.img + ".jpg", alt="")
+          source(srcset="" + item.img[0] + ".webp 1x", type="image/webp")
+          img.goods__img(src="" + item.img[0] + ".jpg", alt="")
 
         ul.goods__info-block
           li.goods__info-row

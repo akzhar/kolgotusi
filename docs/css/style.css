@@ -182,6 +182,7 @@ template {
     width: 1440px; } }
 
 .body {
+  position: relative;
   font-family: Georgia, Times, serif;
   font-size: 16px;
   line-height: 30px;
@@ -230,6 +231,9 @@ template {
 
 .body--cart .footer .user-menu-list__item--cart .user-menu-list__icon {
   fill: #fb580d; }
+
+.body--scroll {
+  overflow: hidden; }
 
 .header {
   position: fixed;
@@ -1100,3 +1104,95 @@ template {
 .btn--order {
   width: 150px;
   margin: 0 0 50px 0; }
+
+.photo {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 3; }
+
+.photo--show {
+  display: block; }
+
+.photo__wrapper {
+  position: fixed;
+  background-color: #ffffff;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  padding: 10px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
+  .photo__wrapper ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between; }
+
+.photo__header {
+  margin: 0 0 10px 0;
+  font-size: 18px; }
+
+.photo__img-large,
+.photo__img-small {
+  display: block;
+  outline: 1px solid #313131; }
+
+.photo__img-large {
+  margin: 0 auto 10px auto; }
+
+.photo__img-small:hover {
+  cursor: pointer;
+  opacity: 0.8; }
+
+.photo__img-small:active {
+  opacity: 0.6; }
+
+.photo__img-small--active {
+  outline: 1px solid #fb580d;
+  -webkit-filter: saturate(200%);
+          filter: saturate(200%); }
+
+.photo__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background-color: #fb580d; }
+  .photo__close:after, .photo__close:before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    width: 15px;
+    height: 2px;
+    background-color: #000000; }
+  .photo__close:after {
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);
+            transform: translate(-50%, -50%) rotate(45deg); }
+  .photo__close:before {
+    -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+            transform: translate(-50%, -50%) rotate(-45deg); }
+  .photo__close:hover {
+    cursor: pointer; }
+    .photo__close:hover:after, .photo__close:hover:before {
+      background-color: #d1e44a; }
+  .photo__close:active {
+    opacity: 0.6; }
+
+@media (min-width: 780px) {
+  .photo__wrapper {
+    width: 500px; }
+  .photo__close {
+    width: 30px;
+    height: 30px; }
+    .photo__close:after, .photo__close:before {
+      width: 20px; } }
