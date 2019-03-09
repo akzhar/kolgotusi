@@ -1026,13 +1026,11 @@ template {
   color: #313131; }
 
 .stock__head {
-  width: 200px;
   margin: 0;
   font-size: 18px;
   line-height: 24px; }
 
 .stock__text {
-  width: 300px;
   color: #313131; }
 
 @media (min-width: 1440px) {
