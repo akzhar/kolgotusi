@@ -56,9 +56,10 @@
   fill: $orange;
 }
 
-.body--scroll {
-  overflow: hidden;
-}
+// .body--noscroll {
+//   overflow: hidden;
+//   height: 100%;
+// }
 
 // @media(min-width: $width-desktop) {
 //   .body {

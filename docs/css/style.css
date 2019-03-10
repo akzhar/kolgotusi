@@ -232,9 +232,6 @@ template {
 .body--cart .footer .user-menu-list__item--cart .user-menu-list__icon {
   fill: #fb580d; }
 
-.body--scroll {
-  overflow: hidden; }
-
 .header {
   position: fixed;
   top: 0;
@@ -608,15 +605,15 @@ template {
             transform: translate(0, -50%); }
 
 .slide__selector {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
   align-self: flex-start;
   padding-top: 50px; }
 
 .slide__selector--nojs {
-  display: none; }
-
-.slide__radio {
   display: none; }
 
 .slide__radiolabel {
@@ -628,6 +625,9 @@ template {
   background-color: transparent; }
   .slide__radiolabel:hover {
     cursor: pointer; }
+
+.slide__radiolabel--checked {
+  background-color: #d1e44a; }
 
 @media (min-width: 780px) {
   .slide__img {
@@ -678,16 +678,6 @@ template {
     display: flex; }
   .goods__item:hover .goods__info-block {
     background-color: #ffffff; }
-
-.goods__img {
-  position: absolute;
-  content: "";
-  width: 70%;
-  top: 40%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  z-index: 1; }
 
 .goods__popup {
   position: absolute;
@@ -758,6 +748,10 @@ template {
   .goods__info-row ul li {
     margin-right: 10px; }
 
+.goods__text {
+  margin: 0;
+  text-align: center; }
+
 .goods__color {
   display: block;
   width: 15px;
@@ -775,10 +769,6 @@ template {
 
 .goods__color--violet {
   background-color: #6666cc; }
-
-.goods__text {
-  margin: 0;
-  text-align: center; }
 
 @media (min-width: 660px) {
   .goods {
@@ -995,30 +985,37 @@ template {
   margin-top: 50px; }
 
 .stock__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 48%; }
 
 .stock__item {
   margin-bottom: 20px; }
 
 .stock__wrapper:nth-child(1n) .stock__item:nth-child(1) {
+  min-height: 360px;
   background: no-repeat #d1e44a top right; }
   .stock__wrapper:nth-child(1n) .stock__item:nth-child(1) .stock__content {
-    padding: 20px 0 180px 20px; }
+    padding: 20px 40px 0 20px; }
 
 .stock__wrapper:nth-child(1n) .stock__item:nth-child(2) {
+  min-height: 380px;
   background: no-repeat #fb580d top right; }
   .stock__wrapper:nth-child(1n) .stock__item:nth-child(2) .stock__content {
-    padding: 20px 0 300px 20px; }
+    padding: 20px 40px 0 20px; }
 
 .stock__wrapper:nth-child(2n) .stock__item:nth-child(1) {
+  min-height: 450px;
   background: no-repeat #fb580d bottom right; }
   .stock__wrapper:nth-child(2n) .stock__item:nth-child(1) .stock__content {
-    padding: 20px 0 350px 20px; }
+    padding: 20px 40px 0 20px; }
 
 .stock__wrapper:nth-child(2n) .stock__item:nth-child(2) {
+  min-height: 290px;
   background: no-repeat #d1e44a top right; }
   .stock__wrapper:nth-child(2n) .stock__item:nth-child(2) .stock__content {
-    padding: 20px 0 130px 20px; }
+    padding: 20px 40px 0 20px; }
 
 .stock__period {
   display: block;
@@ -1032,10 +1029,6 @@ template {
 
 .stock__text {
   color: #313131; }
-
-@media (min-width: 1440px) {
-  .stock__item {
-    margin-bottom: 50px; } }
 
 .contacts {
   width: 90%;
@@ -1118,19 +1111,27 @@ template {
 
 .photo__wrapper {
   position: fixed;
+  display: flex;
+  justify-content: space-between;
   background-color: #ffffff;
   top: 50%;
   left: 50%;
-  width: 70%;
+  width: 85%;
   padding: 10px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%); }
-  .photo__wrapper ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    justify-content: space-between; }
+
+.photo__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.photo__item {
+  width: 80px;
+  height: 105px; }
 
 .photo__header {
   margin: 0 0 10px 0;
@@ -1138,11 +1139,10 @@ template {
 
 .photo__img-large,
 .photo__img-small {
-  display: block;
-  outline: 1px solid #313131; }
+  display: block; }
 
 .photo__img-large {
-  margin: 0 auto 10px auto; }
+  width: 435px; }
 
 .photo__img-small:hover {
   cursor: pointer;
@@ -1158,8 +1158,8 @@ template {
 
 .photo__close {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: -20px;
+  right: -20px;
   width: 20px;
   height: 20px;
   border: none;
@@ -1188,7 +1188,9 @@ template {
 
 @media (min-width: 780px) {
   .photo__wrapper {
-    width: 500px; }
+    width: 600px; }
+  .photo__img-large {
+    width: 510px; }
   .photo__close {
     width: 30px;
     height: 30px; }

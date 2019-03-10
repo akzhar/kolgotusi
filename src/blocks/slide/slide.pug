@@ -14,7 +14,7 @@ div.slide
         a.slide__btn.btn(href="catalog.html") К товарам
         div.slide__img(style="background-image: url(" + item.imgSlide + ")")
 
-  form.slide__selector.slide__selector--nojs
+  ul.slide__selector.slide__selector--nojs
     each item, index in stockItems
-      input.slide__radio(type="radio", name="radio", id="radio"+index)
-      label.slide__radiolabel(for="radio"+index, id=index)
+      - (index == 0) ? first = "slide__radiolabel--checked" : first = ""
+      li.slide__radiolabel(class=first, data-id=index, onclick="")

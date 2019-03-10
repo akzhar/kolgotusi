@@ -43,17 +43,16 @@
 }
 
 .goods__img {
-  position: absolute;
-  content: "";
+  // position: absolute;
 
-  width: 70%;
+  // width: 90%;
 
-  top: 40%;
-  left: 50%;
+  // top: 40%;
+  // left: 50%;
 
-  transform: translate(-50%, -50%);
+  // transform: translate(-50%, -50%);
 
-  z-index: 1;
+  // z-index: 1;
 }
 
 .goods__popup {
@@ -162,6 +161,12 @@
 
 }
 
+.goods__text {
+  margin: 0;
+
+  text-align: center;
+}
+
 .goods__color {
   display: block;
 
@@ -187,14 +192,8 @@
   background-color: #6666cc;
 }
 
-.goods__text {
-  margin: 0;
-
-  text-align: center;
-}
-
 @media (min-width: 660px) {
  .goods {
-  width: 90%;
+    width: 90%;
   }
 }
