@@ -3,16 +3,17 @@ mixin photo(allPhotoes, itemName, index)
   - var first = ""
 
   div.photo(id="photo" + index)
-    div.photo__wrapper
-      //- h4.photo__header="Фото - " + itemName
-      picture
-          source.photo__img-large-srcset(srcset="", data-img=allPhotoes[0] + ".webp 1x", type="image/webp")
-          img.photo__img-large(src="", data-img=allPhotoes[0] + ".jpg", alt="")
-      ul.photo__list
-        each photo, index in allPhotoes
-          li.photo__item
-            - (index == 0) ? first = "photo__img-small--active" : first = ""
-            picture
-              source.photo__img-small-srcset(srcset="", data-img=photo + ".webp 1x", type="image/webp")
-              img.photo__img-small(data-id=index, class=first, src="", data-img=photo + ".jpg", alt="")
-      button.photo__close(title="Закрыть", data-index=index)
+    div.photo__block
+      h4.photo__header="Фото ' " + itemName +" '"
+      div.photo__wrapper
+        picture.photo__item-large
+            source.photo__img-large-srcset(srcset="", data-img=allPhotoes[0] + ".webp 1x", type="image/webp")
+            img.photo__img-large(src="", data-img=allPhotoes[0] + ".jpg", alt="")
+        ul.photo__list
+          each photo, index in allPhotoes
+            li.photo__item
+              - (index == 0) ? first = "photo__img-small--active" : first = ""
+              picture
+                source.photo__img-small-srcset(srcset="", data-img=photo + ".webp 1x", type="image/webp")
+                img.photo__img-small(data-id=index, class=first, src="", data-img=photo + ".jpg", alt="")
+        button.photo__close(title="Закрыть", data-index=index)

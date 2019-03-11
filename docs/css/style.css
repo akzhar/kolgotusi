@@ -679,6 +679,14 @@ template {
   .goods__item:hover .goods__info-block {
     background-color: #ffffff; }
 
+.goods__img {
+  position: absolute;
+  width: 90%;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
+
 .goods__popup {
   position: absolute;
   left: 0;
@@ -1103,23 +1111,30 @@ template {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.3);
   z-index: 3; }
 
 .photo--show {
   display: block; }
 
-.photo__wrapper {
+.photo__block {
   position: fixed;
-  display: flex;
-  justify-content: space-between;
-  background-color: #ffffff;
+  background-color: #d1e44a;
   top: 50%;
   left: 50%;
-  width: 85%;
+  width: 80%;
+  height: 70%;
   padding: 10px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%); }
+
+.photo__wrapper {
+  display: flex;
+  justify-content: space-around;
+  height: 90%; }
+
+.photo__item-large {
+  height: 100%; }
 
 .photo__list {
   margin: 0;
@@ -1127,29 +1142,30 @@ template {
   list-style: none;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
+  height: 100%; }
 
 .photo__item {
-  width: 80px;
-  height: 105px; }
+  height: 20%; }
 
 .photo__header {
-  margin: 0 0 10px 0;
+  min-width: 200px;
+  margin: 0 auto 10px auto;
+  text-align: center;
   font-size: 18px; }
 
 .photo__img-large,
 .photo__img-small {
-  display: block; }
-
-.photo__img-large {
-  width: 435px; }
+  height: 100%;
+  outline: 1px solid #6e6e6e; }
 
 .photo__img-small:hover {
   cursor: pointer;
-  opacity: 0.8; }
+  outline: 1px solid #313131;
+  -webkit-filter: saturate(200%);
+          filter: saturate(200%); }
 
 .photo__img-small:active {
-  opacity: 0.6; }
+  opacity: 0.8; }
 
 .photo__img-small--active {
   outline: 1px solid #fb580d;
@@ -1158,8 +1174,8 @@ template {
 
 .photo__close {
   position: absolute;
-  top: -20px;
-  right: -20px;
+  top: 10px;
+  right: 10px;
   width: 20px;
   height: 20px;
   border: none;
@@ -1170,7 +1186,7 @@ template {
     content: "";
     top: 50%;
     left: 50%;
-    width: 15px;
+    width: 10px;
     height: 2px;
     background-color: #000000; }
   .photo__close:after {
@@ -1187,10 +1203,11 @@ template {
     opacity: 0.6; }
 
 @media (min-width: 780px) {
-  .photo__wrapper {
-    width: 600px; }
-  .photo__img-large {
-    width: 510px; }
+  .photo__block {
+    width: 50%;
+    box-shadow: -27px 27px 30px 10px rgba(110, 110, 110, 0.5); }
+  .photo__header {
+    font-size: 22px; }
   .photo__close {
     width: 30px;
     height: 30px; }
