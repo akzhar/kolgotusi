@@ -74,6 +74,7 @@ for (var j = 0; j < photoOpenBtn.length; j ++) {
     for (var i = 0; i < photoSource.length; i ++) {
       photoSource[i].setAttribute("srcset",photoSource[i].getAttribute("data-img"));
     }
+    var photoLargeTitle = photoBlock.querySelector(".photo__header");
     var photoLarge = photoBlock.querySelector(".photo__img-large");
     var photoLargeSrcset = photoBlock.querySelector(".photo__img-large-srcset");
     var photoSmall = photoBlock.querySelectorAll(".photo__img-small");
@@ -86,6 +87,7 @@ for (var j = 0; j < photoOpenBtn.length; j ++) {
         this.classList.add("photo__img-small--active");
         photoLarge.setAttribute("src", this.getAttribute("src"));
         photoLargeSrcset.setAttribute("srcset", photoSmallSrcset[this.getAttribute("data-id")].getAttribute("srcset"));
+        photoLargeTitle.innerHTML = this.getAttribute("alt");
       };
     };
   };

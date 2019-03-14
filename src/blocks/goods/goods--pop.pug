@@ -8,15 +8,15 @@ section.goods
   ul.goods__list
 
     each item, index in popularItems
-      +photo(item.img, item.name, index)
+      +photo(item.img, index)
       li.goods__item(onclick="")
         div.goods__popup
           button.goods__cart-btn.btn(data-id=item.id, data-name=item.name, data-price=item.price) В корзину
           button.goods__show-btn.btn(data-index=index) Фото
 
         picture
-          source(srcset=item.img[0] + ".webp 1x", type="image/webp")
-          img.goods__img(src=item.img[0] + ".jpg", alt="")
+          source(srcset=item.img[0].path + ".webp 1x", type="image/webp")
+          img.goods__img(src=item.img[0].path + ".jpg", alt=item.img[0].alt)
 
         ul.goods__info-block
           li.goods__info-row

@@ -44,7 +44,7 @@
   fill: $white;
 }
 
-@media (min-width: $width-desktop) {
+@media (min-width: $width-tablet) {
   .nav-list__item {
     margin: 0 25px;
   }
