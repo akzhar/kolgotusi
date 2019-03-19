@@ -1,3 +1,27 @@
+// @-webkit-keyframes zoomIn {
+//   from {
+//     opacity: 0;
+//     -webkit-transform: scale3d(0.3, 0.3, 0.3);
+//     transform: scale3d(0.3, 0.3, 0.3);
+//   }
+
+//   50% {
+//     opacity: 1;
+//   }
+// }
+
+// @keyframes zoomIn {
+//   from {
+//     opacity: 0;
+//     -webkit-transform: scale3d(0.3, 0.3, 0.3);
+//     transform: scale3d(0.3, 0.3, 0.3);
+//   }
+
+//   50% {
+//     opacity: 1;
+//   }
+// }
+
 .photo {
   display: none;
   position: absolute;
@@ -15,6 +39,7 @@
 
 .photo--show {
   display: block;
+  // animation: zoomIn 1s;
 }
 
 .photo__block {
@@ -28,8 +53,8 @@
   left: 50%;
 
   width: 85%;
-  max-width: 600px;
-  height: 70%;
+  max-width: 700px;
+  height: 90%;
 
   padding: 10px;
 
@@ -40,9 +65,10 @@
 
 .photo__wrapper {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
   width: 90%;
-  max-width: 400px;
   height: 90%;
 
   margin: 0 auto;
@@ -58,22 +84,25 @@
 }
 
 .photo__item-large {
-  height: 100%;
-
-  margin-right: auto;
+  height: 80%;
+  margin: 0 0 2px 0;
 }
 
 .photo__list {
   @include list0;
 
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  // justify-content: space-between;
 
-  height: 100%;
+  height: 20%;
+
+  // outline: 1px solid blue; //temp
 }
 
 .photo__item {
-  height: 20%; //5 шт max
+  height: 45%;
+  margin: 2px;
 }
 
 .photo__img-large,
@@ -154,6 +183,30 @@
 }
 
 @media (min-width: $width-tablet) {
+  .photo__wrapper {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+
+  .photo__item-large {
+    height: 100%;
+    margin: 0 2px 0 0;
+  }
+
+  .photo__list {
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    height: 100%;
+    width: auto;
+  }
+
+  .photo__item {
+    height: 20%;
+    margin: 0 2px;
+  }
+
   .photo__header {
     font-size: 22px;
   }
