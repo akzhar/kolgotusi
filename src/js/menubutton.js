@@ -4,18 +4,19 @@ var menu = document.querySelector(".site-menu-list");
 menubutton.classList.remove("menu-button--nojs");
 menu.classList.remove("site-menu-list--nojs");
 
-menubutton.addEventListener("click", function(evt) {
-  evt.preventDefault();
+function toggleMenu() {
   menu.classList.toggle("site-menu-list--open");
   menubutton.classList.toggle("menu-button--menu-open");
-});
+}
 
-window.addEventListener("keydown", function(e) {
-  if (e.keyCode === 27) {
-    if (menubutton.classList.contains("menu-button--menu-open")) {
-      e.preventDefault();
-      menubutton.classList.remove("menu-button--menu-open");
-      menu.classList.remove("site-menu-list--open");
+function addEscMenuHandler() {
+  window.addEventListener("keydown", function(evt) {
+    if (evt.keyCode === 27 && menubutton.classList.contains("menu-button--menu-open")) {
+      evt.preventDefault();
+      toggleMenu();
     };
-  };
-});
+  });
+}
+
+menubutton.addEventListener("click", toggleMenu);
+addEscMenuHandler();

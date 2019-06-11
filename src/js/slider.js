@@ -5,32 +5,32 @@ var next = document.querySelector('.slider__btn-next'); //кнопка впер�
 var previous = document.querySelector('.slider__btn-prev'); // кнопка назад
 var slideInterval = setInterval(nextSlide,4000); //интервал повторения
 var troughLabel = false;
+var slideselector = document.querySelector(".slide__selector");
 
-const slideselector = document.querySelector(".slide__selector");
 slideselector.classList.remove("slide__selector--nojs");
 
 function pauseSlideshow() {
   clearInterval(slideInterval); //очистка интервала повторения
 };
 
-next.onclick = function() { //при клике на вперед
+next.addEventListener("click", function() { //при клике на вперед
   troughLabel = false;
   pauseSlideshow();
   nextSlide();
-};
+});
 
-previous.onclick = function() { // при клике на назад
+previous.addEventListener("click", function() { // при клике на назад
   troughLabel = false;
   pauseSlideshow();
   previousSlide();
-};
+});
 
 for (var i = 0; i < label.length; i ++) {
-  label[i].onclick = function() {
+  label[i].addEventListener("click", function() {
     troughLabel = true;
     pauseSlideshow();
     goToSlide(this.getAttribute("data-id"));
-  };
+  });
 };
 
 function nextSlide() {
