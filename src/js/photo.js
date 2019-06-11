@@ -1,74 +1,94 @@
-var photoOpenBtn = document.querySelectorAll(".goods__show-btn");
-var photoCloseBtn = document.querySelectorAll(".photo__close");
+var photoOpenBtns = document.querySelectorAll(".goods__show-btn");
+var photoCloseBtns = document.querySelectorAll(".photo__close");
 
-function disableScrolling(){
-    var x=window.scrollX;
-    var y=window.scrollY;
-    window.onscroll=function(){window.scrollTo(x, y);};
+var photoBlock = {};
+
+function setPhotoBlock(photoBlockId) {
+  photoBlock = document.getElementById(photoBlockId);
 }
 
-function enableScrolling(){
-    window.onscroll=function(){};
+function disableScrolling() {
+  var x = window.scrollX;
+  var y = window.scrollY;
+  window.addEventListener("scroll", function() {
+    window.scrollTo(x, y);
+  });
 }
 
-for (var j = 0; j < photoOpenBtn.length; j ++) {
-  photoOpenBtn[j].onclick = function() {
+function enableScrolling() {
+  window.addEventListener("scroll", function() {
 
-    // document.body.classList.add("body--noscroll"); //запрет скрола
-    disableScrolling(); //запрет скрола
+  });
+}
 
-    var photoBlock = document.getElementById("photo"+this.getAttribute("data-index"));
-    photoBlock.classList.add("photo--show");
-    var photoImg = photoBlock.getElementsByTagName("img");
-    for (var i = 0; i < photoImg.length; i ++) {
-      photoImg[i].setAttribute("src",photoImg[i].getAttribute("data-img"));
-    }
-    var photoSource = photoBlock.getElementsByTagName("source");
-    for (var i = 0; i < photoSource.length; i ++) {
-      photoSource[i].setAttribute("srcset",photoSource[i].getAttribute("data-img"));
-    }
-    var photoLargeTitle = photoBlock.querySelector(".photo__header");
-    var photoLarge = photoBlock.querySelector(".photo__img-large");
-    var photoLargeSrcset = photoBlock.querySelector(".photo__img-large-srcset");
-    var photoSmall = photoBlock.querySelectorAll(".photo__img-small");
-    var photoSmallSrcset = photoBlock.querySelectorAll(".photo__img-small-srcset");
-    for (var i = 0; i < photoSmall.length; i ++) {
-      photoSmall[i].onclick = function() {
-        for (var x = 0; x < photoSmall.length; x ++) {
-          photoSmall[x].classList.remove("photo__img-small--active");
-        }
-        this.classList.add("photo__img-small--active");
-        photoLarge.setAttribute("src", this.getAttribute("src"));
-        photoLargeSrcset.setAttribute("srcset", photoSmallSrcset[this.getAttribute("data-id")].getAttribute("srcset"));
-        photoLargeTitle.innerHTML = this.getAttribute("alt");
-      };
+function turnOnEscHandler() {
+  window.addEventListener("keydown", function(evt) {
+    if (evt.keyCode === 27 && photoBlock.classList.contains("photo--show")) {
+        evt.preventDefault();
+        closePhotoBlock();
     };
-  };
-};
+  });
+}
 
-for (var j = 0; j < photoCloseBtn.length; j ++) {
-  photoCloseBtn[j].onclick = function() {
+function changeImgFromBigToSmall() {
+  var phSmallSources = photoBlock.querySelectorAll(".photo__img-small-srcset");
+  var phSmallId = this.getAttribute("data-id");
+  var phBig = photoBlock.querySelector(".photo__img-large");
+  var phBigSource = photoBlock.querySelector(".photo__img-large-srcset");
+  var phBigTitle = photoBlock.querySelector(".photo__header");
 
-    // document.body.classList.remove("body--noscroll"); //возврат скрола
-    enableScrolling(); //возврат скрола
+  this.classList.add("photo__img-small--active");
+  phBig.src = this.src;
+  phBigSource.srcset = phSmallSources[phSmallId].srcset;
+  phBigTitle.textContent = this.alt;
+}
 
-    var photoBlock = document.getElementById("photo"+this.getAttribute("data-index"));
-    photoBlock.classList.remove("photo--show");
-  };
-};
+function renderImgs() {
+  var photoImgs = photoBlock.getElementsByTagName("img");
+  for (var i = 0; i < photoImgs.length; i ++) {
+    photoImgs[i].setAttribute("src", photoImgs[i].getAttribute("data-img"));
+  }
+}
 
-window.addEventListener("keydown", function(e) {
+function renderSources() {
+  var photoSources = photoBlock.getElementsByTagName("source");
+  for (var i = 0; i < photoSources.length; i ++) {
+    photoSources[i].setAttribute("srcset", photoSources[i].getAttribute("data-img"));
+  }
+}
 
-  // document.body.classList.remove("body--noscroll"); //возврат скрола
-  enableScrolling(); //возврат скрола
+function addClickHandlersToPhotosSmall() {
+  var photosSmall = photoBlock.querySelectorAll(".photo__img-small");
+  for (var i = 0; i < photosSmall.length; i ++) {
+    photosSmall[i].addEventListener("click", changeImgFromBigToSmall);
+    photosSmall[i].addEventListener("click", function() {
+      for (var j = 0; j < photosSmall.length; j ++) {
+        photosSmall[j].classList.remove("photo__img-small--active");
+      }
+    });
+  }
+}
 
-  var photoBlock = document.querySelectorAll(".photo");
-  if (e.keyCode === 27) {
-    for (var j = 0; j < photoBlock.length; j ++) {
-      if (photoBlock[j].classList.contains("photo--show")) {
-        e.preventDefault();
-        photoBlock[j].classList.remove("photo--show");
-      };
-    };
-  };
-});
+function closePhotoBlock() {
+  photoBlock.classList.remove("photo--show");
+  enableScrolling();
+}
+
+function openPhotoBlock() {
+  var photoBlockId = "photo" + this.getAttribute("data-index");
+  setPhotoBlock(photoBlockId);
+  renderImgs();
+  renderSources();
+  addClickHandlersToPhotosSmall();
+  turnOnEscHandler();
+  photoBlock.classList.add("photo--show");
+  disableScrolling();
+}
+
+for (var i = 0; i < photoOpenBtns.length; i ++) {
+  photoOpenBtns[i].addEventListener("click", openPhotoBlock);
+}
+
+for (var i = 0; i < photoCloseBtns.length; i ++) {
+  photoCloseBtns[i].addEventListener("click", closePhotoBlock);
+}
