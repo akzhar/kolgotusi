@@ -1,10 +1,8 @@
-const anchor = document.querySelector('.btn--up');
+var anchor = document.querySelector('.btn--up');
 
-anchor.addEventListener('click', function (e) {
-  e.preventDefault();
-
-  const blockID = anchor.getAttribute('href');
-
+anchor.addEventListener('click', function (evt) {
+  evt.preventDefault();
+  var blockID = anchor.getAttribute('href');
   document.querySelector('' + blockID).scrollIntoView(
   {
     behavior: 'smooth',
