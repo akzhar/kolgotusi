@@ -1,5 +1,8 @@
 include items
+include ../select/select
 include ../photo/photo
+
+- var i = -1;
 
 section.goods
   h2.goods__header.section-header Популярные товары
@@ -8,11 +11,17 @@ section.goods
   ul.goods__list
 
     each item, index in popularItems
-      +photo(item.img, index)
+      - i++;
+      div.popup(id="popup" + i)
+        div.popup__block
+          +select(item.sizes, item.colors, index)
+      div.popup(id="popup" + (i+1))
+        div.popup__block
+          +photo(item.img, index)
       li.goods__item(onclick="")
         div.goods__popup
-          button.goods__cart-btn.btn(data-id=item.id, data-name=item.name, data-price=item.price) В корзину
-          button.goods__show-btn.btn(data-index=index) Фото
+          button.goods__cart-btn.btn.popup__open(data-popup-id=i, data-id=item.id, data-name=item.name, data-price=item.price) В корзину
+          button.goods__show-btn.btn.popup__open(data-popup-id=(i+1)) Фото
 
         picture
           source(srcset=item.img[0].path + ".webp 1x", type="image/webp")
@@ -36,6 +45,7 @@ section.goods
             ul
               each color in item.colors
                 li.goods__color(class="goods__color--"+color, title=color)
+        - i++;
 
   h2.goods__header.section-header О нас
   p.goods__text Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Подзаголовок себя составитель, безопасную проектах сих раз, лучше там, маленький пустился имеет возвращайся меня что? Эта она океана продолжил повстречался. Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Рот решила но бросил речью страна скатился назад выйти продолжил ipsum встретил грустный, обеспечивает ему снова возвращайся, лучше даль подпоясал.

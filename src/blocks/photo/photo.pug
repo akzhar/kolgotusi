@@ -2,18 +2,16 @@ mixin photo(allPhotoes, index)
 
   - var first = ""
 
-  div.photo(id="photo" + index)
-    div.photo__block
-      h4.photo__header=allPhotoes[0].alt
-      div.photo__wrapper
-        picture.photo__item-large
-            source.photo__img-large-srcset(srcset="", data-img=allPhotoes[0].path + ".webp 1x", type="image/webp")
-            img.photo__img-large(src="", data-img=allPhotoes[0].path + ".jpg", alt=allPhotoes[0].alt)
-        ul.photo__list
-          each photo, index in allPhotoes
-            li.photo__item
-              - (index == 0) ? first = "photo__img-small--active" : first = ""
-              picture
-                source.photo__img-small-srcset(srcset="", data-img=photo.path + ".webp 1x", type="image/webp")
-                img.photo__img-small(data-id=index, class=first, src="", data-img=photo.path + ".jpg", alt=photo.alt)
-        button.photo__close(title="Закрыть", data-index=index)
+  h4.photo__header=allPhotoes[0].alt
+  div.photo__wrapper
+    picture.photo__item-large
+        source.photo__img-large-srcset(srcset="", data-img=allPhotoes[0].path + ".webp 1x", type="image/webp")
+        img.photo__img-large(src="", data-img=allPhotoes[0].path + ".jpg", alt=allPhotoes[0].alt)
+    ul.photo__list
+      each photo, index in allPhotoes
+        li.photo__item
+          - (index == 0) ? first = "photo__img-small--active" : first = ""
+          picture
+            source.photo__img-small-srcset(srcset="", data-img=photo.path + ".webp 1x", type="image/webp")
+            img.photo__img-small(data-id=index, class=first, src="", data-img=photo.path + ".jpg", alt=photo.alt)
+    button.photo__close.popup__close(title="Закрыть", data-index=index)

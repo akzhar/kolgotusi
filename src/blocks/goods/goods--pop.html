@@ -2,8 +2,22 @@
 <section class="goods">
   <h2 class="goods__header section-header">Популярные товары</h2><b class="goods__tagline tagline">Часто покупаемые</b>
   <ul class="goods__list">
-    <div class="photo" id="photo0">
-      <div class="photo__block">
+    <div class="popup" id="popup0">
+      <div class="popup__block">
+        <select class="select__size">
+          <option>2</option>
+          <option>5</option>
+        </select>
+        <select class="select__color">
+          <option>red</option>
+          <option>orange</option>
+          <option>violet</option>
+        </select>
+        <button class="select__close popup__close" title="Закрыть" data-index="0"></button>
+      </div>
+    </div>
+    <div class="popup" id="popup1">
+      <div class="popup__block">
         <h4 class="photo__header">title2</h4>
         <div class="photo__wrapper">
           <picture class="photo__item-large">
@@ -31,14 +45,14 @@
               </picture>
             </li>
           </ul>
-          <button class="photo__close" title="Закрыть" data-index="0"></button>
+          <button class="photo__close popup__close" title="Закрыть" data-index="0"></button>
         </div>
       </div>
     </div>
     <li class="goods__item" onclick="">
       <div class="goods__popup">
-        <button class="goods__cart-btn btn" data-id="578" data-name="tango 10" data-price="115">В корзину</button>
-        <button class="goods__show-btn btn" data-index="0">Фото</button>
+        <button class="goods__cart-btn btn popup__open" data-popup-id="0" data-id="578" data-name="tango 10" data-price="115">В корзину</button>
+        <button class="goods__show-btn btn popup__open" data-popup-id="1">Фото</button>
       </div>
       <picture>
         <source srcset="img/model2.webp 1x" type="image/webp"/><img class="goods__img" src="img/model2.jpg" alt="title2"/>
@@ -53,15 +67,12 @@
           <h3 class="goods__head">Размеры</h3>
           <ul>
             <li class="goods__size">2</li>
-            <li class="goods__size">3</li>
-            <li class="goods__size">4</li>
             <li class="goods__size">5</li>
           </ul>
         </li>
         <li class="goods__info-row">
           <h3 class="goods__head">Цвета</h3>
           <ul>
-            <li class="goods__color goods__color--cyan" title="cyan"></li>
             <li class="goods__color goods__color--red" title="red"></li>
             <li class="goods__color goods__color--orange" title="orange"></li>
             <li class="goods__color goods__color--violet" title="violet"></li>
@@ -69,8 +80,25 @@
         </li>
       </ul>
     </li>
-    <div class="photo" id="photo1">
-      <div class="photo__block">
+    <div class="popup" id="popup2">
+      <div class="popup__block">
+        <select class="select__size">
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+        <select class="select__color">
+          <option>cyan</option>
+          <option>red</option>
+          <option>orange</option>
+          <option>violet</option>
+        </select>
+        <button class="select__close popup__close" title="Закрыть" data-index="1"></button>
+      </div>
+    </div>
+    <div class="popup" id="popup3">
+      <div class="popup__block">
         <h4 class="photo__header">title2</h4>
         <div class="photo__wrapper">
           <picture class="photo__item-large">
@@ -118,14 +146,14 @@
               </picture>
             </li>
           </ul>
-          <button class="photo__close" title="Закрыть" data-index="1"></button>
+          <button class="photo__close popup__close" title="Закрыть" data-index="1"></button>
         </div>
       </div>
     </div>
     <li class="goods__item" onclick="">
       <div class="goods__popup">
-        <button class="goods__cart-btn btn" data-id="321" data-name="tango 20" data-price="116">В корзину</button>
-        <button class="goods__show-btn btn" data-index="1">Фото</button>
+        <button class="goods__cart-btn btn popup__open" data-popup-id="2" data-id="321" data-name="tango 20" data-price="116">В корзину</button>
+        <button class="goods__show-btn btn popup__open" data-popup-id="3">Фото</button>
       </div>
       <picture>
         <source srcset="img/model2.webp 1x" type="image/webp"/><img class="goods__img" src="img/model2.jpg" alt="title2"/>
@@ -156,8 +184,25 @@
         </li>
       </ul>
     </li>
-    <div class="photo" id="photo2">
-      <div class="photo__block">
+    <div class="popup" id="popup4">
+      <div class="popup__block">
+        <select class="select__size">
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+        <select class="select__color">
+          <option>cyan</option>
+          <option>red</option>
+          <option>orange</option>
+          <option>violet</option>
+        </select>
+        <button class="select__close popup__close" title="Закрыть" data-index="2"></button>
+      </div>
+    </div>
+    <div class="popup" id="popup5">
+      <div class="popup__block">
         <h4 class="photo__header">title3</h4>
         <div class="photo__wrapper">
           <picture class="photo__item-large">
@@ -190,14 +235,14 @@
               </picture>
             </li>
           </ul>
-          <button class="photo__close" title="Закрыть" data-index="2"></button>
+          <button class="photo__close popup__close" title="Закрыть" data-index="2"></button>
         </div>
       </div>
     </div>
     <li class="goods__item" onclick="">
       <div class="goods__popup">
-        <button class="goods__cart-btn btn" data-id="121" data-name="tango 30" data-price="126">В корзину</button>
-        <button class="goods__show-btn btn" data-index="2">Фото</button>
+        <button class="goods__cart-btn btn popup__open" data-popup-id="4" data-id="121" data-name="tango 30" data-price="126">В корзину</button>
+        <button class="goods__show-btn btn popup__open" data-popup-id="5">Фото</button>
       </div>
       <picture>
         <source srcset="img/model3.webp 1x" type="image/webp"/><img class="goods__img" src="img/model3.jpg" alt="title3"/>
