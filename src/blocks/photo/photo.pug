@@ -2,7 +2,7 @@ mixin photo(allPhotoes, index)
 
   - var first = ""
 
-  h4.photo__header=allPhotoes[0].alt
+  h4.popup__header.photo__header=allPhotoes[0].alt
   div.photo__wrapper
     picture.photo__item-large
         source.photo__img-large-srcset(srcset="", data-img=allPhotoes[0].path + ".webp 1x", type="image/webp")

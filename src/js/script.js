@@ -6,9 +6,7 @@
 
 <include src="src/js/scroll.js"></include>
 
-<include src="src/js/popup.js"></include>
-
-<include src="src/js/photo.js"></include>
+<include src="src/js/popup.js"></include> // scroll
 
 <include src="src/js/slider.js"></include>
 

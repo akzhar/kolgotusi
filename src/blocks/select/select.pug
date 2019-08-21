@@ -1,9 +1,0 @@
-mixin select(sizes, colors, index)
-
-  select.select__size
-    each size in sizes
-      option=size
-  select.select__color
-    each color in colors
-      option=color
-  button.select__close.popup__close(title="Закрыть", data-index=index)

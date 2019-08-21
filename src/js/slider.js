@@ -1,57 +1,54 @@
-var slides = document.querySelectorAll(".slide__item"); //все слайды
-var label = document.querySelectorAll(".slide__radiolabel"); //все лейблы радикнопок
-var currentSlide = 0; //счетчик слайдов
-var next = document.querySelector('.slider__btn-next'); //кнопка вперед
-var previous = document.querySelector('.slider__btn-prev'); // кнопка назад
-var slideInterval = setInterval(nextSlide,4000); //интервал повторения
-var troughLabel = false;
-var slideselector = document.querySelector(".slide__selector");
+(function() {
 
-slideselector.classList.remove("slide__selector--nojs");
+  var RADIOLABEL_CHECKED_CLASS = 'slide__radiolabel--checked';
+  var SLIDE_SHOW_CLASS = 'slide__item--show';
+  var slides = document.querySelectorAll('.slide__item');
+  var radioLabels = document.querySelectorAll('.slide__radiolabel');
+  var nextBtn = document.querySelector('.slider__btn-next');
+  var previousBtn = document.querySelector('.slider__btn-prev');
+  var currentSlideNo = 0;
+  var troughLabel = false;
 
-function pauseSlideshow() {
-  clearInterval(slideInterval); //очистка интервала повторения
-};
-
-next.addEventListener("click", function() { //при клике на вперед
-  troughLabel = false;
-  pauseSlideshow();
-  nextSlide();
-});
-
-previous.addEventListener("click", function() { // при клике на назад
-  troughLabel = false;
-  pauseSlideshow();
-  previousSlide();
-});
-
-for (var i = 0; i < label.length; i ++) {
-  label[i].addEventListener("click", function() {
-    troughLabel = true;
-    pauseSlideshow();
-    goToSlide(this.getAttribute("data-id"));
-  });
-};
-
-function nextSlide() {
- goToSlide(Number(currentSlide)+1);
-};
-
-function previousSlide() {
- goToSlide(Number(currentSlide)-1);
-};
-
-function goToSlide(n) {
-  label[currentSlide].classList.remove("slide__radiolabel--checked");
-  slides[currentSlide].classList.remove("slide__item--show");
-
-  if (troughLabel == true) {
-    currentSlide =  n;
-  } else {
-    currentSlide = (n+slides.length)%slides.length; // текущий слайд -1 или +1
+  function pauseSlideShow() {
+    clearInterval(slideInterval); //очистка интервала повторения
   }
 
-  label[currentSlide].classList.add("slide__radiolabel--checked");
-  slides[currentSlide].classList.add("slide__item--show");
-};
+  function goToNextSlide() {
+    goToSlide(currentSlideNo + 1);
+  }
 
+  function goToPreviousSlide() {
+    goToSlide(currentSlideNo - 1);
+  }
+
+  function goToSlide(n) {
+    radioLabels[currentSlideNo].classList.remove(RADIOLABEL_CHECKED_CLASS);
+    slides[currentSlideNo].classList.remove(SLIDE_SHOW_CLASS);
+    currentSlideNo = (troughLabel) ? n : (n + slides.length) % slides.length; // текущий слайд -1 или +1
+    radioLabels[currentSlideNo].classList.add(RADIOLABEL_CHECKED_CLASS);
+    slides[currentSlideNo].classList.add(SLIDE_SHOW_CLASS);
+  }
+
+  var slideInterval = setInterval(goToNextSlide, 4000); //интервал повторения
+
+  nextBtn.addEventListener('click', function() { //при клике на вперед
+    troughLabel = false;
+    pauseSlideShow();
+    goToNextSlide();
+  });
+
+  previousBtn.addEventListener('click', function() { // при клике на назад
+    troughLabel = false;
+    pauseSlideShow();
+    goToPreviousSlide();
+  });
+
+  radioLabels.forEach(function(label) {
+    label.addEventListener('click', function() {
+      troughLabel = true;
+      pauseSlideShow();
+      goToSlide(this.getAttribute('data-id'));
+    });
+  });
+
+})();

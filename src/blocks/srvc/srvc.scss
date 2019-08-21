@@ -47,9 +47,9 @@
   font-size: 14px;
   line-height: 24px;
 
-  width: 126px;
-
   padding: 13px;
+
+  border: none;
 
   &:hover {
     cursor: pointer;
@@ -65,95 +65,6 @@
 .btn--up {
   width: 150px;
   margin: 0 auto 50px auto;
-}
-
-.popup {
-  display: none;
-  position: absolute;
-
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-
-  background-color: rgba(0, 0, 0, 0.3);
-
-  z-index: 3;
-}
-
-.popup--show {
-  display: block;
-}
-
-.popup__block {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-
-  background-color: $pink;
-
-  top: 50%;
-  left: 50%;
-
-  width: 85%;
-  max-width: 700px;
-  height: 90%;
-
-  padding: 10px;
-
-  transform: translate(-50%, -50%);
-
-  box-shadow: -27px 27px 30px 10px rgba(110,110,110,0.5);
-}
-
-.popup__close {
-  position: absolute;
-
-  top: 10px;
-  right: 10px;
-
-  width: 20px;
-  height: 20px;
-
-  border: none;
-  border-radius: 50%;
-  background-color: $orange;
-
-  &:after,
-  &:before {
-    position: absolute;
-    content: "";
-
-    top: 50%;
-    left: 50%;
-
-    width: 10px;
-    height: 2px;
-
-    background-color: $black;
-  }
-
-  &:after {
-    transform: translate(-50%, -50%) rotate(45deg);
-  }
-
-  &:before {
-    transform: translate(-50%, -50%) rotate(-45deg);
-  }
-
-  &:hover {
-    cursor: pointer;
-
-    &:after,
-    &:before {
-      background-color: $yellow;
-    }
-  }
-
-  &:active {
-    opacity: 0.6;
-  }
 }
 
 @media (min-width: $width-desktop) {

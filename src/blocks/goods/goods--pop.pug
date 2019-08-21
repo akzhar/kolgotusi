@@ -1,5 +1,5 @@
 include items
-include ../select/select
+include ../preorder/preorder
 include ../photo/photo
 
 - var i = -1;
@@ -14,7 +14,7 @@ section.goods
       - i++;
       div.popup(id="popup" + i)
         div.popup__block
-          +select(item.sizes, item.colors, index)
+          +preorder(item.id, item.name, item.price, item.sizes, item.colors, index)
       div.popup(id="popup" + (i+1))
         div.popup__block
           +photo(item.img, index)
