@@ -1,10 +1,15 @@
-@font-face { //локальное подключение шрифтов
+@font-face {
   font-weight: normal;
-  font-family: "Georgia";
+  font-family: "Ubuntu-Regular";
   font-style: normal;
   font-display: optional;
-  src: url("../fonts/Georgia.woff2") format("woff2"),
-  url("../fonts/Georgia.woff") format("woff");
+  src: url("../fonts/Ubuntu-Regular.woff2") format("woff2"),
+  url("../fonts/Ubuntu-Regular.woff") format("woff");
+}
+
+html,
+body {
+  margin: 0;
 }
 
 img {
@@ -12,8 +17,6 @@ img {
 }
 
 @import "variables/variables.scss";
-
-@import "normalize/normalize.min.scss";
 
 @import "srvc/srvc.scss";
 
@@ -58,3 +61,5 @@ img {
 @import "photo/photo.scss";
 
 @import "preorder/preorder.scss";
+
+@import "msg/msg.scss";

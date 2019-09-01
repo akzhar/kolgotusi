@@ -1,3 +1,25 @@
+//миксины
+@mixin highlightEdges() {
+  background: rgba(random(255), random(255), random(255), 0.3); //временно для сетки
+  outline: 1px solid rgb(random(255), random(255), random(255)); //временно для сетки
+}
+
+@mixin hoverActive() {
+  &:hover {
+    opacity: 0.6;
+  }
+
+  &:active {
+    opacity: 0.3;
+  }
+}
+
+@mixin list0() {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 // переменные цветов
 $black: #000000;
 $white: #ffffff;
@@ -27,10 +49,3 @@ $l_1: 30px;
 
 $s_3: 18px; //use
 $l_3: 24px;
-
-//миксины
-@mixin list0 {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}

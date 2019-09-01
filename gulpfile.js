@@ -1,196 +1,206 @@
-"use strict";
+'use strict';
 
-var gulp = require("gulp"), //задаем переменные
-sass = require("gulp-sass"),
-plumber = require("gulp-plumber"),
-postcss = require("gulp-postcss"),
-jsmin = require("gulp-jsmin"),
-autoprefixer = require("gulp-autoprefixer"),
-cleanCSS = require("gulp-clean-css"),
-imagemin = require("gulp-imagemin"),
-imageminSvgo = require('imagemin-svgo'),
-imageminJpegRecompress = require('imagemin-jpeg-recompress'),
-imageminPngquant = require("imagemin-pngquant"),
-cwebp = require('gulp-cwebp'),
-rimraf = require("rimraf"),
-gulpStylelint = require('gulp-stylelint'),
-server = require("browser-sync").create(),
-devip = require('dev-ip'),
-svgstore = require('gulp-svgstore'),
-posthtml = require('gulp-posthtml'),
-include = require('posthtml-include'),
-htmlmin = require('gulp-htmlmin'),
-run = require('run-sequence'),
-pug = require('gulp-pug'),
-rename = require("gulp-rename");
+var gulp = require('gulp'),
+  sass = require('gulp-sass'),
+  autoprefixer = require('gulp-autoprefixer'),
+  run = require('run-sequence'),
+  rename = require('gulp-rename'),
+  clean = require('rimraf'),
+  jsMin = require('gulp-jsmin'),
+  cssMin = require('gulp-clean-css'),
+  htmlMin = require('gulp-htmlmin'),
+  pug = require('gulp-pug'),
+  imageMin = require('gulp-imagemin'),
+  svgMin = require('imagemin-svgo'),
+  jpegMin = require('imagemin-jpeg-recompress'),
+  pngMin = require('imagemin-pngquant'),
+  cwebp = require('gulp-cwebp'),
+  svgstore = require('gulp-svgstore'),
+  styleLint = require('gulp-stylelint'),
+  esLint = require('gulp-eslint'),
+  server = require('browser-sync').create(),
+  devip = require('dev-ip'),
+  posthtml = require('gulp-posthtml'),
+  include = require('posthtml-include'),
+  readFile = require('utils-fs-read-file'),
+  data = require('gulp-data'),
+  htmlValidator = require('gulp-w3c-html-validator');
 
-devip(); // [ "192.168.1.76", "192.168.1.80" ] or false if nothing found (ie, offline user)
+devip();
 
-gulp.task('lint', function lintCssTask() { // задача - вызывается как скрипт из package.json
+gulp.task('validateHtml', function () {
   return gulp
-  .src("src/blocks/*.{scss,sass}") // источник
-  .pipe(gulpStylelint({
-    reporters: [
-    {formatter: 'string', console: true}
-    ]
+  .src('docs/*.html')
+  .pipe(htmlValidator())
+  .pipe(htmlValidator.reporter());
+});
+
+gulp.task('styleLint', function () {
+  return gulp
+  .src('src/blocks/**/*.scss')
+  .pipe(styleLint({
+    failAfterError: true,
+    reporters: [{formatter: 'string', console: true}]
   }));
 });
 
-gulp.task('clean', function (cb) { // задача - вызывается как скрипт из package.json
-  rimraf("docs", cb); // удаление папки build (предыдущая сборка)
+gulp.task('esLint', function () {
+  gulp.src(['src/js/modules/*.js'])
+  .pipe(esLint())
+  .pipe(esLint.format())
+  .pipe(esLint.failAfterError());
 });
 
-gulp.task("copy", function () { // задача - вызывается как скрипт из package.json
-  gulp.src([  // источник
-    "src/fonts/**/*.{woff,woff2}"
+gulp.task('clean', function (cb) {
+  clean('docs', cb);
+});
+
+gulp.task('copy', function () {
+  gulp.src([
+      'src/fonts/**/*.{woff,woff2}',
+      'src/js/data.json'
     ],
-    {
-      base: "src"
-    })
-  .pipe(gulp.dest("docs/")); // класть результат сюда
+    {base: 'src'})
+  .pipe(gulp.dest('docs/'));
 });
 
-gulp.task("sprite", function () { // задача - вызывается как скрипт из package.json
-  gulp.src("src/img/sprite/inline-*.svg") // источник
-  .pipe(imagemin([
-    imageminSvgo({ // сжатие svg
+gulp.task('svgSprite', function () {
+  gulp.src('src/img/sprite/*.svg')
+  .pipe(imageMin([
+    svgMin({
       plugins: [
       {removeDimensions: true},
-      {removeAttrs: true},
-      {removeElementsByAttr: true},
-      {removeStyleElement: true},
+      {removeAttrs: false},
+      {removeElementsByAttr: false},
+      {removeStyleElement: false},
       {removeViewBox: false}
       ]
     })
     ]))
-  .pipe(svgstore({
-    inlineSvg: true
-  }))
-  .pipe(rename({
-    basename: "sprite",
-    suffix: ".min"
-  }))
-  .pipe(gulp.dest("docs/img/")) // класть результат сюда
+  .pipe(svgstore({inlineSvg: true}))
+  .pipe(rename({basename: 'sprite', suffix: '.min'}))
+  .pipe(gulp.dest('docs/img/'));
 });
 
-gulp.task("style", function () { // задача - вызывается как скрипт из package.json
-  gulp.src("src/blocks/*.{scss,sass}") // источник
-  .pipe(plumber()) // отслеживание ошибок - вывод в консоль, не дает прервать процесс
-  .pipe(sass().on('error', sass.logError)) // компиляция из препроцессорного кода sass --> css кода
+gulp.task('style', function () {
+  gulp.src('src/blocks/*.{scss,sass}')
+  .pipe(posthtml([ // сборка из разных файлов
+    include()
+  ]))
+  .pipe(sass().on('error', sass.logError)) // компиляция css из препроцессорного кода sass
   .pipe(autoprefixer()) // расставление автопрефиксов
-  .pipe(gulp.dest("docs/css/")) // класть результат сюда
-  .pipe(cleanCSS()) // минификация
-  .pipe(rename({
-    suffix: ".min"
-  }))
-  .pipe(gulp.dest("docs/css/")) // класть результат сюда
+  .pipe(gulp.dest('docs/css/'))
+  .pipe(cssMin())
+  .pipe(rename({suffix: '.min'}))
+  .pipe(gulp.dest('docs/css/'));
 });
 
-gulp.task('js', function () { //задача - вызывается как скрипт из package.json
-  gulp.src("src/js/script.js") // источник
+gulp.task('js', function () {
+  gulp.src('src/js/*.js')
   .pipe(posthtml([ // сборка из разных файлов
     include()
     ]))
-  .pipe(gulp.dest("docs/js/")) // класть результат сюда
-  .pipe(jsmin()) // минификация
-  .pipe(rename({
-    suffix: ".min"
-  }))
-  .pipe(gulp.dest("docs/js/")) // класть результат сюда
+  .pipe(gulp.dest('docs/js/'))
+  .pipe(jsMin())
+  .pipe(rename({suffix: '.min'}))
+  .pipe(gulp.dest('docs/js/'));
 });
 
-gulp.task("image", function () { // задача - вызывается как скрипт из package.json
-  gulp.src("src/img/*.{png,jpg,svg}") // источник
-  .pipe(imagemin([
-    imageminPngquant({ // сжатие png
-      quality: '80'
-    }),
-    imageminJpegRecompress({ // сжатие jpeg
-      progressive: true,
-      method: 'ms-ssim'
-    }),
-    imageminSvgo({ // сжатие svg
+gulp.task('image', function () {
+  gulp.src('src/img/*.{png,jpg,svg}')
+  .pipe(imageMin([
+    pngMin({quality: '80'}),
+    jpegMin({progressive: true, method: 'ms-ssim'}),
+    svgMin({
       plugins: [
       {removeDimensions: true},
-      {removeAttrs: true},
-      {removeElementsByAttr: true},
-      {removeStyleElement: true},
+      {removeAttrs: false},
+      {removeElementsByAttr: false},
+      {removeStyleElement: false},
       {removeViewBox: false}
       ]
     })
     ]))
-  .pipe(gulp.dest("docs/img/")) // класть результат сюда
+  .pipe(gulp.dest('docs/img/'));
 });
 
-gulp.task("cwebp", function () { // задача - вызывается как скрипт из package.json
-  gulp.src("src/img/*.*") // источник
+gulp.task('cwebp', function () {
+  gulp.src('src/img/*.{png,jpg}')
   .pipe(cwebp())
-  .pipe(gulp.dest("docs/img/")); // класть результат сюда
+  .pipe(gulp.dest('docs/img/'));
 });
 
-gulp.task("html", function () { // задача - вызывается как скрипт из package.json
-  gulp.src("src/blocks/*.html") // источник
+gulp.task('html', function () {
+  gulp.src('src/blocks/*.html')
   .pipe(posthtml([ // сборка из разных файлов
     include()
     ]))
-  .pipe(htmlmin({ collapseWhitespace: true })) // минификация
-  .pipe(gulp.dest("docs/")) // класть результат сюда
+  .pipe(htmlMin({ collapseWhitespace: true }))
+  .pipe(gulp.dest('docs/'));
 });
 
-gulp.task("pug", function buildHTML() {
-  return gulp.src("src/blocks/**/*.pug")
-  .pipe(pug({pretty: true})) // Запретите минифицировать HTML
-  // .pipe(htmlmin({ collapseWhitespace: true })) // минификация
-  .pipe(gulp.dest(function(file){
-    return file.base;
-  }))
+gulp.task('pug', function (){
+  var dataPath = 'src/js/data.json';
+  return gulp.src('src/blocks/**/*.pug')
+    .pipe(data(function () {
+      return JSON.parse(readFile.sync(dataPath));
+    }))
+    .pipe(pug({pretty: true})) // не минифицировать HTML
+    .pipe(gulp.dest(function (file) {
+      return file.base;
+    }));
 });
 
-gulp.task("watch", function() { // задача - вызывается как скрипт из package.json
-  setTimeout(function(){gulp.watch("src/blocks/**/*.{scss,sass}", ["style", "reload"])},1000); // отслеживание изменений файлов scss
-  setTimeout(function(){gulp.watch("src/js/**/*.js", ["js" , "reload"])},1000); // отслеживание изменений файлов js
-  setTimeout(function(){gulp.watch("src/blocks/**/*.html", ["html", "reload"])},1000); // отслеживание изменений файлов html
-  setTimeout(function(){gulp.watch("src/img/*.*", ["image", "reload"])},1000); // отслеживание изменений файлов img
-  setTimeout(function(){gulp.watch("src/img/sprite/inline-*.svg", ["sprite", "html", "reload"])},1000); // отслеживание изменений файлов sprite svg
-  setTimeout(function(){gulp.watch("src/blocks/**/*.pug", ["pug", "html", "reload"])},1000); // отслеживание изменений файлов html
+gulp.task('watch', function() {
+  var timeout = 1000;
+  setTimeout(function(){gulp.watch('src/blocks/**/*.{scss,sass}', ['style', 'reload']);}, timeout);
+  setTimeout(function(){gulp.watch('src/js/**/*.js', ['js' , 'reload']);}, timeout);
+  setTimeout(function(){gulp.watch('src/blocks/**/*.html', ['html', 'reload']);}, timeout);
+  setTimeout(function(){gulp.watch('src/img/*.*', ['image', 'reload']);}, timeout);
+  setTimeout(function(){gulp.watch('src/img/sprite/inline-*.svg', ['sprite', 'html', 'reload']);}, timeout);
+  setTimeout(function(){gulp.watch('src/blocks/**/*.pug', ['pug', 'html', 'reload']);}, timeout);
 });
 
-gulp.task("reload", function() { // задача - вызывается как скрипт из package.json
-  server.reload(); //обновление браузера - скрол уедет наверх
+gulp.task('reload', function() {
+  server.reload();
 });
 
-gulp.task ("serve", function(done) { //задача - вызывается как скрипт из package.json
-  server.init({ // перед запуском start запускается рад задач, затем запускается локальный сервер
-    server: "docs", // адрес к папке где лежит сборка
+gulp.task ('server', function(done) {
+  server.init({
+    server: 'docs', // адрес к папке где лежит сборка
     notify: false,
     open: true,
     cors: true,
-    host: "192.168.0.91", // дефолтный ip занят virtualbox, задача devip определила запасной ip
+    host: '192.168.0.91', // дефолтный ip занят virtualbox, задача devip определила запасной ip
     ui: false
   });
   done();
 });
 
-gulp.task ("build", function(done) {
+gulp.task ('build', function(done) {
   run (
-    "clean",
-    "copy",
-    "image",
-    "cwebp",
-    "sprite",
-    "style",
-    "js",
-    "pug",
+    'clean',
+    'styleLint',
+    'esLint',
+    'copy',
+    'image',
+    'cwebp',
+    'svgSprite',
+    'style',
+    'js',
+    'pug',
+    'html',
+    'validateHtml',
     done
-    )
+  );
 });
 
-gulp.task ("start", function(done) {
+gulp.task ('start', function(done) {
   run (
-    "html",
-    "serve",
-    "watch",
+    'server',
+    'watch',
     done
-    )
+    );
 });
 
+// devip --> '192.168.1.76', '192.168.1.80' or false if nothing found (ie, offline user)

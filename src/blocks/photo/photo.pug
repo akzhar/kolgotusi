@@ -10,7 +10,7 @@ mixin photo(allPhotoes, index)
     ul.photo__list
       each photo, index in allPhotoes
         li.photo__item
-          - (index == 0) ? first = "photo__img-small--active" : first = ""
+          - first = (index == 0) ? "photo__img-small--active" : ""
           picture
             source.photo__img-small-srcset(srcset="", data-img=photo.path + ".webp 1x", type="image/webp")
             img.photo__img-small(data-id=index, class=first, src="", data-img=photo.path + ".jpg", alt=photo.alt)

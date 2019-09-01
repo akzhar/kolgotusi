@@ -1,5 +1,5 @@
 .preorder {
-  width: 50%;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -26,13 +26,17 @@
 }
 
 .preorder__btn {
-  width: 35px;
+  min-width: 35px;
 }
 
-.preorder__output {
-  padding: 13px;
-
+.preorder__input {
+  font-size: 22px;
+  border: none;
   text-align: center;
+
+  width: 100px;
+
+  background-color: transparent;
 }
 
 .preorder__price {
@@ -44,7 +48,7 @@
 
   margin-top: 30px;
 
+  font-size: 20px;
   text-transform: uppercase;
-
   background-color: $orange;
 }

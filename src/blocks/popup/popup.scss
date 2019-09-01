@@ -35,7 +35,12 @@
 
   transform: translate(-50%, -50%);
 
-  box-shadow: -27px 27px 30px 10px rgba(110,110,110,0.5);
+  box-shadow: -27px 27px 30px 10px rgba(110, 110, 110, 0.5);
+}
+
+.popup__block--msg {
+  width: 50%;
+  height: auto;
 }
 
 .popup__close {

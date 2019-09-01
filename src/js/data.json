@@ -1,0 +1,188 @@
+{
+  "popularItems" : {
+  "578": {
+    "id": "578",
+    "img": [
+    {
+      "path": "img/model2",
+      "alt": "title2"
+    },
+    {
+      "path": "img/model3",
+      "alt": "title3"
+    },
+    {
+      "path": "img/model4",
+      "alt": "title4"
+    },
+    {
+      "path": "img/model1",
+      "alt": "title1"
+    }
+    ],
+    "name": "tango 10",
+    "price": "115",
+    "sizes": ["2", "5"],
+    "colors": ["red", "orange", "violet"]
+  },
+  "321": {
+    "id": "321",
+    "img": [
+    {
+      "path": "img/model2",
+      "alt": "title2"
+    },
+    {
+      "path": "img/model1",
+      "alt": "title1"
+    },
+    {
+      "path": "img/model3",
+      "alt": "title3"
+    },
+    {
+      "path": "img/model4",
+      "alt": "title4"
+    },
+    {
+      "path": "img/model4",
+      "alt": "title4"
+    },
+    {
+      "path": "img/model4",
+      "alt": "title4"
+    },
+    {
+      "path": "img/model4",
+      "alt": "title4"
+    },
+    {
+      "path": "img/model5",
+      "alt": "title5"
+    }
+    ],
+    "name": "tango 20",
+    "price": "116",
+    "sizes": ["2", "3", "4", "5"],
+    "colors": ["cyan", "red", "orange", "violet"]
+  },
+  "121": {
+    "id": "121",
+    "img": [
+    {
+      "path": "img/model3",
+      "alt": "title3"
+    },
+    {
+      "path": "img/model2",
+      "alt": "title2"
+    },
+    {
+      "path": "img/model1",
+      "alt": "title1"
+    },
+    {
+      "path": "img/model4",
+      "alt": "title4"
+    },
+    {
+      "path": "img/model5",
+      "alt": "title5"
+    }
+    ],
+    "name": "tango 30",
+    "price": "126",
+    "sizes": ["2", "3", "4", "5"],
+    "colors": ["cyan", "red", "orange", "violet"]
+  }
+  },
+  "allItems": {
+  "578": {
+    "id": "578",
+    "img": [
+    {
+      "path": "img/model5",
+      "alt": "title5"
+    },
+    {
+      "path": "img/model2",
+      "alt": "title2"
+    },
+    {
+      "path": "img/model3",
+      "alt": "title3"
+    },
+    {
+      "path": "img/model4",
+      "alt": "title4"
+    },
+    {
+      "path": "img/model1",
+      "alt": "title1"
+    }
+    ],
+    "name": "tango 10",
+    "price": "115",
+    "sizes": ["2", "3", "4", "5"],
+    "colors": ["cyan", "red", "orange", "violet"]
+  },
+  "321": {
+    "id": "321",
+    "img": [
+    {
+      "path": "img/model4",
+      "alt": "title4"
+    },
+    {
+      "path": "img/model2",
+      "alt": "title2"
+    },
+    {
+      "path": "img/model3",
+      "alt": "title3"
+    },
+    {
+      "path": "img/model1",
+      "alt": "title1"
+    },
+    {
+      "path": "img/model5",
+      "alt": "title5"
+    }
+    ],
+    "name": "tango 20",
+    "price": "116",
+    "sizes": ["2", "3", "4", "5"],
+    "colors": ["cyan", "red", "orange", "violet"]
+  },
+  "121": {
+    "id": "121",
+    "img": [
+    {
+      "path": "img/model1",
+      "alt": "title1"
+    },
+    {
+      "path": "img/model2",
+      "alt": "title2"
+    },
+    {
+      "path": "img/model3",
+      "alt": "title3"
+    },
+    {
+      "path": "img/model4",
+      "alt": "title4"
+    },
+    {
+      "path": "img/model5",
+      "alt": "title5"
+    }
+    ],
+    "name": "tango 30",
+    "price": "126",
+    "sizes": ["2", "3", "4", "5"],
+    "colors": ["cyan", "red", "orange", "violet"]
+  }
+  }
+}

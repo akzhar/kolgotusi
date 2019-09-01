@@ -1,8 +1,5 @@
-include items
 include ../preorder/preorder
 include ../photo/photo
-
-- var i = -1;
 
 section.goods
   h2.goods__header.section-header Популярные товары
@@ -11,17 +8,16 @@ section.goods
   ul.goods__list
 
     each item, index in popularItems
-      - i++;
-      div.popup(id="popup" + i)
+      div.popup(id="cart"+ item.id)
         div.popup__block
           +preorder(item.id, item.name, item.price, item.sizes, item.colors, index)
-      div.popup(id="popup" + (i+1))
+      div.popup(id="photos"+ item.id)
         div.popup__block
           +photo(item.img, index)
       li.goods__item(onclick="")
         div.goods__popup
-          button.goods__cart-btn.btn.popup__open(data-popup-id=i, data-id=item.id, data-name=item.name, data-price=item.price) В корзину
-          button.goods__show-btn.btn.popup__open(data-popup-id=(i+1)) Фото
+          button.goods__cart-btn.btn.popup__open(data-id="cart"+ item.id) В корзину
+          button.goods__show-btn.btn.popup__open(data-id="photos"+ item.id) Фото
 
         picture
           source(srcset=item.img[0].path + ".webp 1x", type="image/webp")

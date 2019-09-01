@@ -1,22 +1,22 @@
 mixin preorder(id, name, price, sizes, colors, index)
 
   div.preorder
-    h4.popup__header.preorder__header=name + ", арт. " + id
+    h4.popup__header.preorder__header="Товар: " + name + ", арт. " + id
     h4.popup__header="Размер"
-    select.preorder__select
+    select.preorder__select.preorder__select--sizes
       each size in sizes
         option=size
     h4.popup__header="Цвет"
-    select.preorder__select
+    select.preorder__select.preorder__select--colors
       each color in colors
         option=color
     h4.popup__header="Количество"
     div.preorder__wrapper
       button.preorder__btn.preorder__btn--minus.btn="-"
-      output.preorder__output=1
+      input.preorder__input(type="text", value=1)
       button.preorder__btn.preorder__btn--plus.btn="+"
     span="Итого: "
     b.preorder__price=price
     span=" руб."
-    button.preorder__order.btn="В корзину"
+    button.preorder__order.btn(data-id=id)="В корзину"
     button.preorder__close.popup__close(title="Закрыть", data-index=index)

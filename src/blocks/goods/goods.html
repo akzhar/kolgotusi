@@ -2,19 +2,19 @@
 <section class="goods">
   <h2 class="goods__header section-header">Каталог</h2><b class="goods__tagline tagline">Все товары здесь</b>
   <ul class="goods__list">
-    <div class="popup" id="popup0">
+    <div class="popup" id="cart121">
       <div class="popup__block">
         <div class="preorder">
-          <h4 class="popup__header preorder__header">tango 10, арт. 578</h4>
+          <h4 class="popup__header preorder__header">Товар: tango 30, арт. 121</h4>
           <h4 class="popup__header">Размер</h4>
-          <select class="preorder__select">
+          <select class="preorder__select preorder__select--sizes">
             <option>2</option>
             <option>3</option>
             <option>4</option>
             <option>5</option>
           </select>
           <h4 class="popup__header">Цвет</h4>
-          <select class="preorder__select">
+          <select class="preorder__select preorder__select--colors">
             <option>cyan</option>
             <option>red</option>
             <option>orange</option>
@@ -23,25 +23,25 @@
           <h4 class="popup__header">Количество</h4>
           <div class="preorder__wrapper">
             <button class="preorder__btn preorder__btn--minus btn">-</button>
-            <output class="preorder__output">1</output>
+            <input class="preorder__input" type="text" value="1"/>
             <button class="preorder__btn preorder__btn--plus btn">+</button>
-          </div><span>Итого: </span><b class="preorder__price">115</b><span> руб.</span>
-          <button class="preorder__order btn">В корзину</button>
-          <button class="preorder__close popup__close" title="Закрыть" data-index="0"></button>
+          </div><span>Итого: </span><b class="preorder__price">126</b><span> руб.</span>
+          <button class="preorder__order btn" data-id="121">В корзину</button>
+          <button class="preorder__close popup__close" title="Закрыть" data-index="121"></button>
         </div>
       </div>
     </div>
-    <div class="popup" id="popup1">
+    <div class="popup" id="photos121">
       <div class="popup__block">
-        <h4 class="popup__header photo__header">title5</h4>
+        <h4 class="popup__header photo__header">title1</h4>
         <div class="photo__wrapper">
           <picture class="photo__item-large">
-            <source class="photo__img-large-srcset" srcset="" data-img="img/model5.webp 1x" type="image/webp"/><img class="photo__img-large" src="" data-img="img/model5.jpg" alt="title5"/>
+            <source class="photo__img-large-srcset" srcset="" data-img="img/model1.webp 1x" type="image/webp"/><img class="photo__img-large" src="" data-img="img/model1.jpg" alt="title1"/>
           </picture>
           <ul class="photo__list">
             <li class="photo__item">
               <picture>
-                <source class="photo__img-small-srcset" srcset="" data-img="img/model5.webp 1x" type="image/webp"/><img class="photo__img-small photo__img-small--active" data-id="0" src="" data-img="img/model5.jpg" alt="title5"/>
+                <source class="photo__img-small-srcset" srcset="" data-img="img/model1.webp 1x" type="image/webp"/><img class="photo__img-small photo__img-small--active" data-id="0" src="" data-img="img/model1.jpg" alt="title1"/>
               </picture>
             </li>
             <li class="photo__item">
@@ -61,27 +61,27 @@
             </li>
             <li class="photo__item">
               <picture>
-                <source class="photo__img-small-srcset" srcset="" data-img="img/model1.webp 1x" type="image/webp"/><img class="photo__img-small" data-id="4" src="" data-img="img/model1.jpg" alt="title1"/>
+                <source class="photo__img-small-srcset" srcset="" data-img="img/model5.webp 1x" type="image/webp"/><img class="photo__img-small" data-id="4" src="" data-img="img/model5.jpg" alt="title5"/>
               </picture>
             </li>
           </ul>
-          <button class="photo__close popup__close" title="Закрыть" data-index="0"></button>
+          <button class="photo__close popup__close" title="Закрыть" data-index="121"></button>
         </div>
       </div>
     </div>
     <li class="goods__item" onclick="">
       <div class="goods__popup">
-        <button class="goods__cart-btn btn popup__open" data-popup-id="0" data-id="578" data-name="tango 10" data-price="115">В корзину</button>
-        <button class="goods__show-btn btn popup__open" data-popup-id="1">Фото</button>
+        <button class="goods__cart-btn btn popup__open" data-id="cart121">В корзину</button>
+        <button class="goods__show-btn btn popup__open" data-id="photos121">Фото</button>
       </div>
       <picture>
-        <source srcset="img/model5.webp 1x" type="image/webp"/><img class="goods__img" src="img/model5.jpg" alt="title5"/>
+        <source srcset="img/model1.webp 1x" type="image/webp"/><img class="goods__img" src="img/model1.jpg" alt="title1"/>
       </picture>
       <ul class="goods__info-block">
         <li class="goods__info-row">
           <div>
-            <h3 class="goods__head">tango 10</h3><span>Арт 578</span>
-          </div><span class="goods__price">115 р.</span>
+            <h3 class="goods__head">tango 30</h3><span>Арт 121</span>
+          </div><span class="goods__price">126 р.</span>
         </li>
         <li class="goods__info-row">
           <h3 class="goods__head">Размеры</h3>
@@ -103,19 +103,19 @@
         </li>
       </ul>
     </li>
-    <div class="popup" id="popup2">
+    <div class="popup" id="cart321">
       <div class="popup__block">
         <div class="preorder">
-          <h4 class="popup__header preorder__header">tango 20, арт. 321</h4>
+          <h4 class="popup__header preorder__header">Товар: tango 20, арт. 321</h4>
           <h4 class="popup__header">Размер</h4>
-          <select class="preorder__select">
+          <select class="preorder__select preorder__select--sizes">
             <option>2</option>
             <option>3</option>
             <option>4</option>
             <option>5</option>
           </select>
           <h4 class="popup__header">Цвет</h4>
-          <select class="preorder__select">
+          <select class="preorder__select preorder__select--colors">
             <option>cyan</option>
             <option>red</option>
             <option>orange</option>
@@ -124,15 +124,15 @@
           <h4 class="popup__header">Количество</h4>
           <div class="preorder__wrapper">
             <button class="preorder__btn preorder__btn--minus btn">-</button>
-            <output class="preorder__output">1</output>
+            <input class="preorder__input" type="text" value="1"/>
             <button class="preorder__btn preorder__btn--plus btn">+</button>
           </div><span>Итого: </span><b class="preorder__price">116</b><span> руб.</span>
-          <button class="preorder__order btn">В корзину</button>
-          <button class="preorder__close popup__close" title="Закрыть" data-index="1"></button>
+          <button class="preorder__order btn" data-id="321">В корзину</button>
+          <button class="preorder__close popup__close" title="Закрыть" data-index="321"></button>
         </div>
       </div>
     </div>
-    <div class="popup" id="popup3">
+    <div class="popup" id="photos321">
       <div class="popup__block">
         <h4 class="popup__header photo__header">title4</h4>
         <div class="photo__wrapper">
@@ -166,14 +166,14 @@
               </picture>
             </li>
           </ul>
-          <button class="photo__close popup__close" title="Закрыть" data-index="1"></button>
+          <button class="photo__close popup__close" title="Закрыть" data-index="321"></button>
         </div>
       </div>
     </div>
     <li class="goods__item" onclick="">
       <div class="goods__popup">
-        <button class="goods__cart-btn btn popup__open" data-popup-id="2" data-id="321" data-name="tango 20" data-price="116">В корзину</button>
-        <button class="goods__show-btn btn popup__open" data-popup-id="3">Фото</button>
+        <button class="goods__cart-btn btn popup__open" data-id="cart321">В корзину</button>
+        <button class="goods__show-btn btn popup__open" data-id="photos321">Фото</button>
       </div>
       <picture>
         <source srcset="img/model4.webp 1x" type="image/webp"/><img class="goods__img" src="img/model4.jpg" alt="title4"/>
@@ -204,19 +204,19 @@
         </li>
       </ul>
     </li>
-    <div class="popup" id="popup4">
+    <div class="popup" id="cart578">
       <div class="popup__block">
         <div class="preorder">
-          <h4 class="popup__header preorder__header">tango 30, арт. 121</h4>
+          <h4 class="popup__header preorder__header">Товар: tango 10, арт. 578</h4>
           <h4 class="popup__header">Размер</h4>
-          <select class="preorder__select">
+          <select class="preorder__select preorder__select--sizes">
             <option>2</option>
             <option>3</option>
             <option>4</option>
             <option>5</option>
           </select>
           <h4 class="popup__header">Цвет</h4>
-          <select class="preorder__select">
+          <select class="preorder__select preorder__select--colors">
             <option>cyan</option>
             <option>red</option>
             <option>orange</option>
@@ -225,25 +225,25 @@
           <h4 class="popup__header">Количество</h4>
           <div class="preorder__wrapper">
             <button class="preorder__btn preorder__btn--minus btn">-</button>
-            <output class="preorder__output">1</output>
+            <input class="preorder__input" type="text" value="1"/>
             <button class="preorder__btn preorder__btn--plus btn">+</button>
-          </div><span>Итого: </span><b class="preorder__price">126</b><span> руб.</span>
-          <button class="preorder__order btn">В корзину</button>
-          <button class="preorder__close popup__close" title="Закрыть" data-index="2"></button>
+          </div><span>Итого: </span><b class="preorder__price">115</b><span> руб.</span>
+          <button class="preorder__order btn" data-id="578">В корзину</button>
+          <button class="preorder__close popup__close" title="Закрыть" data-index="578"></button>
         </div>
       </div>
     </div>
-    <div class="popup" id="popup5">
+    <div class="popup" id="photos578">
       <div class="popup__block">
-        <h4 class="popup__header photo__header">title1</h4>
+        <h4 class="popup__header photo__header">title5</h4>
         <div class="photo__wrapper">
           <picture class="photo__item-large">
-            <source class="photo__img-large-srcset" srcset="" data-img="img/model1.webp 1x" type="image/webp"/><img class="photo__img-large" src="" data-img="img/model1.jpg" alt="title1"/>
+            <source class="photo__img-large-srcset" srcset="" data-img="img/model5.webp 1x" type="image/webp"/><img class="photo__img-large" src="" data-img="img/model5.jpg" alt="title5"/>
           </picture>
           <ul class="photo__list">
             <li class="photo__item">
               <picture>
-                <source class="photo__img-small-srcset" srcset="" data-img="img/model1.webp 1x" type="image/webp"/><img class="photo__img-small photo__img-small--active" data-id="0" src="" data-img="img/model1.jpg" alt="title1"/>
+                <source class="photo__img-small-srcset" srcset="" data-img="img/model5.webp 1x" type="image/webp"/><img class="photo__img-small photo__img-small--active" data-id="0" src="" data-img="img/model5.jpg" alt="title5"/>
               </picture>
             </li>
             <li class="photo__item">
@@ -263,229 +263,27 @@
             </li>
             <li class="photo__item">
               <picture>
-                <source class="photo__img-small-srcset" srcset="" data-img="img/model5.webp 1x" type="image/webp"/><img class="photo__img-small" data-id="4" src="" data-img="img/model5.jpg" alt="title5"/>
+                <source class="photo__img-small-srcset" srcset="" data-img="img/model1.webp 1x" type="image/webp"/><img class="photo__img-small" data-id="4" src="" data-img="img/model1.jpg" alt="title1"/>
               </picture>
             </li>
           </ul>
-          <button class="photo__close popup__close" title="Закрыть" data-index="2"></button>
+          <button class="photo__close popup__close" title="Закрыть" data-index="578"></button>
         </div>
       </div>
     </div>
     <li class="goods__item" onclick="">
       <div class="goods__popup">
-        <button class="goods__cart-btn btn popup__open" data-popup-id="4" data-id="121" data-name="tango 30" data-price="126">В корзину</button>
-        <button class="goods__show-btn btn popup__open" data-popup-id="5">Фото</button>
+        <button class="goods__cart-btn btn popup__open" data-id="cart578">В корзину</button>
+        <button class="goods__show-btn btn popup__open" data-id="photos578">Фото</button>
       </div>
       <picture>
-        <source srcset="img/model1.webp 1x" type="image/webp"/><img class="goods__img" src="img/model1.jpg" alt="title1"/>
+        <source srcset="img/model5.webp 1x" type="image/webp"/><img class="goods__img" src="img/model5.jpg" alt="title5"/>
       </picture>
       <ul class="goods__info-block">
         <li class="goods__info-row">
           <div>
-            <h3 class="goods__head">tango 30</h3><span>Арт 121</span>
-          </div><span class="goods__price">126 р.</span>
-        </li>
-        <li class="goods__info-row">
-          <h3 class="goods__head">Размеры</h3>
-          <ul>
-            <li class="goods__size">2</li>
-            <li class="goods__size">3</li>
-            <li class="goods__size">4</li>
-            <li class="goods__size">5</li>
-          </ul>
-        </li>
-        <li class="goods__info-row">
-          <h3 class="goods__head">Цвета</h3>
-          <ul>
-            <li class="goods__color goods__color--cyan" title="cyan"></li>
-            <li class="goods__color goods__color--red" title="red"></li>
-            <li class="goods__color goods__color--orange" title="orange"></li>
-            <li class="goods__color goods__color--violet" title="violet"></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-    <div class="popup" id="popup6">
-      <div class="popup__block">
-        <div class="preorder">
-          <h4 class="popup__header preorder__header">tango 30, арт. 121</h4>
-          <h4 class="popup__header">Размер</h4>
-          <select class="preorder__select">
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-          <h4 class="popup__header">Цвет</h4>
-          <select class="preorder__select">
-            <option>cyan</option>
-            <option>red</option>
-            <option>orange</option>
-            <option>violet</option>
-          </select>
-          <h4 class="popup__header">Количество</h4>
-          <div class="preorder__wrapper">
-            <button class="preorder__btn preorder__btn--minus btn">-</button>
-            <output class="preorder__output">1</output>
-            <button class="preorder__btn preorder__btn--plus btn">+</button>
-          </div><span>Итого: </span><b class="preorder__price">126</b><span> руб.</span>
-          <button class="preorder__order btn">В корзину</button>
-          <button class="preorder__close popup__close" title="Закрыть" data-index="3"></button>
-        </div>
-      </div>
-    </div>
-    <div class="popup" id="popup7">
-      <div class="popup__block">
-        <h4 class="popup__header photo__header">title1</h4>
-        <div class="photo__wrapper">
-          <picture class="photo__item-large">
-            <source class="photo__img-large-srcset" srcset="" data-img="img/model1.webp 1x" type="image/webp"/><img class="photo__img-large" src="" data-img="img/model1.jpg" alt="title1"/>
-          </picture>
-          <ul class="photo__list">
-            <li class="photo__item">
-              <picture>
-                <source class="photo__img-small-srcset" srcset="" data-img="img/model1.webp 1x" type="image/webp"/><img class="photo__img-small photo__img-small--active" data-id="0" src="" data-img="img/model1.jpg" alt="title1"/>
-              </picture>
-            </li>
-            <li class="photo__item">
-              <picture>
-                <source class="photo__img-small-srcset" srcset="" data-img="img/model2.webp 1x" type="image/webp"/><img class="photo__img-small" data-id="1" src="" data-img="img/model2.jpg" alt="title2"/>
-              </picture>
-            </li>
-            <li class="photo__item">
-              <picture>
-                <source class="photo__img-small-srcset" srcset="" data-img="img/model3.webp 1x" type="image/webp"/><img class="photo__img-small" data-id="2" src="" data-img="img/model3.jpg" alt="title3"/>
-              </picture>
-            </li>
-            <li class="photo__item">
-              <picture>
-                <source class="photo__img-small-srcset" srcset="" data-img="img/model4.webp 1x" type="image/webp"/><img class="photo__img-small" data-id="3" src="" data-img="img/model4.jpg" alt="title4"/>
-              </picture>
-            </li>
-            <li class="photo__item">
-              <picture>
-                <source class="photo__img-small-srcset" srcset="" data-img="img/model5.webp 1x" type="image/webp"/><img class="photo__img-small" data-id="4" src="" data-img="img/model5.jpg" alt="title5"/>
-              </picture>
-            </li>
-          </ul>
-          <button class="photo__close popup__close" title="Закрыть" data-index="3"></button>
-        </div>
-      </div>
-    </div>
-    <li class="goods__item" onclick="">
-      <div class="goods__popup">
-        <button class="goods__cart-btn btn popup__open" data-popup-id="6" data-id="121" data-name="tango 30" data-price="126">В корзину</button>
-        <button class="goods__show-btn btn popup__open" data-popup-id="7">Фото</button>
-      </div>
-      <picture>
-        <source srcset="img/model1.webp 1x" type="image/webp"/><img class="goods__img" src="img/model1.jpg" alt="title1"/>
-      </picture>
-      <ul class="goods__info-block">
-        <li class="goods__info-row">
-          <div>
-            <h3 class="goods__head">tango 30</h3><span>Арт 121</span>
-          </div><span class="goods__price">126 р.</span>
-        </li>
-        <li class="goods__info-row">
-          <h3 class="goods__head">Размеры</h3>
-          <ul>
-            <li class="goods__size">2</li>
-            <li class="goods__size">3</li>
-            <li class="goods__size">4</li>
-            <li class="goods__size">5</li>
-          </ul>
-        </li>
-        <li class="goods__info-row">
-          <h3 class="goods__head">Цвета</h3>
-          <ul>
-            <li class="goods__color goods__color--cyan" title="cyan"></li>
-            <li class="goods__color goods__color--red" title="red"></li>
-            <li class="goods__color goods__color--orange" title="orange"></li>
-            <li class="goods__color goods__color--violet" title="violet"></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-    <div class="popup" id="popup8">
-      <div class="popup__block">
-        <div class="preorder">
-          <h4 class="popup__header preorder__header">tango 30, арт. 121</h4>
-          <h4 class="popup__header">Размер</h4>
-          <select class="preorder__select">
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-          <h4 class="popup__header">Цвет</h4>
-          <select class="preorder__select">
-            <option>cyan</option>
-            <option>red</option>
-            <option>orange</option>
-            <option>violet</option>
-          </select>
-          <h4 class="popup__header">Количество</h4>
-          <div class="preorder__wrapper">
-            <button class="preorder__btn preorder__btn--minus btn">-</button>
-            <output class="preorder__output">1</output>
-            <button class="preorder__btn preorder__btn--plus btn">+</button>
-          </div><span>Итого: </span><b class="preorder__price">126</b><span> руб.</span>
-          <button class="preorder__order btn">В корзину</button>
-          <button class="preorder__close popup__close" title="Закрыть" data-index="4"></button>
-        </div>
-      </div>
-    </div>
-    <div class="popup" id="popup9">
-      <div class="popup__block">
-        <h4 class="popup__header photo__header">title1</h4>
-        <div class="photo__wrapper">
-          <picture class="photo__item-large">
-            <source class="photo__img-large-srcset" srcset="" data-img="img/model1.webp 1x" type="image/webp"/><img class="photo__img-large" src="" data-img="img/model1.jpg" alt="title1"/>
-          </picture>
-          <ul class="photo__list">
-            <li class="photo__item">
-              <picture>
-                <source class="photo__img-small-srcset" srcset="" data-img="img/model1.webp 1x" type="image/webp"/><img class="photo__img-small photo__img-small--active" data-id="0" src="" data-img="img/model1.jpg" alt="title1"/>
-              </picture>
-            </li>
-            <li class="photo__item">
-              <picture>
-                <source class="photo__img-small-srcset" srcset="" data-img="img/model2.webp 1x" type="image/webp"/><img class="photo__img-small" data-id="1" src="" data-img="img/model2.jpg" alt="title2"/>
-              </picture>
-            </li>
-            <li class="photo__item">
-              <picture>
-                <source class="photo__img-small-srcset" srcset="" data-img="img/model3.webp 1x" type="image/webp"/><img class="photo__img-small" data-id="2" src="" data-img="img/model3.jpg" alt="title3"/>
-              </picture>
-            </li>
-            <li class="photo__item">
-              <picture>
-                <source class="photo__img-small-srcset" srcset="" data-img="img/model4.webp 1x" type="image/webp"/><img class="photo__img-small" data-id="3" src="" data-img="img/model4.jpg" alt="title4"/>
-              </picture>
-            </li>
-            <li class="photo__item">
-              <picture>
-                <source class="photo__img-small-srcset" srcset="" data-img="img/model5.webp 1x" type="image/webp"/><img class="photo__img-small" data-id="4" src="" data-img="img/model5.jpg" alt="title5"/>
-              </picture>
-            </li>
-          </ul>
-          <button class="photo__close popup__close" title="Закрыть" data-index="4"></button>
-        </div>
-      </div>
-    </div>
-    <li class="goods__item" onclick="">
-      <div class="goods__popup">
-        <button class="goods__cart-btn btn popup__open" data-popup-id="8" data-id="121" data-name="tango 30" data-price="126">В корзину</button>
-        <button class="goods__show-btn btn popup__open" data-popup-id="9">Фото</button>
-      </div>
-      <picture>
-        <source srcset="img/model1.webp 1x" type="image/webp"/><img class="goods__img" src="img/model1.jpg" alt="title1"/>
-      </picture>
-      <ul class="goods__info-block">
-        <li class="goods__info-row">
-          <div>
-            <h3 class="goods__head">tango 30</h3><span>Арт 121</span>
-          </div><span class="goods__price">126 р.</span>
+            <h3 class="goods__head">tango 10</h3><span>Арт 578</span>
+          </div><span class="goods__price">115 р.</span>
         </li>
         <li class="goods__info-row">
           <h3 class="goods__head">Размеры</h3>

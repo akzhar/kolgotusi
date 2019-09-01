@@ -1,4 +1,60 @@
-"use strict";
+'use strict';
+
+(function () {
+  var MAX_RESPONSE_TIME = 5000;
+  var MS_PER_SECOND = 1000;
+  var JSON_TYPE = 'json';
+  var TIME_UNIT = ' c';
+  var OK_STATUS = 200;
+  var Url = {
+    GET: 'js/data.json'
+  };
+
+  function load(onLoad, onError, method, data) {
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = JSON_TYPE;
+    xhr.timeout = MAX_RESPONSE_TIME;
+    xhr.addEventListener('load', function () {
+      if (xhr.status === OK_STATUS) {
+        onLoad(xhr.response);
+      } else {
+        onError('Cтатус ответа: ' + xhr.status + ' ' + xhr.statusText);
+      }
+    });
+    xhr.addEventListener('error', function () {
+      onError('Произошла ошибка соединения');
+    });
+    xhr.addEventListener('timeout', function () {
+      onError('Запрос не успел выполниться за ' + xhr.timeout / MS_PER_SECOND + TIME_UNIT);
+    });
+    xhr.open(method, Url[method]);
+    xhr.send(data);
+  }
+
+  window.backend = {
+    load: load
+  };
+})();
+
+
+(function() {
+
+  var dependencies = {
+    backend: window.backend
+  };
+
+  dependencies.backend.load(onLoad, onError, 'GET');
+
+  function onLoad(response) {
+    window.data = response.allItems;
+  }
+
+  function onError(error) {
+    console.log(error);
+  }
+
+})();
+ // backend
 
 (function() {
 
@@ -38,6 +94,152 @@
       menuToggle();
     }
   });
+
+})();
+
+
+(function() {
+
+  var popup;
+  var msg = document.querySelector('#msg');
+  var cartCounter = document.querySelector('#cart-counter');
+
+  updateCartIconCount();
+
+  function definePopup() {
+    popup = window.popup;
+  }
+
+  function changePrice() {
+    var price = + window.data[popup.orderBtn.dataset.id].price;
+    popup.priceBlock.textContent = price * (+ popup.quantityBlock.value);
+  }
+
+  function minusOne() {
+    if (+ popup.quantityBlock.value === 0) return;
+    popup.quantityBlock.value = + popup.quantityBlock.value - 1;
+    changePrice();
+  }
+
+  function plusOne() {
+    popup.quantityBlock.value = + popup.quantityBlock.value + 1;
+    changePrice();
+  }
+
+  function addOrderToStorage() {
+    var id = popup.orderBtn.dataset.id;
+    var size = popup.sizeBlock.value;
+    var color = popup.colorBlock.value;
+    var quantity = + popup.quantityBlock.value;
+    var price = + popup.priceBlock.textContent;
+    var key = id+'-'+size+'-'+color;
+
+    if (localStorage.getItem('cartCounter') === null) {
+      localStorage.setItem('cart', JSON.stringify({}));
+      localStorage.setItem('cartCounter', 0);
+    }
+
+    var cart = JSON.parse(localStorage.getItem('cart'));
+    var totalQuantity = + localStorage.getItem('cartCounter') + quantity;
+
+    if (Object.prototype.hasOwnProperty.call(cart, key)) {
+      quantity += cart[key].quantity;
+      price += cart[key].price;
+    }
+
+    cart[key] = {
+      id: id,
+      size: size,
+      color: color,
+      quantity: quantity,
+      price: price
+    };
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('cartCounter', totalQuantity);
+
+    console.log(localStorage);
+
+    showMsgBlock();
+    updateCartIconCount();
+  }
+
+  function updateCartIconCount() {
+    if (localStorage.getItem('cartCounter') !== null) {
+      cartCounter.classList.add('user-menu-list__counter--show');
+    } else {
+      cartCounter.classList.remove('user-menu-list__counter--show');
+    }
+
+    cartCounter.textContent = localStorage.getItem('cartCounter');
+  }
+
+  function showMsgBlock() {
+    msg.classList.add('msg--show');
+    setTimeout(function() {
+      msg.classList.remove('msg--show');
+    }, 2000);
+  }
+
+  window.storage = {
+    definePopup: definePopup,
+    addOrderToStorage: addOrderToStorage,
+    minusOne: minusOne,
+    plusOne: plusOne,
+    changePrice: changePrice
+  };
+
+})();
+
+
+(function() {
+
+  var popup;
+
+  function definePopup() {
+    popup = window.popup;
+  }
+
+  function removePhotoActiveClass() {
+    popup.photosSmall.forEach(function(photo) {
+      photo.classList.remove('photo__img-small--active');
+    });
+  }
+
+  function changeImgFromBigToSmall(photo) {
+    var phSmallSources = popup.popupBlock.querySelectorAll('.photo__img-small-srcset');
+    var phSmallId = photo.getAttribute('data-id');
+    var phBig = popup.popupBlock.querySelector('.photo__img-large');
+    var phBigSource = popup.popupBlock.querySelector('.photo__img-large-srcset');
+    var phBigTitle = popup.popupBlock.querySelector('.photo__header');
+
+    photo.classList.add('photo__img-small--active');
+    phBig.src = photo.src;
+    phBigSource.srcset = phSmallSources[phSmallId].srcset;
+    phBigTitle.textContent = photo.alt;
+  }
+
+  function renderImgs() {
+    var phImgs = popup.popupBlock.querySelectorAll('img');
+    phImgs.forEach(function(img) {
+      img.setAttribute('src', img.getAttribute('data-img'));
+    });
+  }
+
+  function renderSources() {
+    var phSources = popup.popupBlock.querySelectorAll('source');
+    phSources.forEach(function(source) {
+      source.setAttribute('srcset', source.getAttribute('data-img'));
+    });
+  }
+
+  window.image = {
+    definePopup: definePopup,
+    removePhotoActiveClass: removePhotoActiveClass,
+    changeImgFromBigToSmall: changeImgFromBigToSmall,
+    renderImgs: renderImgs,
+    renderSources: renderSources
+  };
 
 })();
 
@@ -88,98 +290,106 @@
 (function() {
 
   var dependencies = {
-    scroll: window.scroll
+    scroll: window.scroll,
+    storage: window.storage,
+    image: window.image
   };
 
   var popupOpenBtns = document.querySelectorAll('.popup__open');
   var photoOpenBtns = document.querySelectorAll('.goods__show-btn');
-  var popupBlock;
-  var popupCloseBtn;
-  var photosSmall;
+  var popup;
+
+  popupOpenBtns.forEach(function(popupOpenBtn) {
+    popupOpenBtn.addEventListener('click', onPopupOpenBtnClick);
+  });
+
+  photoOpenBtns.forEach(function(photoOpenBtn) {
+    photoOpenBtn.addEventListener('click', onPhotoOpenBtnClick);
+  });
+
+  function onPopupOpenBtnClick(evt) {
+    var id = evt.target.getAttribute('data-id');
+    openPopupBlock(id);
+  }
+
+  function onPhotoOpenBtnClick(evt) {
+    dependencies.image.renderImgs();
+    dependencies.image.renderSources();
+    evt.target.removeEventListener('click', onPhotoOpenBtnClick);
+  }
+
+  function closePopupBlock() {
+    dependencies.scroll.enableScrolling();
+    listeners('remove');
+  }
+
+  function openPopupBlock(id) {
+    definePopup(id);
+
+    dependencies.scroll.disableScrolling();
+    listeners('add');
+  }
+
+  function definePopup(id) {
+    var popupBlock = document.getElementById(id);
+    popup = {
+      popupBlock : popupBlock,
+      photosSmall : popupBlock.querySelectorAll('.photo__img-small'),
+      popupCloseBtn : popupBlock.querySelector('.popup__close'),
+      orderBtn : popupBlock.querySelector('.preorder__order'),
+      minusBtn : popupBlock.querySelector('.preorder__btn--minus'),
+      plusBtn : popupBlock.querySelector('.preorder__btn--plus'),
+      quantityBlock : popupBlock.querySelector('.preorder__input'),
+      priceBlock : popupBlock.querySelector('.preorder__price'),
+      sizeBlock : popupBlock.querySelector('.preorder__select--sizes'),
+      colorBlock : popupBlock.querySelector('.preorder__select--colors')
+    };
+
+    window.popup = popup;
+    dependencies.storage.definePopup();
+    dependencies.image.definePopup();
+  }
+
+  function listeners(method) {
+    popup.popupBlock.classList[method]('popup--show');
+    popup.photosSmall.forEach(function(smallPhoto) {
+      smallPhoto[method+'EventListener']('click', onSmallPhotoClick);
+    });
+    popup.popupCloseBtn[method+'EventListener']('click', onPopupCloseBtnClick);
+    if (popup.orderBtn !== null) {
+      popup.orderBtn[method+'EventListener']('click', dependencies.storage.addOrderToStorage);
+      popup.minusBtn[method+'EventListener']('click', dependencies.storage.minusOne);
+      popup.plusBtn[method+'EventListener']('click', dependencies.storage.plusOne);
+      popup.quantityBlock[method+'EventListener']('change', dependencies.storage.changePrice);
+    }
+    window[method+'EventListener']('keydown', onWindowEscPress);
+  }
+
+  function onSmallPhotoClick(evt) {
+    dependencies.image.removePhotoActiveClass();
+    dependencies.image.changeImgFromBigToSmall(evt.target);
+  }
+
+  function onPopupCloseBtnClick() {
+    closePopupBlock();
+  }
 
   function onWindowEscPress(evt) {
-    if (evt.keyCode === 27 && popupBlock.classList.contains('popup--show')) {
+    if (evt.keyCode === 27 && popup.popupBlock.classList.contains('popup--show')) {
       evt.preventDefault();
       closePopupBlock();
     }
     window.removeEventListener('keydown', onWindowEscPress);
   }
 
-  function closePopupBlock() {
-    popupBlock.classList.remove('popup--show');
-    dependencies.scroll.enableScrolling();
-    photosSmall.forEach(function(photo) {
-      photo.removeEventListener('click', removePhotoActiveClass);
-      photo.removeEventListener('click', changeImgFromBigToSmall);
-    });
-    popupCloseBtn.removeEventListener('click', closePopupBlock);
-  }
+})();
+ // scroll, storage, image
 
-  function openPopupBlock() {
-    var popupBlockId = 'popup' + this.getAttribute('data-popup-id');
-    popupBlock = document.getElementById(popupBlockId);
-    photosSmall = popupBlock.querySelectorAll('.photo__img-small');
-    popupCloseBtn = popupBlock.querySelector('.popup__close');
+(function() {
 
-    popupBlock.classList.add('popup--show');
-    dependencies.scroll.disableScrolling();
-    photosSmall.forEach(function(photo) {
-      photo.addEventListener('click', removePhotoActiveClass);
-      photo.addEventListener('click', changeImgFromBigToSmall);
-    });
-    popupCloseBtn.addEventListener('click', closePopupBlock);
-    window.addEventListener('keydown', onWindowEscPress);
-  }
-
-  function removePhotoActiveClass() {
-    photosSmall.forEach(function(photoSmall) {
-      photoSmall.classList.remove('photo__img-small--active');
-    });
-  }
-
-  function changeImgFromBigToSmall() {
-    var phSmallSources = popupBlock.querySelectorAll('.photo__img-small-srcset');
-    var phSmallId = this.getAttribute('data-id');
-    var phBig = popupBlock.querySelector('.photo__img-large');
-    var phBigSource = popupBlock.querySelector('.photo__img-large-srcset');
-    var phBigTitle = popupBlock.querySelector('.photo__header');
-
-    this.classList.add('photo__img-small--active');
-    phBig.src = this.src;
-    phBigSource.srcset = phSmallSources[phSmallId].srcset;
-    phBigTitle.textContent = this.alt;
-  }
-
-  function renderImgs() {
-    var phImgs = popupBlock.querySelectorAll('img');
-    phImgs.forEach(function(img) {
-      img.setAttribute('src', img.getAttribute('data-img'));
-    });
-  }
-
-  function renderSources() {
-    var phSources = popupBlock.querySelectorAll('source');
-    phSources.forEach(function(source) {
-      source.setAttribute('srcset', source.getAttribute('data-img'));
-    });
-  }
-
-  function renderAllImgs() {
-    renderImgs();
-    renderSources();
-    this.removeEventListener('click', renderAllImgs);
-  }
-
-  popupOpenBtns.forEach(function(btn) {
-    btn.addEventListener('click', openPopupBlock);
-  });
-
-  photoOpenBtns.forEach(function(btn) {
-    btn.addEventListener('click', renderAllImgs);
-  });
 
 })();
- // scroll
+
 
 (function() {
 
@@ -237,23 +447,4 @@
 })();
 
 
-// var tableRowTemplate = document.getElementById('table-row').content.querySelector('.cart__table-row');
-
-
-// function createTableRow() {
-//   var tableRow = tableRowTemplate.cloneNode(true);
-//   var goodId = tableRow.querySelector('.cart__table-cell--id');
-//   var goodName = tableRow.querySelector('.cart__table-cell--name');
-//   var goodSize = tableRow.querySelector('.cart__table-cell--size');
-//   var goodColor = tableRow.querySelector('.cart__table-cell--color');
-//   var goodNumber = tableRow.querySelector('.cart__table-cell--number');
-//   var goodPrice = tableRow.querySelector('.cart__table-cell--price');
-
-//   goodId.textContent = this.getAttribute('data-id');
-//   goodName.textContent = this.getAttribute('data-name');
-//   goodPrice.textContent = this.getAttribute('data-price');
-
-//   console.log(tableRow);
-
-// }
 
