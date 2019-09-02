@@ -7,7 +7,7 @@
   dependencies.backend.load(onLoad, onError, 'GET');
 
   function onLoad(response) {
-    window.data = response.allItems;
+    sessionStorage.setItem('data', JSON.stringify(response.allItems));
   }
 
   function onError(error) {

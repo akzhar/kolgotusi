@@ -3,28 +3,27 @@
   <h2 class="cart__header section-header">Корзина</h2>
   <b class="cart__tagline tagline">Все ваши покупки здесь</b>
 
-  <table class="cart__table">
-    <caption>В вашей корзине следующие товары:</caption>
+  <p class="cart__emptynotify">В корзине пусто</p>
+
+  <table class="cart__table cart__table--hide">
+    <caption>Ваша корзина:</caption>
     <thead>
-     <tr><th>Арт</th></tr>
-     <tr><th>Товар</th></tr>
-     <tr><th>Размер</th></tr>
-     <tr><th>Цвет</th></tr>
-     <tr><th>Шт</th></tr>
-     <tr><th>Цена</th></tr>
-   </thead>
-   <tr>
-    <td>548</td>
-    <td>Nuance 40 den</td>
-    <td>4</td>
-    <td>Black</td>
-    <td>2</td>
-    <td>499.00</td>
-  </tr>
+      <tr>
+        <th>Арт</th>
+        <th>Товар</th>
+        <th>Размер</th>
+        <th>Цвет</th>
+        <th></th>
+        <th>Шт</th>
+        <th></th>
+        <th>Цена</th>
+        <th></th>
+      </tr>
+    </thead>
 </table>
 
-<p class="cart__total">Итого:<output>499.00</output></p>
+<p class="cart__total cart__total--hide"><b>Итого:</b><output>0</output>&nbspРуб.</p>
 
-<a href="order.html" class="btn btn--order">Оформить заказ</a>
+<a href="order.html" class="cart__btn btn cart__btn--order cart__btn--order--hide">Оформить заказ</a>
 
 </section>

@@ -4,16 +4,18 @@
   var x;
   var y;
 
-  anchor.addEventListener('click', function (evt) {
-    evt.preventDefault();
-    var blockID = anchor.getAttribute('href');
-    document.querySelector('' + blockID).scrollIntoView(
-      {
-        behavior: 'smooth',
-        block: 'start'
-      }
-    );
-  });
+  if (anchor !== null) {
+    anchor.addEventListener('click', function (evt) {
+      evt.preventDefault();
+      var blockID = anchor.getAttribute('href');
+      document.querySelector('' + blockID).scrollIntoView(
+        {
+          behavior: 'smooth',
+          block: 'start'
+        }
+      );
+    });
+  }
 
   function setXY() {
     x = window.scrollX;

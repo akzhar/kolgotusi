@@ -8,6 +8,35 @@
   var previousBtn = document.querySelector('.slider__btn-prev');
   var currentSlideNo = 0;
   var troughLabel = false;
+  var slideInterval;
+
+  if (nextBtn !== null && previousBtn !== null) {
+    activateSlider();
+  }
+
+  function activateSlider() {
+    slideInterval = setInterval(goToNextSlide, 4000); //интервал повторения
+
+    nextBtn.addEventListener('click', function() { //при клике на вперед
+      troughLabel = false;
+      pauseSlideShow();
+      goToNextSlide();
+    });
+
+    previousBtn.addEventListener('click', function() { // при клике на назад
+      troughLabel = false;
+      pauseSlideShow();
+      goToPreviousSlide();
+    });
+
+    radioLabels.forEach(function(label) {
+      label.addEventListener('click', function() {
+        troughLabel = true;
+        pauseSlideShow();
+        goToSlide(this.getAttribute('data-id'));
+      });
+    });
+  }
 
   function pauseSlideShow() {
     clearInterval(slideInterval); //очистка интервала повторения
@@ -28,27 +57,5 @@
     radioLabels[currentSlideNo].classList.add(RADIOLABEL_CHECKED_CLASS);
     slides[currentSlideNo].classList.add(SLIDE_SHOW_CLASS);
   }
-
-  var slideInterval = setInterval(goToNextSlide, 4000); //интервал повторения
-
-  nextBtn.addEventListener('click', function() { //при клике на вперед
-    troughLabel = false;
-    pauseSlideShow();
-    goToNextSlide();
-  });
-
-  previousBtn.addEventListener('click', function() { // при клике на назад
-    troughLabel = false;
-    pauseSlideShow();
-    goToPreviousSlide();
-  });
-
-  radioLabels.forEach(function(label) {
-    label.addEventListener('click', function() {
-      troughLabel = true;
-      pauseSlideShow();
-      goToSlide(this.getAttribute('data-id'));
-    });
-  });
 
 })();

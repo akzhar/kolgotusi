@@ -16,7 +16,7 @@
 
 <include src="src/js/modules/popup.js"></include> // scroll, storage, image
 
-<include src="src/js/modules/cart.js"></include>
+<include src="src/js/modules/cart.js"></include> // storage
 
 <include src="src/js/modules/slider.js"></include>
 
