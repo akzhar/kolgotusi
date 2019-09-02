@@ -252,7 +252,8 @@ img {
   position: absolute;
   color: #ffffff;
   text-align: center;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 22px;
   top: 14px;
   right: -13px;
   width: 22px;
@@ -966,17 +967,29 @@ img {
   width: 90%;
   margin: 0 auto 50px auto; }
 
+.cart__emptynotify {
+  margin: 100px 0; }
+
+.cart__emptynotify--hide {
+  display: none; }
+
 .cart__table {
   width: 100%;
   margin: 50px 0;
   border-collapse: collapse; }
+
+.cart__table--hide {
+  display: none; }
+
+.cart__table tr {
+  font-size: 10px; }
 
 .cart__table caption {
   text-align: left;
   margin: 0 0 20px 0; }
 
 .cart__table td {
-  padding: 0 10px;
+  padding: 0 2px;
   text-align: center;
   border: 1px solid #000000; }
 
@@ -986,9 +999,26 @@ img {
   .cart__total output {
     margin-left: 10px; }
 
-.btn--order {
+.cart__total--hide {
+  display: none; }
+
+.cart__btn {
+  width: 100%;
+  padding: 5px; }
+
+.cart__btn--order {
   width: 150px;
   margin: 0 0 50px 0; }
+
+.cart__btn--order--hide {
+  display: none; }
+
+.cart__btn--delete {
+  background-color: #fb580d; }
+
+@media (min-width: 780px) {
+  .cart__table tr {
+    font-size: 16px; } }
 
 .popup {
   display: none;
@@ -1186,8 +1216,3 @@ img {
           animation-name: fadeIn;
   -webkit-animation-duration: 0.3s;
           animation-duration: 0.3s; }
-
-.msg__icon {
-  width: 100%;
-  margin: 0 auto;
-  fill: #fb580d; }

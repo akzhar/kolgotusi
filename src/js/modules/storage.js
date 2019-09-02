@@ -1,22 +1,49 @@
 (function() {
 
   var popup;
+  var cartCounters = document.querySelectorAll('.user-menu-list__counter');
   var msg = document.querySelector('#msg');
-  var cartCounter = document.querySelector('#cart-counter');
+  if (msg !== null) {
+    var msgText = msg.querySelector('.msg__text');
+  }
 
-  updateCartIconCount();
+  updateCartCounters();
 
   function definePopup() {
     popup = window.popup;
   }
 
+  function getCartTotalCountFromStorage() {
+    return + sessionStorage.getItem('cartTotalCount');
+  }
+
+  function getCartTotalPriceFromStorage() {
+    return + sessionStorage.getItem('cartTotalPrice');
+  }
+
+  function getCartFromStorage() {
+    return {
+      orders: JSON.parse(sessionStorage.getItem('cartOrders')),
+      totalCount: + sessionStorage.getItem('cartTotalCount'),
+      totalPrice: + sessionStorage.getItem('cartTotalPrice')
+    };
+  }
+
+  function setCartInStorage(orders, totalCount, totalPrice) {
+    sessionStorage.setItem('cartOrders', JSON.stringify(orders));
+    sessionStorage.setItem('cartTotalCount', totalCount);
+    sessionStorage.setItem('cartTotalPrice', totalPrice);
+  }
+
   function changePrice() {
-    var price = + window.data[popup.orderBtn.dataset.id].price;
+    var price = getPrice(popup.orderBtn.dataset.id);
     popup.priceBlock.textContent = price * (+ popup.quantityBlock.value);
   }
 
   function minusOne() {
-    if (+ popup.quantityBlock.value === 0) return;
+    if (+ popup.quantityBlock.value === 0) {
+      return;
+    }
     popup.quantityBlock.value = + popup.quantityBlock.value - 1;
     changePrice();
   }
@@ -24,6 +51,49 @@
   function plusOne() {
     popup.quantityBlock.value = + popup.quantityBlock.value + 1;
     changePrice();
+  }
+
+  function removeOrderFromStorage(order) {
+    var cart = getCartFromStorage();
+    var orders = cart.orders;
+    var orderQuantity = + orders[order].quantity;
+    var orderPrice = + orders[order].price;
+
+    var totalCount = + cart.totalCount - orderQuantity;
+    var totalPrice = + cart.totalPrice - orderPrice;
+
+    delete orders[order];
+    setCartInStorage(orders, totalCount, totalPrice);
+    return totalPrice;
+  }
+
+  function getPrice(id) {
+    var data = JSON.parse(sessionStorage.getItem('data'));
+    return + data[id].price;
+  }
+
+  function changeOrderInStorage(order, action) {
+    var cart = getCartFromStorage();
+    var orders = cart.orders;
+    var id = order.slice(0, 3);
+    var samplePrice = getPrice(id);
+    var orderCount = + orders[order].quantity;
+    var orderPrice = + orders[order].price;
+    var newOrderCount = (action === 'minus') ? (orderCount - 1) : (orderCount + 1);
+    var newOrderPrice = (action === 'minus') ? (orderPrice - samplePrice) : (orderPrice + samplePrice);
+    var totalCount = + cart.totalCount - orderCount + newOrderCount;
+    var totalPrice = + cart.totalPrice - orderPrice + newOrderPrice;
+    var rowIsEmpty = false;
+
+    if (newOrderCount == 0 || newOrderPrice == 0) {
+      rowIsEmpty = true;
+    }
+
+    orders[order].quantity = newOrderCount;
+    orders[order].price = newOrderPrice;
+    setCartInStorage(orders, totalCount, totalPrice);
+
+    return rowIsEmpty;
   }
 
   function addOrderToStorage() {
@@ -34,20 +104,22 @@
     var price = + popup.priceBlock.textContent;
     var key = id+'-'+size+'-'+color;
 
-    if (localStorage.getItem('cartCounter') === null) {
-      localStorage.setItem('cart', JSON.stringify({}));
-      localStorage.setItem('cartCounter', 0);
+    if (quantity === 0) {
+      showMsgBlock('Сначала выберите количество товара!');
+      return;
     }
 
-    var cart = JSON.parse(localStorage.getItem('cart'));
-    var totalQuantity = + localStorage.getItem('cartCounter') + quantity;
+    var cart = getCartFromStorage();
+    var orders = cart.orders || {};
+    var totalCount = + cart.totalCount + quantity;
+    var totalPrice = + cart.totalPrice + price;
 
-    if (Object.prototype.hasOwnProperty.call(cart, key)) {
-      quantity += cart[key].quantity;
-      price += cart[key].price;
+    if (Object.prototype.hasOwnProperty.call(orders, key)) {
+      quantity += orders[key].quantity;
+      price += orders[key].price;
     }
 
-    cart[key] = {
+    orders[key] = {
       id: id,
       size: size,
       color: color,
@@ -55,30 +127,33 @@
       price: price
     };
 
-    localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem('cartCounter', totalQuantity);
+    setCartInStorage(orders, totalCount, totalPrice);
 
-    console.log(localStorage);
-
-    showMsgBlock();
-    updateCartIconCount();
+    showMsgBlock('Товар добавлен в корзину!');
+    updateCartCounters();
   }
 
-  function updateCartIconCount() {
-    if (localStorage.getItem('cartCounter') !== null) {
-      cartCounter.classList.add('user-menu-list__counter--show');
-    } else {
-      cartCounter.classList.remove('user-menu-list__counter--show');
+  function updateCartCounters() {
+    var cart = getCartFromStorage();
+    if (cart.totalCount === 0) {
+      cartCounters.forEach(function(cartCounter) {
+        cartCounter.classList.remove('user-menu-list__counter--show');
+        cartCounter.textContent = cart.totalCount;
+      });
+      return;
     }
-
-    cartCounter.textContent = localStorage.getItem('cartCounter');
+    cartCounters.forEach(function(cartCounter) {
+      cartCounter.classList.add('user-menu-list__counter--show');
+      cartCounter.textContent = cart.totalCount;
+    });
   }
 
-  function showMsgBlock() {
+  function showMsgBlock(text) {
+    msgText.textContent = text;
     msg.classList.add('msg--show');
     setTimeout(function() {
       msg.classList.remove('msg--show');
-    }, 2000);
+    }, 1000);
   }
 
   window.storage = {
@@ -86,7 +161,14 @@
     addOrderToStorage: addOrderToStorage,
     minusOne: minusOne,
     plusOne: plusOne,
-    changePrice: changePrice
+    changePrice: changePrice,
+    showMsgBlock: showMsgBlock,
+    updateCartCounters: updateCartCounters,
+    removeOrderFromStorage: removeOrderFromStorage,
+    getCartFromStorage: getCartFromStorage,
+    changeOrderInStorage: changeOrderInStorage,
+    getCartTotalCountFromStorage: getCartTotalCountFromStorage,
+    getCartTotalPriceFromStorage: getCartTotalPriceFromStorage
   };
 
 })();
