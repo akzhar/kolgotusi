@@ -1,3 +1,8 @@
+/*
+модуль работы с sessionStorage,
+в котором хранятся данные корзины + ассортимент магазина
+*/
+
 (function() {
 
   var popup;
@@ -75,7 +80,8 @@
   function changeOrderInStorage(order, action) {
     var cart = getCartFromStorage();
     var orders = cart.orders;
-    var id = order.slice(0, 3);
+    // внимательно: длина id фикс
+    var id = order.slice(0, 8);
     var samplePrice = getPrice(id);
     var orderCount = + orders[order].quantity;
     var orderPrice = + orders[order].price;
@@ -157,6 +163,7 @@
   }
 
   window.storage = {
+    getPrice: getPrice,
     definePopup: definePopup,
     addOrderToStorage: addOrderToStorage,
     minusOne: minusOne,

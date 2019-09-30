@@ -46,7 +46,7 @@
   dependencies.backend.load(onLoad, onError, 'GET');
 
   function onLoad(response) {
-    sessionStorage.setItem('data', JSON.stringify(response.allItems));
+    sessionStorage.setItem('data', JSON.stringify(response.goods));
   }
 
   function onError(error) {
@@ -97,6 +97,11 @@
 
 })();
 
+
+/*
+модуль работы с sessionStorage,
+в котором хранятся данные корзины + ассортимент магазина
+*/
 
 (function() {
 
@@ -175,7 +180,8 @@
   function changeOrderInStorage(order, action) {
     var cart = getCartFromStorage();
     var orders = cart.orders;
-    var id = order.slice(0, 3);
+    // внимательно: длина id фикс
+    var id = order.slice(0, 8);
     var samplePrice = getPrice(id);
     var orderCount = + orders[order].quantity;
     var orderPrice = + orders[order].price;
@@ -257,6 +263,7 @@
   }
 
   window.storage = {
+    getPrice: getPrice,
     definePopup: definePopup,
     addOrderToStorage: addOrderToStorage,
     minusOne: minusOne,
@@ -282,23 +289,21 @@
     popup = window.popup;
   }
 
-  function removePhotoActiveClass() {
-    popup.photosSmall.forEach(function(photo) {
-      photo.classList.remove('photo__img-small--active');
+  function removeSelectorActiveClass() {
+    popup.photosSelector.forEach(function(photo) {
+      photo.classList.remove('photo__item--active');
     });
   }
 
-  function changeImgFromBigToSmall(photo) {
-    var phSmallSources = popup.popupBlock.querySelectorAll('.photo__img-small-srcset');
-    var phSmallId = photo.getAttribute('data-id');
+  function changeBigImage(selector) {
     var phBig = popup.popupBlock.querySelector('.photo__img-large');
     var phBigSource = popup.popupBlock.querySelector('.photo__img-large-srcset');
     var phBigTitle = popup.popupBlock.querySelector('.photo__header');
 
-    photo.classList.add('photo__img-small--active');
-    phBig.src = photo.src;
-    phBigSource.srcset = phSmallSources[phSmallId].srcset;
-    phBigTitle.textContent = photo.alt;
+    selector.classList.add('photo__item--active');
+    phBig.src = selector.getAttribute('data-img');
+    phBigSource.srcset = selector.getAttribute('data-srcset');
+    phBigTitle.textContent = selector.getAttribute('data-alt');
   }
 
   function renderImgs() {
@@ -317,9 +322,9 @@
 
   window.image = {
     definePopup: definePopup,
-    removePhotoActiveClass: removePhotoActiveClass,
-    changeImgFromBigToSmall: changeImgFromBigToSmall,
-    renderImgs: renderImgs,
+    removeSelectorActiveClass: removeSelectorActiveClass,
+    changeBigImage: changeBigImage,
+    renderImgs : renderImgs,
     renderSources: renderSources
   };
 
@@ -403,22 +408,24 @@
   }
 
   function closePopupBlock() {
+    clearSelectedOptions();
     dependencies.scroll.enableScrolling();
     listeners('remove');
   }
 
   function openPopupBlock(id) {
     definePopup(id);
-
     dependencies.scroll.disableScrolling();
     listeners('add');
   }
 
   function definePopup(id) {
     var popupBlock = document.getElementById(id);
+    // внимательно: длина id фикс
     popup = {
+      goodsId: id.slice(4),
       popupBlock : popupBlock,
-      photosSmall : popupBlock.querySelectorAll('.photo__img-small'),
+      photosSelector : popupBlock.querySelectorAll('.photo__item'),
       popupCloseBtn : popupBlock.querySelector('.popup__close'),
       orderBtn : popupBlock.querySelector('.preorder__order'),
       minusBtn : popupBlock.querySelector('.preorder__btn--minus'),
@@ -436,8 +443,8 @@
 
   function listeners(method) {
     popup.popupBlock.classList[method]('popup--show');
-    popup.photosSmall.forEach(function(smallPhoto) {
-      smallPhoto[method+'EventListener']('click', onSmallPhotoClick);
+    popup.photosSelector.forEach(function(selector) {
+      selector[method+'EventListener']('click', onSelectorClick);
     });
     popup.popupCloseBtn[method+'EventListener']('click', onPopupCloseBtnClick);
     if (popup.orderBtn !== null) {
@@ -449,9 +456,9 @@
     window[method+'EventListener']('keydown', onWindowEscPress);
   }
 
-  function onSmallPhotoClick(evt) {
-    dependencies.image.removePhotoActiveClass();
-    dependencies.image.changeImgFromBigToSmall(evt.target);
+  function onSelectorClick(evt) {
+    dependencies.image.removeSelectorActiveClass();
+    dependencies.image.changeBigImage(evt.target);
   }
 
   function onPopupCloseBtnClick() {
@@ -464,6 +471,15 @@
       closePopupBlock();
     }
     window.removeEventListener('keydown', onWindowEscPress);
+  }
+
+  function clearSelectedOptions() {
+    if (popup.orderBtn !== null) {
+      popup.sizeBlock.selectedIndex = 0;
+      popup.colorBlock.selectedIndex = 0;
+      popup.quantityBlock.value = 1;
+      popup.priceBlock.textContent = dependencies.storage.getPrice(popup.goodsId);
+    }
   }
 
 })();
@@ -512,7 +528,8 @@
         addCellInARow(orders[order].id, row);
         addCellInARow(data[id].name, row);
         addCellInARow(orders[order].size, row);
-        addCellInARow(orders[order].color, row);
+
+        addСolorInARow(orders[order].color, row);
 
         addMinusBtnInARow(order, row);
 
@@ -534,14 +551,23 @@
     row.appendChild(td);
   }
 
+  function addСolorInARow(color, row) {
+    var td = document.createElement('td');
+    var innerH = '<div style="width:15px;height:15px;margin:0 auto;border-radius:50%;" class="color--' + color + '" title="' + color + '"></div>';
+    td.innerHTML = innerH;
+    row.appendChild(td);
+  }
+
   function removeRow(order, row) {
-    table.removeChild(row);
-    dependencies.storage.showMsgBlock('Позиция удалена из корзины!');
-    var totalPrice = dependencies.storage.removeOrderFromStorage(order);
-    dependencies.storage.updateCartCounters();
-    cartTotalOutput.textContent = totalPrice + '.00';
-    if (totalPrice === 0) {
-      hideCartTable();
+    if (confirm('Удалить позицию из корзины?')) {
+      table.removeChild(row);
+      dependencies.storage.showMsgBlock('Позиция удалена из корзины!');
+      var totalPrice = dependencies.storage.removeOrderFromStorage(order);
+      dependencies.storage.updateCartCounters();
+      cartTotalOutput.textContent = totalPrice + '.00';
+      if (totalPrice === 0) {
+        hideCartTable();
+      }
     }
   }
 
@@ -615,6 +641,7 @@
 
   var RADIOLABEL_CHECKED_CLASS = 'slide__radiolabel--checked';
   var SLIDE_SHOW_CLASS = 'slide__item--show';
+  var SLIDE_INTERVAL = 4000;
   var slides = document.querySelectorAll('.slide__item');
   var radioLabels = document.querySelectorAll('.slide__radiolabel');
   var nextBtn = document.querySelector('.slider__btn-next');
@@ -628,7 +655,7 @@
   }
 
   function activateSlider() {
-    slideInterval = setInterval(goToNextSlide, 4000); //интервал повторения
+    slideInterval = setInterval(goToNextSlide, SLIDE_INTERVAL); //интервал повторения
 
     nextBtn.addEventListener('click', function() { //при клике на вперед
       troughLabel = false;
@@ -646,7 +673,7 @@
       label.addEventListener('click', function() {
         troughLabel = true;
         pauseSlideShow();
-        goToSlide(this.getAttribute('data-id'));
+        goToSlide(+ this.getAttribute('data-id'));
       });
     });
   }

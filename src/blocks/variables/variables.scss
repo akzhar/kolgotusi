@@ -20,17 +20,23 @@
   list-style: none;
 }
 
-// переменные цветов
+// цвета сайта
 $black: #000000;
 $white: #ffffff;
 $grey: #6e6e6e;
 $darkgrey: #313131;
-
 $yellow: #d1e44a;
 $lime: #9dd946;
 $pink: #fbebde;
 $orange: #fb580d;
 $red: #c73601;
+
+// цвета товара
+$beige: rgb(174, 123, 74);
+$bronz: rgb(164, 104, 54);
+$graft: rgb(93, 93, 93);
+$mocca: rgb(77, 22, 17);
+$nero: rgb(1, 1, 1);
 
 // переменные ширин
 $width-mobile: 320px;

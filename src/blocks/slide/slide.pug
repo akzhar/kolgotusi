@@ -1,11 +1,9 @@
-include ../stock/items
-
 - var first = ""
 
 div.slide
 
   ul.slide__list
-    each item, index in stockItems
+    each item, index in stock
       - (index == 0) ? first = "slide__item--show" : first = ""
       li.slide__item(class=first)
         b.slide__period=item.period
@@ -15,6 +13,6 @@ div.slide
         div.slide__img(style="background-image: url(" + item.imgSlide + ")")
 
   ul.slide__selector.slide__selector--nojs
-    each item, index in stockItems
+    each item, index in stock
       - (index == 0) ? first = "slide__radiolabel--checked" : first = ""
       li.slide__radiolabel(class=first, data-id=index, onclick="")

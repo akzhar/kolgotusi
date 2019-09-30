@@ -6,10 +6,7 @@
   "license": "ISC",
   "scripts": {
     "build": "gulp build",
-    "start": "gulp start",
-    "clean": "gulp clean",
-    "styleLint": "gulp styleLint",
-    "esLint": "gulp esLint"
+    "start": "gulp start"
   },
   "dependencies": {},
   "devDependencies": {

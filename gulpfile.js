@@ -107,7 +107,7 @@ gulp.task('js', function () {
 });
 
 gulp.task('image', function () {
-  gulp.src('src/img/*.{png,jpg,svg}')
+  gulp.src('src/img/separate/**/*.{png,jpg,svg}')
   .pipe(imageMin([
     pngMin({quality: '80'}),
     jpegMin({progressive: true, method: 'ms-ssim'}),
@@ -119,13 +119,13 @@ gulp.task('image', function () {
       {removeStyleElement: false},
       {removeViewBox: false}
       ]
-    })
+    }),
     ]))
   .pipe(gulp.dest('docs/img/'));
 });
 
 gulp.task('cwebp', function () {
-  gulp.src('src/img/*.{png,jpg}')
+  gulp.src('src/img/separate/**/*.{png,jpg}')
   .pipe(cwebp())
   .pipe(gulp.dest('docs/img/'));
 });

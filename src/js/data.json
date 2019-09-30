@@ -1,188 +1,116 @@
 {
-  "popularItems" : {
-  "578": {
-    "id": "578",
-    "img": [
-    {
-      "path": "img/model2",
-      "alt": "title2"
-    },
-    {
-      "path": "img/model3",
-      "alt": "title3"
-    },
-    {
-      "path": "img/model4",
-      "alt": "title4"
-    },
-    {
-      "path": "img/model1",
-      "alt": "title1"
-    }
-    ],
-    "name": "tango 10",
-    "price": "115",
-    "sizes": ["2", "5"],
-    "colors": ["red", "orange", "violet"]
+  "stock":
+  [{
+    "imgStock": "img/model_1.png",
+    "imgSlide": "img/female_3.png",
+    "period": "Весна 2019",
+    "header": "Супер скидки",
+    "text": "На каждую 3 пару колготок <b>скидка 20%!</b>"
   },
-  "321": {
-    "id": "321",
-    "img": [
-    {
-      "path": "img/model2",
-      "alt": "title2"
-    },
-    {
-      "path": "img/model1",
-      "alt": "title1"
-    },
-    {
-      "path": "img/model3",
-      "alt": "title3"
-    },
-    {
-      "path": "img/model4",
-      "alt": "title4"
-    },
-    {
-      "path": "img/model4",
-      "alt": "title4"
-    },
-    {
-      "path": "img/model4",
-      "alt": "title4"
-    },
-    {
-      "path": "img/model4",
-      "alt": "title4"
-    },
-    {
-      "path": "img/model5",
-      "alt": "title5"
-    }
-    ],
-    "name": "tango 20",
-    "price": "116",
-    "sizes": ["2", "3", "4", "5"],
-    "colors": ["cyan", "red", "orange", "violet"]
+  {
+    "imgStock": "img/model_2.png",
+    "imgSlide": "img/female_1.png",
+    "period": "8 марта",
+    "header": "Весна рядом",
+    "text": "Порадуй любимую! <b>Коробка колготок</b> от 999р."
   },
-  "121": {
-    "id": "121",
-    "img": [
-    {
-      "path": "img/model3",
-      "alt": "title3"
-    },
-    {
-      "path": "img/model2",
-      "alt": "title2"
-    },
-    {
-      "path": "img/model1",
-      "alt": "title1"
-    },
-    {
-      "path": "img/model4",
-      "alt": "title4"
-    },
-    {
-      "path": "img/model5",
-      "alt": "title5"
-    }
-    ],
-    "name": "tango 30",
-    "price": "126",
-    "sizes": ["2", "3", "4", "5"],
-    "colors": ["cyan", "red", "orange", "violet"]
-  }
+  {
+    "imgStock": "img/model_3.png",
+    "imgSlide": "img/female_2.png",
+    "period": "Весь Апрель",
+    "header": "Плати меньше",
+    "text": "Каждая 6 пара колготок <b>бесплатно!</b>"
   },
-  "allItems": {
-  "578": {
-    "id": "578",
-    "img": [
-    {
-      "path": "img/model5",
-      "alt": "title5"
-    },
-    {
-      "path": "img/model2",
-      "alt": "title2"
-    },
-    {
-      "path": "img/model3",
-      "alt": "title3"
-    },
-    {
-      "path": "img/model4",
-      "alt": "title4"
-    },
-    {
-      "path": "img/model1",
-      "alt": "title1"
-    }
-    ],
-    "name": "tango 10",
-    "price": "115",
-    "sizes": ["2", "3", "4", "5"],
-    "colors": ["cyan", "red", "orange", "violet"]
+  {
+    "imgStock": "img/model_4.png",
+    "imgSlide": "img/female_3.png",
+    "period": "Весь Май",
+    "header": "Весенняя акция",
+    "text": "<b>Бесплатная доставка</b> при заказе от 5 шт."
+  }],
+  "delivery":
+  [{
+    "img": "img/truck.png",
+    "text": "Довезем все на нашем грузовике!"
   },
-  "321": {
-    "id": "321",
-    "img": [
-    {
-      "path": "img/model4",
-      "alt": "title4"
-    },
-    {
-      "path": "img/model2",
-      "alt": "title2"
-    },
-    {
-      "path": "img/model3",
-      "alt": "title3"
-    },
-    {
-      "path": "img/model1",
-      "alt": "title1"
-    },
-    {
-      "path": "img/model5",
-      "alt": "title5"
-    }
-    ],
-    "name": "tango 20",
-    "price": "116",
-    "sizes": ["2", "3", "4", "5"],
-    "colors": ["cyan", "red", "orange", "violet"]
+  {
+    "img": "img/medal.png",
+    "text": "Вам заказ - нам медаль на грудь!"
   },
-  "121": {
-    "id": "121",
-    "img": [
+  {
+    "img": "img/credit.png",
+    "text": "Можно взять колготки в кредит!"
+  }],
+  "goods": {
+    "16С-29СП":
     {
-      "path": "img/model1",
-      "alt": "title1"
-    },
-    {
-      "path": "img/model2",
-      "alt": "title2"
-    },
-    {
-      "path": "img/model3",
-      "alt": "title3"
-    },
-    {
-      "path": "img/model4",
-      "alt": "title4"
-    },
-    {
-      "path": "img/model5",
-      "alt": "title5"
-    }
-    ],
-    "name": "tango 30",
-    "price": "126",
+    "id": "16С-29СП",
+    "isPopular": "true",
+    "name": "conte ideal 20",
+    "price": "120",
     "sizes": ["2", "3", "4", "5"],
-    "colors": ["cyan", "red", "orange", "violet"]
-  }
+    "colors": ["bronz", "nero", "beige"],
+    "img":
+    [{
+      "path": "img/ideal_20/ideal_20_main",
+      "alt": "ideal 20",
+      "color": "main"
+    },
+    {
+      "path": "img/ideal_20/ideal_20_bronz",
+      "alt": "ideal 20 - bronz",
+      "color": "bronz"
+    },
+    {
+      "path": "img/ideal_20/ideal_20_nero",
+      "alt": "ideal 20 - nero",
+      "color": "nero"
+    },
+    {
+      "path": "img/ideal_20/ideal_20_beige",
+      "alt": "ideal 20 - beige",
+      "color": "beige"
+    }]
+    },
+    "16С-30СП":
+    {
+    "id": "16С-30СП",
+    "isPopular": "false",
+    "name": "conte ideal 40",
+    "price": "140",
+    "sizes": ["2", "3", "4", "5"],
+    "colors": ["bronz", "graft", "mocca", "nero", "beige"],
+    "img":
+    [{
+      "path": "img/ideal_40/ideal_40_main",
+      "alt": "ideal 40",
+      "color": "main"
+    },
+    {
+      "path": "img/ideal_40/ideal_40_bronz",
+      "alt": "ideal 40 - bronz",
+      "color": "bronz"
+    },
+    {
+      "path": "img/ideal_40/ideal_40_grafit",
+      "alt": "ideal 40 - graft",
+      "color": "graft"
+    },
+    {
+      "path": "img/ideal_40/ideal_40_mocca",
+      "alt": "ideal 40 - mocca",
+      "color": "mocca"
+    },
+    {
+      "path": "img/ideal_40/ideal_40_nero",
+      "alt": "ideal 40 - nero",
+      "color": "nero"
+    },
+    {
+      "path": "img/ideal_40/ideal_40_beige",
+      "alt": "ideal 40 - beige",
+      "color": "beige"
+    }]
+    }
   }
 }

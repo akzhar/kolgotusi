@@ -3,15 +3,13 @@ mixin photo(allPhotoes, index)
   - var first = ""
 
   h4.popup__header.photo__header=allPhotoes[0].alt
-  div.photo__wrapper
-    picture.photo__item-large
-        source.photo__img-large-srcset(srcset="", data-img=allPhotoes[0].path + ".webp 1x", type="image/webp")
-        img.photo__img-large(src="", data-img=allPhotoes[0].path + ".jpg", alt=allPhotoes[0].alt)
+  duv.popup__wrapper
+    span Цвета:
     ul.photo__list
       each photo, index in allPhotoes
-        li.photo__item
-          - first = (index == 0) ? "photo__img-small--active" : ""
-          picture
-            source.photo__img-small-srcset(srcset="", data-img=photo.path + ".webp 1x", type="image/webp")
-            img.photo__img-small(data-id=index, class=first, src="", data-img=photo.path + ".jpg", alt=photo.alt)
-    button.photo__close.popup__close(title="Закрыть", data-index=index)
+        - first = (index == 0) ? "photo__item--active" : ""
+        li.photo__item(data-id=index, class=first + " " + "color--" + photo.color, data-img=photo.path + ".jpg", data-srcset=photo.path + ".webp 1x", data-alt=photo.alt, title=photo.color)
+  picture.photo__item-large
+      source.photo__img-large-srcset(srcset="", data-img=allPhotoes[0].path + ".webp 1x", type="image/webp")
+      img.photo__img-large(src="", data-img=allPhotoes[0].path + ".jpg", alt=allPhotoes[0].alt)
+  button.photo__close.popup__close(title="Закрыть", data-index=index)
