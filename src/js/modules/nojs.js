@@ -1,10 +1,14 @@
+/*
+модуль для снятия классов --nojs
+*/
+
 (function() {
 
-  var header = document.querySelector('.header');
-  var pagewrapper = document.querySelector('.page-wrapper');
-  var menubutton = document.querySelector('.menu-button');
-  var menu = document.querySelector('.site-menu-list');
-  var slideSelector = document.querySelector('.slide__selector');
+  let header = document.querySelector('.header');
+  let pagewrapper = document.querySelector('.page-wrapper');
+  let menubutton = document.querySelector('.menu-button');
+  let menu = document.querySelector('.site-menu-list');
+  let slideSelector = document.querySelector('.slide__selector');
 
   if (slideSelector) {
     slideSelector.classList.remove('slide__selector--nojs');

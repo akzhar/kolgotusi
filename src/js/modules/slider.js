@@ -1,15 +1,21 @@
+/*
+модуль управления слайдером
+*/
+
+
 (function() {
 
-  var RADIOLABEL_CHECKED_CLASS = 'slide__radiolabel--checked';
-  var SLIDE_SHOW_CLASS = 'slide__item--show';
-  var SLIDE_INTERVAL = 4000;
-  var slides = document.querySelectorAll('.slide__item');
-  var radioLabels = document.querySelectorAll('.slide__radiolabel');
-  var nextBtn = document.querySelector('.slider__btn-next');
-  var previousBtn = document.querySelector('.slider__btn-prev');
-  var currentSlideNo = 0;
-  var troughLabel = false;
-  var slideInterval;
+  const RADIOLABEL_CHECKED_CLASS = 'slide__radiolabel--checked';
+  const SLIDE_SHOW_CLASS = 'slide__item--show';
+  const SLIDE_INTERVAL = 4000;
+
+  let slides = document.querySelectorAll('.slide__item');
+  let radioLabels = document.querySelectorAll('.slide__radiolabel');
+  let nextBtn = document.querySelector('.slider__btn-next');
+  let previousBtn = document.querySelector('.slider__btn-prev');
+  let currentSlideNo = 0;
+  let troughLabel = false;
+  let slideInterval;
 
   if (nextBtn !== null && previousBtn !== null) {
     activateSlider();

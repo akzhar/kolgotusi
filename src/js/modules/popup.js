@@ -1,14 +1,24 @@
+/*
+модуль для открытия/закрытия попапов
+*/
+
+// думаю, можно упростить данный модуль + image
+
 (function() {
 
-  var dependencies = {
+  let dependencies = {
     scroll: window.scroll,
     storage: window.storage,
-    image: window.image
+    image: window.image,
+    message: window.message,
+    cart: window.cart
   };
 
-  var popupOpenBtns = document.querySelectorAll('.popup__open');
-  var photoOpenBtns = document.querySelectorAll('.goods__show-btn');
-  var popup;
+  const ID_LENGTH = 4;
+
+  let popupOpenBtns = document.querySelectorAll('.popup__open');
+  let photoOpenBtns = document.querySelectorAll('.goods__show-btn');
+  let popup;
 
   popupOpenBtns.forEach(function(popupOpenBtn) {
     popupOpenBtn.addEventListener('click', onPopupOpenBtnClick);
@@ -19,18 +29,17 @@
   });
 
   function onPopupOpenBtnClick(evt) {
-    var id = evt.target.getAttribute('data-id');
-    openPopupBlock(id);
+    openPopupBlock(evt.target.dataset.id);
   }
 
   function onPhotoOpenBtnClick(evt) {
-    dependencies.image.renderImgs();
-    dependencies.image.renderSources();
+    dependencies.image.renderImgs(popup);
+    dependencies.image.renderSources(popup);
     evt.target.removeEventListener('click', onPhotoOpenBtnClick);
   }
 
   function closePopupBlock() {
-    clearSelectedOptions();
+    resetSelectedOptions();
     dependencies.scroll.enableScrolling();
     listeners('remove');
   }
@@ -43,9 +52,9 @@
 
   function definePopup(id) {
     var popupBlock = document.getElementById(id);
-    // внимательно: длина id фикс
+
     popup = {
-      goodsId: id.slice(4),
+      goodsId: id.slice(ID_LENGTH),
       popupBlock : popupBlock,
       photosSelector : popupBlock.querySelectorAll('.photo__item'),
       popupCloseBtn : popupBlock.querySelector('.popup__close'),
@@ -57,10 +66,6 @@
       sizeBlock : popupBlock.querySelector('.preorder__select--sizes'),
       colorBlock : popupBlock.querySelector('.preorder__select--colors')
     };
-
-    window.popup = popup;
-    dependencies.storage.definePopup();
-    dependencies.image.definePopup();
   }
 
   function listeners(method) {
@@ -70,17 +75,17 @@
     });
     popup.popupCloseBtn[method+'EventListener']('click', onPopupCloseBtnClick);
     if (popup.orderBtn !== null) {
-      popup.orderBtn[method+'EventListener']('click', dependencies.storage.addOrderToStorage);
-      popup.minusBtn[method+'EventListener']('click', dependencies.storage.minusOne);
-      popup.plusBtn[method+'EventListener']('click', dependencies.storage.plusOne);
-      popup.quantityBlock[method+'EventListener']('change', dependencies.storage.changePrice);
+      popup.orderBtn[method + 'EventListener']('click', addOrderToStorage);
+      popup.minusBtn[method + 'EventListener']('click', minusOne);
+      popup.plusBtn[method + 'EventListener']('click', plusOne);
+      popup.quantityBlock[method + 'EventListener']('change', changePrice);
     }
-    window[method+'EventListener']('keydown', onWindowEscPress);
+    window[method + 'EventListener']('keydown', onWindowEscPress);
   }
 
   function onSelectorClick(evt) {
-    dependencies.image.removeSelectorActiveClass();
-    dependencies.image.changeBigImage(evt.target);
+    dependencies.image.removeSelectorActiveClass(popup);
+    dependencies.image.changeBigImageToSelected(evt.target, popup);
   }
 
   function onPopupCloseBtnClick() {
@@ -95,13 +100,68 @@
     window.removeEventListener('keydown', onWindowEscPress);
   }
 
-  function clearSelectedOptions() {
+  function resetSelectedOptions() {
     if (popup.orderBtn !== null) {
       popup.sizeBlock.selectedIndex = 0;
       popup.colorBlock.selectedIndex = 0;
       popup.quantityBlock.value = 1;
       popup.priceBlock.textContent = dependencies.storage.getPrice(popup.goodsId);
     }
+  }
+
+  function changePrice() {
+    var price = dependencies.storage.getPrice(popup.orderBtn.dataset.id);
+    popup.priceBlock.textContent = price * (+ popup.quantityBlock.value);
+  }
+
+  function minusOne() {
+    if (+ popup.quantityBlock.value === 0) {
+      return;
+    }
+    popup.quantityBlock.value = + popup.quantityBlock.value - 1;
+    changePrice();
+  }
+
+  function plusOne() {
+    popup.quantityBlock.value = + popup.quantityBlock.value + 1;
+    changePrice();
+  }
+
+  function addOrderToStorage() {
+    var id = popup.orderBtn.dataset.id;
+    var size = popup.sizeBlock.value;
+    var color = popup.colorBlock.value;
+    var quantity = + popup.quantityBlock.value;
+    var price = + popup.priceBlock.textContent;
+    var key = id+'-'+size+'-'+color;
+
+    if (quantity === 0) {
+      dependencies.message.showMsgBlock('Сначала выберите количество товара!');
+      return;
+    }
+
+    var cart = dependencies.storage.getCartFromStorage();
+    var orders = cart.orders || {};
+    var totalCount = + cart.totalCount + quantity;
+    var totalPrice = + cart.totalPrice + price;
+
+    if (Object.prototype.hasOwnProperty.call(orders, key)) {
+      quantity += orders[key].quantity;
+      price += orders[key].price;
+    }
+
+    orders[key] = {
+      id: id,
+      size: size,
+      color: color,
+      quantity: quantity,
+      price: price
+    };
+
+    dependencies.storage.setCartInStorage(orders, totalCount, totalPrice);
+
+    dependencies.message.showMsgBlock('Товар добавлен в корзину!');
+    dependencies.cart.updateCartCounters();
   }
 
 })();

@@ -1,6 +1,10 @@
+/*
+модуль загрузки данных ассортимента магазина
+*/
+
 (function() {
 
-  var dependencies = {
+  let dependencies = {
     backend: window.backend
   };
 
