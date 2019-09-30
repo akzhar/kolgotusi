@@ -1,13 +1,17 @@
+/*
+модуль для вкл/откл скрола страницы
+*/
+
 (function() {
 
-  var anchor = document.querySelector('.btn--up');
-  var x;
-  var y;
+  let anchor = document.querySelector('.btn--up');
+  let x;
+  let y;
 
   if (anchor !== null) {
     anchor.addEventListener('click', function (evt) {
       evt.preventDefault();
-      var blockID = anchor.getAttribute('href');
+      let blockID = anchor.getAttribute('href');
       document.querySelector('' + blockID).scrollIntoView(
         {
           behavior: 'smooth',

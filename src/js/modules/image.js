@@ -1,46 +1,43 @@
+/*
+модуль для работы попапом просмотра фото товара
+*/
+
 (function() {
 
-  var popup;
-
-  function definePopup() {
-    popup = window.popup;
-  }
-
-  function removeSelectorActiveClass() {
+  function removeSelectorActiveClass(popup) {
     popup.photosSelector.forEach(function(photo) {
       photo.classList.remove('photo__item--active');
     });
   }
 
-  function changeBigImage(selector) {
-    var phBig = popup.popupBlock.querySelector('.photo__img-large');
-    var phBigSource = popup.popupBlock.querySelector('.photo__img-large-srcset');
-    var phBigTitle = popup.popupBlock.querySelector('.photo__header');
+  function changeBigImageToSelected(selector, popup) {
+    let bigImg = popup.popupBlock.querySelector('.photo__img-large');
+    let bigImgSource = popup.popupBlock.querySelector('.photo__img-large-srcset');
+    let bigImgTitle = popup.popupBlock.querySelector('.photo__header');
 
     selector.classList.add('photo__item--active');
-    phBig.src = selector.getAttribute('data-img');
-    phBigSource.srcset = selector.getAttribute('data-srcset');
-    phBigTitle.textContent = selector.getAttribute('data-alt');
+    bigImg.src = selector.dataset.img;
+    bigImgSource.srcset = selector.dataset.srcset;
+    bigImgTitle.textContent = selector.dataset.alt;
   }
 
-  function renderImgs() {
-    var phImgs = popup.popupBlock.querySelectorAll('img');
-    phImgs.forEach(function(img) {
-      img.setAttribute('src', img.getAttribute('data-img'));
+  function renderImgs(popup) {
+    let imgs = popup.popupBlock.querySelectorAll('img');
+    imgs.forEach(function (img) {
+      img.setAttribute('src', img.dataset.img);
     });
   }
 
-  function renderSources() {
-    var phSources = popup.popupBlock.querySelectorAll('source');
-    phSources.forEach(function(source) {
-      source.setAttribute('srcset', source.getAttribute('data-img'));
+  function renderSources(popup) {
+    let sources = popup.popupBlock.querySelectorAll('source');
+    sources.forEach(function (source) {
+      source.setAttribute('srcset', source.dataset.img);
     });
   }
 
   window.image = {
-    definePopup: definePopup,
     removeSelectorActiveClass: removeSelectorActiveClass,
-    changeBigImage: changeBigImage,
+    changeBigImageToSelected: changeBigImageToSelected,
     renderImgs : renderImgs,
     renderSources: renderSources
   };

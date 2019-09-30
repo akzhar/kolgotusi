@@ -1,3 +1,8 @@
+/*
+модуль загрузки data.json,
+в котором хранится ассортимент магазина
+*/
+
 (function () {
   var MAX_RESPONSE_TIME = 5000;
   var MS_PER_SECOND = 1000;
