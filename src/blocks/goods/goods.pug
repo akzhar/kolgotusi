@@ -7,7 +7,7 @@ section.goods
 
   ul.goods__list
 
-    each item, index in allItems
+    each item, index in goods
       div.popup(id="cart"+ item.id)
         div.popup__block
           +preorder(item.id, item.name, item.price, item.sizes, item.colors, index)
@@ -40,5 +40,5 @@ section.goods
             h3.goods__head Цвета
             ul
               each color in item.colors
-                li.goods__color(class="goods__color--"+color, title=color)
+                li.goods__color(class="color--"+color, title=color)
         - i++;

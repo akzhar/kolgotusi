@@ -98,12 +98,13 @@
   @include list0;
   position: absolute;
 
-  left: 0;
+  left: 50%;
   bottom: -1px;
+  transform: translateX(-50%);
 
-  width: 210px;
+  width: 90%;
 
-  padding: 15px 30px;
+  padding: 15px;
 
   background-color: $pink;
 
@@ -171,20 +172,43 @@
   border-radius: 50%;
 }
 
-.goods__color--red {
-  background-color: #ff0033;
+.color--main {
+  background-color: $white;
 }
 
-.goods__color--orange {
-  background-color: #ff4200;
+.color--bronz {
+  background-color: $bronz;
 }
 
-.goods__color--cyan {
-  background-color: #33cccc;
+.color--graft {
+  background-color: $graft;
 }
 
-.goods__color--violet {
-  background-color: #6666cc;
+.color--mocca {
+  background-color: $mocca;
+}
+
+.color--nero {
+  background-color: $nero;
+}
+
+.color--beige {
+  background-color: $beige;
+}
+
+.goods__link {
+  margin-left: 5px;
+  text-decoration: none;
+  color: $orange;
+  font-weight: 600;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
 }
 
 @media (min-width: 660px) {

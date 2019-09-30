@@ -1,23 +1,21 @@
-include items
-
 section.delivery
 
   h2.delivery__header.section-header Доставка
-  b.delivery__tagline.tagline Есть 3 варианта
+  b.delivery__tagline.tagline="Есть " + delivery.length + " варианта"
 
   div.delivery__wrapper
-    each item, index in deliveryItems
+    each item, index in delivery
       if index == 0
         input(type="radio", name="delivery", id="slide" + (index+1), checked)
       else
         input(type="radio", name="delivery", id="slide" + (index+1))
 
     ul.delivery__list
-      each item, index in deliveryItems
+      each item, index in delivery
         li.delivery__item
           label(for="slide" + (index+1))=(index+1) + " вариант"
 
-    each item, index in deliveryItems
+    each item, index in delivery
       div.delivery__promo(class="delivery__promo--" +(index+1), style="background-image: url(" + item.img + ")")
         h3=(index+1) + " вариант"
         p=item.text

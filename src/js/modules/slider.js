@@ -2,6 +2,7 @@
 
   var RADIOLABEL_CHECKED_CLASS = 'slide__radiolabel--checked';
   var SLIDE_SHOW_CLASS = 'slide__item--show';
+  var SLIDE_INTERVAL = 4000;
   var slides = document.querySelectorAll('.slide__item');
   var radioLabels = document.querySelectorAll('.slide__radiolabel');
   var nextBtn = document.querySelector('.slider__btn-next');
@@ -15,7 +16,7 @@
   }
 
   function activateSlider() {
-    slideInterval = setInterval(goToNextSlide, 4000); //интервал повторения
+    slideInterval = setInterval(goToNextSlide, SLIDE_INTERVAL); //интервал повторения
 
     nextBtn.addEventListener('click', function() { //при клике на вперед
       troughLabel = false;
@@ -33,7 +34,7 @@
       label.addEventListener('click', function() {
         troughLabel = true;
         pauseSlideShow();
-        goToSlide(this.getAttribute('data-id'));
+        goToSlide(+ this.getAttribute('data-id'));
       });
     });
   }

@@ -30,22 +30,24 @@
   }
 
   function closePopupBlock() {
+    clearSelectedOptions();
     dependencies.scroll.enableScrolling();
     listeners('remove');
   }
 
   function openPopupBlock(id) {
     definePopup(id);
-
     dependencies.scroll.disableScrolling();
     listeners('add');
   }
 
   function definePopup(id) {
     var popupBlock = document.getElementById(id);
+    // внимательно: длина id фикс
     popup = {
+      goodsId: id.slice(4),
       popupBlock : popupBlock,
-      photosSmall : popupBlock.querySelectorAll('.photo__img-small'),
+      photosSelector : popupBlock.querySelectorAll('.photo__item'),
       popupCloseBtn : popupBlock.querySelector('.popup__close'),
       orderBtn : popupBlock.querySelector('.preorder__order'),
       minusBtn : popupBlock.querySelector('.preorder__btn--minus'),
@@ -63,8 +65,8 @@
 
   function listeners(method) {
     popup.popupBlock.classList[method]('popup--show');
-    popup.photosSmall.forEach(function(smallPhoto) {
-      smallPhoto[method+'EventListener']('click', onSmallPhotoClick);
+    popup.photosSelector.forEach(function(selector) {
+      selector[method+'EventListener']('click', onSelectorClick);
     });
     popup.popupCloseBtn[method+'EventListener']('click', onPopupCloseBtnClick);
     if (popup.orderBtn !== null) {
@@ -76,9 +78,9 @@
     window[method+'EventListener']('keydown', onWindowEscPress);
   }
 
-  function onSmallPhotoClick(evt) {
-    dependencies.image.removePhotoActiveClass();
-    dependencies.image.changeImgFromBigToSmall(evt.target);
+  function onSelectorClick(evt) {
+    dependencies.image.removeSelectorActiveClass();
+    dependencies.image.changeBigImage(evt.target);
   }
 
   function onPopupCloseBtnClick() {
@@ -91,6 +93,15 @@
       closePopupBlock();
     }
     window.removeEventListener('keydown', onWindowEscPress);
+  }
+
+  function clearSelectedOptions() {
+    if (popup.orderBtn !== null) {
+      popup.sizeBlock.selectedIndex = 0;
+      popup.colorBlock.selectedIndex = 0;
+      popup.quantityBlock.value = 1;
+      popup.priceBlock.textContent = dependencies.storage.getPrice(popup.goodsId);
+    }
   }
 
 })();

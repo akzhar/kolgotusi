@@ -1,30 +1,28 @@
-include items
-
 section.stock
   h2.stock__header.section-header Акции
   b.stock__tagline.tagline Все акции здесь
 
   ul.stock__list
-    - for(var i = 0; i < stockItems.length/4; i++)
+    - for(var i = 0; i < stock.length/4; i++)
       li.stock__wrapper
-        div.stock__item(style="background-image: url(" + stockItems[i].imgStock + ")")
+        div.stock__item(style="background-image: url(" + stock[i].imgStock + ")")
           div.stock__content
-            b.stock__period=stockItems[i].period
-            h3.stock__head=stockItems[i].header
-            p.stock__text!=stockItems[i].text
-        div.stock__item(style="background-image: url(" + stockItems[i+1].imgStock + ")")
+            b.stock__period=stock[i].period
+            h3.stock__head=stock[i].header
+            p.stock__text!=stock[i].text
+        div.stock__item(style="background-image: url(" + stock[i+1].imgStock + ")")
           div.stock__content
-            b.stock__period=stockItems[i+1].period
-            h3.stock__head=stockItems[i+1].header
-            p.stock__text!=stockItems[i+1].text
+            b.stock__period=stock[i+1].period
+            h3.stock__head=stock[i+1].header
+            p.stock__text!=stock[i+1].text
       li.stock__wrapper
-        div.stock__item(style="background-image: url(" + stockItems[i+2].imgStock + ")")
+        div.stock__item(style="background-image: url(" + stock[i+2].imgStock + ")")
           div.stock__content
-            b.stock__period=stockItems[i+2].period
-            h3.stock__head=stockItems[i+2].header
-            p.stock__text!=stockItems[i+2].text
-        div.stock__item(style="background-image: url(" + stockItems[i+3].imgStock + ")")
+            b.stock__period=stock[i+2].period
+            h3.stock__head=stock[i+2].header
+            p.stock__text!=stock[i+2].text
+        div.stock__item(style="background-image: url(" + stock[i+3].imgStock + ")")
           div.stock__content
-            b.stock__period=stockItems[i+3].period
-            h3.stock__head=stockItems[i+3].header
-            p.stock__text!=stockItems[i+3].text
+            b.stock__period=stock[i+3].period
+            h3.stock__head=stock[i+3].header
+            p.stock__text!=stock[i+3].text

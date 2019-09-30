@@ -41,7 +41,8 @@
         addCellInARow(orders[order].id, row);
         addCellInARow(data[id].name, row);
         addCellInARow(orders[order].size, row);
-        addCellInARow(orders[order].color, row);
+
+        addСolorInARow(orders[order].color, row);
 
         addMinusBtnInARow(order, row);
 
@@ -63,14 +64,23 @@
     row.appendChild(td);
   }
 
+  function addСolorInARow(color, row) {
+    var td = document.createElement('td');
+    var innerH = '<div style="width:15px;height:15px;margin:0 auto;border-radius:50%;" class="color--' + color + '" title="' + color + '"></div>';
+    td.innerHTML = innerH;
+    row.appendChild(td);
+  }
+
   function removeRow(order, row) {
-    table.removeChild(row);
-    dependencies.storage.showMsgBlock('Позиция удалена из корзины!');
-    var totalPrice = dependencies.storage.removeOrderFromStorage(order);
-    dependencies.storage.updateCartCounters();
-    cartTotalOutput.textContent = totalPrice + '.00';
-    if (totalPrice === 0) {
-      hideCartTable();
+    if (confirm('Удалить позицию из корзины?')) {
+      table.removeChild(row);
+      dependencies.storage.showMsgBlock('Позиция удалена из корзины!');
+      var totalPrice = dependencies.storage.removeOrderFromStorage(order);
+      dependencies.storage.updateCartCounters();
+      cartTotalOutput.textContent = totalPrice + '.00';
+      if (totalPrice === 0) {
+        hideCartTable();
+      }
     }
   }
 

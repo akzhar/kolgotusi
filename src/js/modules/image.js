@@ -6,23 +6,21 @@
     popup = window.popup;
   }
 
-  function removePhotoActiveClass() {
-    popup.photosSmall.forEach(function(photo) {
-      photo.classList.remove('photo__img-small--active');
+  function removeSelectorActiveClass() {
+    popup.photosSelector.forEach(function(photo) {
+      photo.classList.remove('photo__item--active');
     });
   }
 
-  function changeImgFromBigToSmall(photo) {
-    var phSmallSources = popup.popupBlock.querySelectorAll('.photo__img-small-srcset');
-    var phSmallId = photo.getAttribute('data-id');
+  function changeBigImage(selector) {
     var phBig = popup.popupBlock.querySelector('.photo__img-large');
     var phBigSource = popup.popupBlock.querySelector('.photo__img-large-srcset');
     var phBigTitle = popup.popupBlock.querySelector('.photo__header');
 
-    photo.classList.add('photo__img-small--active');
-    phBig.src = photo.src;
-    phBigSource.srcset = phSmallSources[phSmallId].srcset;
-    phBigTitle.textContent = photo.alt;
+    selector.classList.add('photo__item--active');
+    phBig.src = selector.getAttribute('data-img');
+    phBigSource.srcset = selector.getAttribute('data-srcset');
+    phBigTitle.textContent = selector.getAttribute('data-alt');
   }
 
   function renderImgs() {
@@ -41,9 +39,9 @@
 
   window.image = {
     definePopup: definePopup,
-    removePhotoActiveClass: removePhotoActiveClass,
-    changeImgFromBigToSmall: changeImgFromBigToSmall,
-    renderImgs: renderImgs,
+    removeSelectorActiveClass: removeSelectorActiveClass,
+    changeBigImage: changeBigImage,
+    renderImgs : renderImgs,
     renderSources: renderSources
   };
 
