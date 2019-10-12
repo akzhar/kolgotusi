@@ -11,7 +11,8 @@ body {
 
 img {
   display: block;
-  max-width: 100%; }
+  max-width: 100%;
+  height: auto; }
 
 .section-header {
   margin: 0 0 10px 0;
@@ -1067,7 +1068,7 @@ img {
   box-shadow: -27px 27px 30px 10px rgba(110, 110, 110, 0.5); }
 
 .popup__block--msg {
-  width: 50%;
+  max-width: 40%;
   height: auto; }
 
 .popup__close {
@@ -1116,11 +1117,15 @@ img {
 
 .photo {
   width: 90%;
+  height: 90%;
   margin: 0 auto; }
 
 .popup__wrapper {
   display: flex;
   margin-bottom: 20px; }
+
+.photo__img-large {
+  height: 90%; }
 
 .photo__list {
   margin: 0;

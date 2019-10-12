@@ -29,26 +29,12 @@
     sessionStorage.setItem('cartTotalPrice', totalPrice);
   }
 
-  // удаляет 1 позицию из корзины в хранилище и возвращает суммарную стоимость корзины
-  function removeOrderFromStorage(order) {
-    let cart = getCartFromStorage();
-    let orders = cart.orders;
-    let orderQuantity = + orders[order].quantity;
-    let orderPrice = + orders[order].price;
-    let totalCount = + cart.totalCount - orderQuantity;
-    let totalPrice = + cart.totalPrice - orderPrice;
-
-    delete orders[order];
-    setCartInStorage(orders, totalCount, totalPrice);
-    return totalPrice;
-  }
-
   function getPrice(id) {
     let data = JSON.parse(sessionStorage.getItem('data'));
     return + data[id].price;
   }
 
-  // изменяет кол-во товара в заказе из корзины и возвращает булево значение - пуст ли данный заказ
+  // изменяет содержимое корзины в хранилище
   function changeOrderInStorage(order, action) {
     let cart = getCartFromStorage();
     let orders = cart.orders;
@@ -56,27 +42,49 @@
     let samplePrice = getPrice(id);
     let orderCount = + orders[order].quantity;
     let orderPrice = + orders[order].price;
-    let newOrderCount = (action === 'minus') ? (orderCount - 1) : (orderCount + 1);
-    let newOrderPrice = (action === 'minus') ? (orderPrice - samplePrice) : (orderPrice + samplePrice);
-    let totalCount = + cart.totalCount - orderCount + newOrderCount;
-    let totalPrice = + cart.totalPrice - orderPrice + newOrderPrice;
-    let orderCanBeDeleted = false;
+    let totalCount = + cart.totalCount;
+    let totalPrice = + cart.totalPrice;
 
-    if (newOrderCount == 0 || newOrderPrice == 0) {
-      orderCanBeDeleted = true;
+    if (action === 'delete') {
+      totalCount -= orderCount;
+      totalPrice -= orderPrice;
+    } else {
+      let deltaQuantity = (action === 'minus') ? (- 1) : (+ 1);
+      let deltaPrice = (action === 'minus') ? (- samplePrice) : (+ samplePrice);
+
+      totalCount += deltaQuantity;
+      totalPrice += deltaPrice;
+      orders[order].quantity += deltaQuantity;
+      orders[order].price += deltaPrice;
     }
 
-    orders[order].quantity = newOrderCount;
-    orders[order].price = newOrderPrice;
+    if (action === 'delete' || orders[order].quantity === 0) {
+      delete orders[order];
+    }
+
     setCartInStorage(orders, totalCount, totalPrice);
+
+  }
+
+  // возвращает булево значение - пуст ли данный заказ
+  function canOrderBeDeleted(order, action) {
+    let cart = getCartFromStorage();
+    let orders = cart.orders;
+    let orderCount = + orders[order].quantity;
+    let newOrderCount = (action === 'minus') ? (orderCount - 1) : (orderCount + 1);
+    let orderCanBeDeleted = false;
+
+    if (newOrderCount < 0 || newOrderCount === 0) {
+      orderCanBeDeleted = true;
+    }
 
     return orderCanBeDeleted;
   }
 
   window.storage = {
     getPrice: getPrice,
+    canOrderBeDeleted: canOrderBeDeleted,
     setCartInStorage: setCartInStorage,
-    removeOrderFromStorage: removeOrderFromStorage,
     getCartFromStorage: getCartFromStorage,
     changeOrderInStorage: changeOrderInStorage,
     getCartTotalCountFromStorage: getCartTotalCountFromStorage,

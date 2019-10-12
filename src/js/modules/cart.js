@@ -16,12 +16,6 @@
   const CENTS_POSTFIX = '.00';
   const BTN_CLASS = 'cart__btn';
 
-  let FunctionByAction = {
-    'delete': removeOrderFromCartTable,
-    'minus': changeQuantityInOrder,
-    'plus': changeQuantityInOrder
-  };
-
   let IconByAction = {
     'delete': 'X',
     'minus': '-',
@@ -72,32 +66,27 @@
   }
 
   function removeOrderFromCartTable(order, row) {
-    if (confirm('Удалить позицию из корзины?')) {
-      table.removeChild(row);
-      dependencies.message.showMsgBlock('Позиция удалена из корзины!');
-      let totalPrice = dependencies.storage.removeOrderFromStorage(order);
-      updateCartCounters();
-      totalOutput.textContent = totalPrice + CENTS_POSTFIX;
-      if (totalPrice === 0) {
-        hideCartTable();
-      }
-    }
+    table.removeChild(row);
+    dependencies.message.showMsgBlock('Позиция удалена из корзины!');
   }
 
   function changeQuantityInOrder(order, row, action) {
-    let orderCanBeDeleted = dependencies.storage.changeOrderInStorage(order, action);
-    if (orderCanBeDeleted === true) {
-      removeOrderFromCartTable(order, row);
-      return;
+    let orderCanBeDeleted = dependencies.storage.canOrderBeDeleted(order, action);
+    if (orderCanBeDeleted === true || action === 'delete') {
+      if (confirm('Удалить позицию из корзины?')) {
+        removeOrderFromCartTable(order, row);
+      } else {
+        return;
+      }
     }
-    updateCartCounters();
+    dependencies.storage.changeOrderInStorage(order, action);
+    updateCart();
+  }
+
+  function updateCart() {
     let totalPrice = dependencies.storage.getCartTotalPriceFromStorage();
-    totalOutput.textContent = totalPrice + CENTS_POSTFIX;
-    if (totalPrice === 0) {
-      hideCartTable();
-    } else {
-      drawCartTable();
-    }
+    (totalPrice === 0) ? hideCartTable() : drawCartTable();
+    updateCartCounters();
   }
 
   function drawCartTable() {
@@ -114,11 +103,11 @@
         addDataInARow(data[id].name, row);
         addDataInARow(orders[order].size, row);
         addСolorInARow(orders[order].color, row);
-        addActionBtnInARow('minus', order, row);
+        addActionBtnInARow(order, row, 'minus');
         addDataInARow(orders[order].quantity, row);
-        addActionBtnInARow('plus', order, row);
+        addActionBtnInARow(order, row, 'plus');
         addDataInARow(orders[order].price + CENTS_POSTFIX, row);
-        addActionBtnInARow('delete', order, row);
+        addActionBtnInARow(order, row, 'delete');
         fragment.appendChild(row);
       }
     }
@@ -138,7 +127,7 @@
     row.appendChild(td);
   }
 
-  function addActionBtnInARow(action, order, row) {
+  function addActionBtnInARow(order, row, action) {
     let td = document.createElement('td');
     if (action !== 'delete') {
       td.style.width = '20px';
@@ -146,13 +135,14 @@
     td.style.padding = '0';
     td.innerHTML = `<button class="${BTN_CLASS} ${BTN_CLASS}--${action} btn" title="${action}">${IconByAction[action]}</button>`;
     let btn = td.querySelector('button');
-    btn.addEventListener('click', function() {
-      FunctionByAction[action](order, row, action);
+    btn.addEventListener('click', function(evt) {
+      evt.preventDefault();
+      changeQuantityInOrder(order, row, action);
     });
     row.appendChild(td);
   }
 
-  // обновление общего счетчика товара в корзине
+  // обновление общего счетчика товаров в корзине
   function updateCartCounters() {
     let cart = dependencies.storage.getCartFromStorage();
     if (cart.totalCount === 0) {
