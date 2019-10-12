@@ -177,26 +177,12 @@
     sessionStorage.setItem('cartTotalPrice', totalPrice);
   }
 
-  // удаляет 1 позицию из корзины в хранилище и возвращает суммарную стоимость корзины
-  function removeOrderFromStorage(order) {
-    let cart = getCartFromStorage();
-    let orders = cart.orders;
-    let orderQuantity = + orders[order].quantity;
-    let orderPrice = + orders[order].price;
-    let totalCount = + cart.totalCount - orderQuantity;
-    let totalPrice = + cart.totalPrice - orderPrice;
-
-    delete orders[order];
-    setCartInStorage(orders, totalCount, totalPrice);
-    return totalPrice;
-  }
-
   function getPrice(id) {
     let data = JSON.parse(sessionStorage.getItem('data'));
     return + data[id].price;
   }
 
-  // изменяет кол-во товара в заказе из корзины и возвращает булево значение - пуст ли данный заказ
+  // изменяет содержимое корзины в хранилище
   function changeOrderInStorage(order, action) {
     let cart = getCartFromStorage();
     let orders = cart.orders;
@@ -204,27 +190,49 @@
     let samplePrice = getPrice(id);
     let orderCount = + orders[order].quantity;
     let orderPrice = + orders[order].price;
-    let newOrderCount = (action === 'minus') ? (orderCount - 1) : (orderCount + 1);
-    let newOrderPrice = (action === 'minus') ? (orderPrice - samplePrice) : (orderPrice + samplePrice);
-    let totalCount = + cart.totalCount - orderCount + newOrderCount;
-    let totalPrice = + cart.totalPrice - orderPrice + newOrderPrice;
-    let orderCanBeDeleted = false;
+    let totalCount = + cart.totalCount;
+    let totalPrice = + cart.totalPrice;
 
-    if (newOrderCount == 0 || newOrderPrice == 0) {
-      orderCanBeDeleted = true;
+    if (action === 'delete') {
+      totalCount -= orderCount;
+      totalPrice -= orderPrice;
+    } else {
+      let deltaQuantity = (action === 'minus') ? (- 1) : (+ 1);
+      let deltaPrice = (action === 'minus') ? (- samplePrice) : (+ samplePrice);
+
+      totalCount += deltaQuantity;
+      totalPrice += deltaPrice;
+      orders[order].quantity += deltaQuantity;
+      orders[order].price += deltaPrice;
     }
 
-    orders[order].quantity = newOrderCount;
-    orders[order].price = newOrderPrice;
+    if (action === 'delete' || orders[order].quantity === 0) {
+      delete orders[order];
+    }
+
     setCartInStorage(orders, totalCount, totalPrice);
+
+  }
+
+  // возвращает булево значение - пуст ли данный заказ
+  function canOrderBeDeleted(order, action) {
+    let cart = getCartFromStorage();
+    let orders = cart.orders;
+    let orderCount = + orders[order].quantity;
+    let newOrderCount = (action === 'minus') ? (orderCount - 1) : (orderCount + 1);
+    let orderCanBeDeleted = false;
+
+    if (newOrderCount < 0 || newOrderCount === 0) {
+      orderCanBeDeleted = true;
+    }
 
     return orderCanBeDeleted;
   }
 
   window.storage = {
     getPrice: getPrice,
+    canOrderBeDeleted: canOrderBeDeleted,
     setCartInStorage: setCartInStorage,
-    removeOrderFromStorage: removeOrderFromStorage,
     getCartFromStorage: getCartFromStorage,
     changeOrderInStorage: changeOrderInStorage,
     getCartTotalCountFromStorage: getCartTotalCountFromStorage,
@@ -235,7 +243,7 @@
 
 
 /*
-модуль для работы попапом просмотра фото товара
+модуль для работы с попапом просмотра фото товара
 */
 
 (function() {
@@ -348,12 +356,6 @@
   const CENTS_POSTFIX = '.00';
   const BTN_CLASS = 'cart__btn';
 
-  let FunctionByAction = {
-    'delete': removeOrderFromCartTable,
-    'minus': changeQuantityInOrder,
-    'plus': changeQuantityInOrder
-  };
-
   let IconByAction = {
     'delete': 'X',
     'minus': '-',
@@ -404,32 +406,27 @@
   }
 
   function removeOrderFromCartTable(order, row) {
-    if (confirm('Удалить позицию из корзины?')) {
-      table.removeChild(row);
-      dependencies.message.showMsgBlock('Позиция удалена из корзины!');
-      let totalPrice = dependencies.storage.removeOrderFromStorage(order);
-      updateCartCounters();
-      totalOutput.textContent = totalPrice + CENTS_POSTFIX;
-      if (totalPrice === 0) {
-        hideCartTable();
-      }
-    }
+    table.removeChild(row);
+    dependencies.message.showMsgBlock('Позиция удалена из корзины!');
   }
 
   function changeQuantityInOrder(order, row, action) {
-    let orderCanBeDeleted = dependencies.storage.changeOrderInStorage(order, action);
-    if (orderCanBeDeleted === true) {
-      removeOrderFromCartTable(order, row);
-      return;
+    let orderCanBeDeleted = dependencies.storage.canOrderBeDeleted(order, action);
+    if (orderCanBeDeleted === true || action === 'delete') {
+      if (confirm('Удалить позицию из корзины?')) {
+        removeOrderFromCartTable(order, row);
+      } else {
+        return;
+      }
     }
-    updateCartCounters();
+    dependencies.storage.changeOrderInStorage(order, action);
+    updateCart();
+  }
+
+  function updateCart() {
     let totalPrice = dependencies.storage.getCartTotalPriceFromStorage();
-    totalOutput.textContent = totalPrice + CENTS_POSTFIX;
-    if (totalPrice === 0) {
-      hideCartTable();
-    } else {
-      drawCartTable();
-    }
+    (totalPrice === 0) ? hideCartTable() : drawCartTable();
+    updateCartCounters();
   }
 
   function drawCartTable() {
@@ -446,11 +443,11 @@
         addDataInARow(data[id].name, row);
         addDataInARow(orders[order].size, row);
         addСolorInARow(orders[order].color, row);
-        addActionBtnInARow('minus', order, row);
+        addActionBtnInARow(order, row, 'minus');
         addDataInARow(orders[order].quantity, row);
-        addActionBtnInARow('plus', order, row);
+        addActionBtnInARow(order, row, 'plus');
         addDataInARow(orders[order].price + CENTS_POSTFIX, row);
-        addActionBtnInARow('delete', order, row);
+        addActionBtnInARow(order, row, 'delete');
         fragment.appendChild(row);
       }
     }
@@ -470,7 +467,7 @@
     row.appendChild(td);
   }
 
-  function addActionBtnInARow(action, order, row) {
+  function addActionBtnInARow(order, row, action) {
     let td = document.createElement('td');
     if (action !== 'delete') {
       td.style.width = '20px';
@@ -478,13 +475,14 @@
     td.style.padding = '0';
     td.innerHTML = `<button class="${BTN_CLASS} ${BTN_CLASS}--${action} btn" title="${action}">${IconByAction[action]}</button>`;
     let btn = td.querySelector('button');
-    btn.addEventListener('click', function() {
-      FunctionByAction[action](order, row, action);
+    btn.addEventListener('click', function(evt) {
+      evt.preventDefault();
+      changeQuantityInOrder(order, row, action);
     });
     row.appendChild(td);
   }
 
-  // обновление общего счетчика товара в корзине
+  // обновление общего счетчика товаров в корзине
   function updateCartCounters() {
     let cart = dependencies.storage.getCartFromStorage();
     if (cart.totalCount === 0) {
